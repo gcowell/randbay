@@ -34,7 +34,11 @@ elixir(function(mix) {
             'libs/jquery-ui.min.js',
             'libs/bootstrap.min.js',
             'libs/html5.shiv.js',
-            'libs/respond.min.js'
+            'libs/respond.min.js',
+            'SaleItemForm.js',
+            'CountryAutocomplete.js',
+            'BuyOrderForm.js',
+            'BuyOrderMatch.js'
 
         ]);
 

@@ -1,0 +1,28 @@
+
+IP ping to determine country and preferred currency on user registration
+
+Experiment with allowing guest to fill in form, but require login when finished
+
+ 
+
+ 
+Saleitem index:
+-Clickable links for each entry 
+-edit, delete etc.
+
+
+
+ 
+-add the buy and sell links to
+
+-pagination of saleitems
+
+-currency issue
+
+-transaction object
+
+-paypal API stuff
+
+-fix login/register at end of saleitem
+
+-general pages

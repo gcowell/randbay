@@ -49,6 +49,13 @@
 							</div>
 						</div>
 
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Country</label>
+                            <div class="col-md-6">
+                                <input type="country" class="form-control" name="country" id="country-select">
+                            </div>
+                        </div>
+
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">

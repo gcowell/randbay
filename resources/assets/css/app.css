@@ -1,5 +1,17 @@
 html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
-#map { height: 400px; width: 100%; }
 #maincontent { height: 100%; width: 100%; margin: 10}
-#mapcolumn {min-height: 500px}
+#sale-item-entry { background-color: #cccccc;     border-radius: 15px;}
+
+#time-status {font-size: 60%; font-style: italic;}
+
+.terms-agreement {font-size: 90%; font-style: italic;}
+
+#match-loading {text-align: center}
+
+#loader-gif{
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+
 /*# sourceMappingURL=app.css.map */
+

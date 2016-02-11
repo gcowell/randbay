@@ -32,725 +32,583 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
  *  */
 
 !function(a){"use strict";a.matchMedia=a.matchMedia||function(a){var b,c=a.documentElement,d=c.firstElementChild||c.firstChild,e=a.createElement("body"),f=a.createElement("div");return f.id="mq-test-1",f.style.cssText="position:absolute;top:-100em",e.style.background="none",e.appendChild(f),function(a){return f.innerHTML='&shy;<style media="'+a+'"> #mq-test-1 { width: 42px; }</style>',c.insertBefore(e,d),b=42===f.offsetWidth,c.removeChild(e),{matches:b,media:a}}}(a.document)}(this),function(a){"use strict";function b(){u(!0)}var c={};a.respond=c,c.update=function(){};var d=[],e=function(){var b=!1;try{b=new a.XMLHttpRequest}catch(c){b=new a.ActiveXObject("Microsoft.XMLHTTP")}return function(){return b}}(),f=function(a,b){var c=e();c&&(c.open("GET",a,!0),c.onreadystatechange=function(){4!==c.readyState||200!==c.status&&304!==c.status||b(c.responseText)},4!==c.readyState&&c.send(null))};if(c.ajax=f,c.queue=d,c.regex={media:/@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi,keyframes:/@(?:\-(?:o|moz|webkit)\-)?keyframes[^\{]+\{(?:[^\{\}]*\{[^\}\{]*\})+[^\}]*\}/gi,urls:/(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g,findStyles:/@media *([^\{]+)\{([\S\s]+?)$/,only:/(only\s+)?([a-zA-Z]+)\s?/,minw:/\([\s]*min\-width\s*:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/,maxw:/\([\s]*max\-width\s*:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/},c.mediaQueriesSupported=a.matchMedia&&null!==a.matchMedia("only all")&&a.matchMedia("only all").matches,!c.mediaQueriesSupported){var g,h,i,j=a.document,k=j.documentElement,l=[],m=[],n=[],o={},p=30,q=j.getElementsByTagName("head")[0]||k,r=j.getElementsByTagName("base")[0],s=q.getElementsByTagName("link"),t=function(){var a,b=j.createElement("div"),c=j.body,d=k.style.fontSize,e=c&&c.style.fontSize,f=!1;return b.style.cssText="position:absolute;font-size:1em;width:1em",c||(c=f=j.createElement("body"),c.style.background="none"),k.style.fontSize="100%",c.style.fontSize="100%",c.appendChild(b),f&&k.insertBefore(c,k.firstChild),a=b.offsetWidth,f?k.removeChild(c):c.removeChild(b),k.style.fontSize=d,e&&(c.style.fontSize=e),a=i=parseFloat(a)},u=function(b){var c="clientWidth",d=k[c],e="CSS1Compat"===j.compatMode&&d||j.body[c]||d,f={},o=s[s.length-1],r=(new Date).getTime();if(b&&g&&p>r-g)return a.clearTimeout(h),h=a.setTimeout(u,p),void 0;g=r;for(var v in l)if(l.hasOwnProperty(v)){var w=l[v],x=w.minw,y=w.maxw,z=null===x,A=null===y,B="em";x&&(x=parseFloat(x)*(x.indexOf(B)>-1?i||t():1)),y&&(y=parseFloat(y)*(y.indexOf(B)>-1?i||t():1)),w.hasquery&&(z&&A||!(z||e>=x)||!(A||y>=e))||(f[w.media]||(f[w.media]=[]),f[w.media].push(m[w.rules]))}for(var C in n)n.hasOwnProperty(C)&&n[C]&&n[C].parentNode===q&&q.removeChild(n[C]);n.length=0;for(var D in f)if(f.hasOwnProperty(D)){var E=j.createElement("style"),F=f[D].join("\n");E.type="text/css",E.media=D,q.insertBefore(E,o.nextSibling),E.styleSheet?E.styleSheet.cssText=F:E.appendChild(j.createTextNode(F)),n.push(E)}},v=function(a,b,d){var e=a.replace(c.regex.keyframes,"").match(c.regex.media),f=e&&e.length||0;b=b.substring(0,b.lastIndexOf("/"));var g=function(a){return a.replace(c.regex.urls,"$1"+b+"$2$3")},h=!f&&d;b.length&&(b+="/"),h&&(f=1);for(var i=0;f>i;i++){var j,k,n,o;h?(j=d,m.push(g(a))):(j=e[i].match(c.regex.findStyles)&&RegExp.$1,m.push(RegExp.$2&&g(RegExp.$2))),n=j.split(","),o=n.length;for(var p=0;o>p;p++)k=n[p],l.push({media:k.split("(")[0].match(c.regex.only)&&RegExp.$2||"all",rules:m.length-1,hasquery:k.indexOf("(")>-1,minw:k.match(c.regex.minw)&&parseFloat(RegExp.$1)+(RegExp.$2||""),maxw:k.match(c.regex.maxw)&&parseFloat(RegExp.$1)+(RegExp.$2||"")})}u()},w=function(){if(d.length){var b=d.shift();f(b.href,function(c){v(c,b.href,b.media),o[b.href]=!0,a.setTimeout(function(){w()},0)})}},x=function(){for(var b=0;b<s.length;b++){var c=s[b],e=c.href,f=c.media,g=c.rel&&"stylesheet"===c.rel.toLowerCase();e&&g&&!o[e]&&(c.styleSheet&&c.styleSheet.rawCssText?(v(c.styleSheet.rawCssText,e,f),o[e]=!0):(!/^([a-zA-Z:]*\/\/)/.test(e)&&!r||e.replace(RegExp.$1,"").split("/")[0]===a.location.host)&&("//"===e.substring(0,2)&&(e=a.location.protocol+e),d.push({href:e,media:f})))}w()};x(),c.update=x,c.getEmValue=t,a.addEventListener?a.addEventListener("resize",b,!1):a.attachEvent&&a.attachEvent("onresize",b)}}(this);
-/**********************************************************************************************************
-OBJECT CLASSES
- **********************************************************************************************************/
 
-//TODO - BIG TASK - REMAIN CONSISTENT BETWEEN RESULT AND MATCH - MATCH IS BETTER
 
-/**
- * MAPOBJECT CLASS.
- *
- * This class handles all map functions
- * and properties
- */
-function MapObject()
+
+
+
+
+
+
+
+
+//**************************
+//    DEALS WITH RADIO BUTTON FOR INTERNATIONAL POST
+//
+$(document).ready(function()
 {
-    var map;
+    $("#world-post").hide();
+    $("#domestic-post").hide();
+    $("#second").hide();
+    $("#third").hide();
 
-    this.startpoint = null;
-    this.endpoint = null;
 
-    this.startaddressURL = null;
-    this.endaddressURL = null;
 
-    this.ajaxArray = [];
-    this.addressURLArray = [];
-    this.locationsArray = {};
-    this.markersArray = [];
-    this.mapBounds = null;
-    this.parcelObject = null;
 
-    this.openInfoWindow = null;
+//    *********************************
+//    HANDLER TOGGLE WORLD POSTAGE
 
-    $(window).bind('gMapsLoaded', this.LoadGoogleMap);
-
-    window.gMapsCallback = function()
+    $("#postoption1").click(function()
     {
-        $(window).trigger('gMapsLoaded');
-    }
+        $("#domestic-post").show("fast").delay(200);
+        $("#world-post").show("fast").delay(200);
+    });
 
-    this.LoadMapScript();
-
-};
-
-
-
-/*********************************************************************************
- * METHOD LoadMapScript.
- * Appends a script tag with Google maps API
- */
-MapObject.prototype.LoadMapScript = function()
-{
-    var script = document.createElement("script");
-    script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=gMapsCallback";
-    script.type = "text/javascript";
-    document.getElementsByTagName("head")[0].appendChild(script);
-}
-
-
-
-/*********************************************************************************
- * METHOD LoadGoogleMap.
- * Creates a map in document element
- * with default options
- */
-MapObject.prototype.LoadGoogleMap = function()
-{
-    var mapStartOptions =
+    $("#postoption2").click(function()
     {
-        zoom: 8,
-        center: new google.maps.LatLng(-33.8650, 151.2094),
-        //TODO make this centre on user's locations
-        streetViewControl: false
-    };
-    map = new google.maps.Map(document.getElementById('map'),mapStartOptions);
-}
+        $("#domestic-post").show("fast").delay(200);
+        $("#world-post").hide("fast").delay(200);
+        $("#world_postage_cost").val('');
+    });
 
+//    *********************************
+//    HANDLER STEP THROUGH FORM
 
+//    *********************************
+//    STEP ONE
 
-/*********************************************************************************
- * METHOD encodeAddressURLs.
- * Formats address inputs with '+'
- * signs to prepare for AJAX url
- */
-MapObject.prototype.encodeAddressURLs = function()
-{
-    //TODO strip illegal chars, eg. commas etc.
-
-    this.startaddressURL = $( "#startaddress").val().replace(/ /g, '+');
-    this.endaddressURL = $( "#endaddress").val().replace(/ /g, '+');
-
-    this.addressURLArray = [ this.startaddressURL, this.endaddressURL ];
-}
-
-
-
-/*********************************************************************************
- * METHOD clearHiddenInputs.
- * Remove existing entries in
- * hidden form elements
- */
-MapObject.prototype.clearHiddenInputs = function()
-{
-    $("#startpoint").val(null);
-    $("#endpoint").val(null);
-}
-
-
-/*********************************************************************************
- * METHOD clearOverlays.
- * Clear any existing location markers
- * on the map
- */
-MapObject.prototype.clearOverlays = function ()
-{
-    if (this.markersArray.length != 0)
+    $("#next-btn1").click(function()
     {
-        for (var i=0; i<this.markersArray.length; i++)
+
+       var desc_check = $("#description").val();
+
+       if(desc_check)
+       {
+           $('#description-group').removeClass().addClass('form-group');
+           $('#description').tooltip('destroy');
+
+           $("#first").hide("slow").delay(200);
+           $("#second").show("slow").delay(200);
+
+           //Just in case
+           $("#third").hide();
+
+
+       }
+       else
+       {
+           $('#description-group').removeClass().addClass('form-group has-error');
+           $('#description').tooltip(
+               {
+               'show': true,
+               'placement': 'left',
+               'title': "A description is needed..."
+               });
+
+           $('#description').tooltip('show');
+       }
+
+//    *********************************
+//    STEP TWO
+
+    });
+
+    $("#prev-btn2").click(function()
+    {
+
+        $("#second").hide("slow").delay(200);
+        $("#first").show("slow").delay(200);
+
+        //Just in case
+        $("#third").hide();
+
+    });
+
+    $("#next-btn2").click(function()
+    {
+
+        var price_check = $("#price").val();
+
+        if(!isNaN(price_check)&& price_check)
         {
 
-            this.markersArray[i].setMap(null);
+            $('#price-group').removeClass().addClass('form-group');
+            $('#price').tooltip('destroy');
+
+            $("#second").hide("slow").delay(200);
+            $("#third").show("slow").delay(200);
+
+            //Just in case
+            $("#first").hide();
+
         }
-    }
-}
-
-
-/*********************************************************************************
- * METHOD geocodeAddresses.
- * AJAX calls to Google to obtain
- * latitude / longitude for each location
- */
-MapObject.prototype.geocodeAddresses = function(markersRequired)
-{
-
-    for (var i = 0; i < this.addressURLArray.length; i++)
-    {
-        (function(i)
+        else
         {
-            this.ajaxArray.push(
-                $.ajax(
+
+            $('#price-group').removeClass().addClass('form-group has-error');
+
+            $('#price').tooltip(
                 {
-                    dataType: "json",
-                    url: 'http://maps.googleapis.com/maps/api/geocode/json?address='+this.addressURLArray[i]+'&sensor=false',
-                    data: null,
-                    context: this,
-                    success: handleData
+                    'show': true,
+                    'placement': 'left',
+                    'title': "A price is needed..."
+                });
 
-                }));
-
-                    function handleData (data)
-                    {
-
-                        var geocode = data.results[0].geometry.location;
-                        var index = 'location' + i;
-                        this.locationsArray[index] = {lat: geocode.lat, lng: geocode.lng};
-
-                    }
-
-        }).call(this, i);
-    }
-
-    if(markersRequired)
-    {
-        $.when.apply($, this.ajaxArray).done
-        (
-            $.proxy
-            (
-                function()
-                {
-
-                    this.createMarkers.call(this, null);
-
-                },this
-            )
-        )
-    }
-}
-
-
-/*********************************************************************************
- * METHOD createMarkers.
- * Place markers on map for geolocated
- * points. Resets view to centre on markers
- */
-MapObject.prototype.createMarkers  = function()
-{
-
-    this.mapBounds = new google.maps.LatLngBounds();
-
-    for (var i in this.locationsArray)
-    {
-        if (!this.locationsArray.hasOwnProperty(i))
-        {
-            //The current property is not a direct property
-            continue;
+            $('#price').tooltip('show');
         }
+    });
 
-        (function(i)
+//    *********************************
+//    STEP THREE
+
+    $("#prev-btn3").click(function()
+    {
+        $("#third").hide("slow").delay(200);
+        $("#second").show("slow").delay(200);
+
+        //Just in case
+        $("#first").hide();
+
+    });
+
+
+
+    $("#form-submit").click(function()
+    {
+
+        $('#world-post').removeClass().addClass('form-group');
+        $('#domestic-post').removeClass().addClass('form-group');
+
+
+        var international_yes_check = $("#postoption1").hasClass("btn btn-default active");
+        var international_no_check = $("#postoption2").hasClass("btn btn-default active");
+
+        var domestic_postage_check = $("#domestic_postage_cost").val();
+        var world_postage_check = $("#world_postage_cost").val();
+
+        if(international_yes_check == false && international_no_check == false)
         {
 
-            var marker_coords = this.locationsArray[i];
-            var lat = marker_coords.lat;
-            var lng = marker_coords.lng;
-
-            var latlng = new google.maps.LatLng( lat, lng );
-            var marker = new google.maps.Marker
-            (
+            $('#postage-toggle').tooltip(
                 {
-                position: latlng,
-                map: map
-                }
-            );
+                    'show': true,
+                    'placement': 'left',
+                    'title': "Please select a postage option"
+                });
 
-            this.markersArray.push(marker);
-            this.mapBounds.extend(latlng);
-            map.setCenter(this.mapBounds.getCenter());
-            map.fitBounds(this.mapBounds);
+            $('#postage-toggle').tooltip('show');
+        }
+        else
+        {
+            $('#postage-toggle').tooltip('destroy');
 
-        }).call(this, i);
-
-    }
-
-    map.setZoom(map.getZoom()-1);
-
-}
-
-
-
-/*********************************************************************************
- * METHOD validatePoints.
- * Ensure points are numeric
- */
-MapObject.prototype.validatePoints  = function()
-{
-
-    var validate = new RegExp(/^[\d\-\s\.]+$/);
-    var allow_startpoint = validate.test(this.startpoint);
-    var allow_endpoint = validate.test(this.endpoint);
-
-    //Only insert into HTML if both are true
-    if(allow_startpoint == true && allow_endpoint == true)
-    {
-        return true
-    }
-    else
-    {
-        return false
-    }
-
-}
-
-
-/*********************************************************************************
- * METHOD preparePoints.
- * Insert points into hidden
- * form elements
- */
-MapObject.prototype.preparePoints  = function()
-{
-
-    this.startpoint  =   this.locationsArray.location0.lat + " " + this.locationsArray.location0.lng;
-    this.endpoint    =   this.locationsArray.location1.lat + " " + this.locationsArray.location1.lng;
-
-    var checkPoints = this.validatePoints.call(this, null);
-
-    if (checkPoints = true)
-    {
-        $("#startpoint").val(this.startpoint);
-        $("#endpoint").val(this.endpoint);
-    }
-    else
-    {
-        $("#startpoint").val(null);
-        $("#endpoint").val(null);
-    }
-
-}
-
-
-
-/*********************************************************************************
- * METHOD getResults.
- * Return journeys within a given
- * range from parcel
- */
-MapObject.prototype.getResults = function (range)
-    {
-        this.matchesArray = [];
-        var url = window.location.pathname;
-        var params = url.split('/');
-        var parcel_id = params[params.length -2];
-
-        $.ajax(
+            if(international_yes_check == true)
             {
-                dataType: "json",
-                url: 'http://quicko/parcels/'+parcel_id+'/'+range,
-                data: null,
-                context: this,
-                success: plotData
-            });
 
-                function plotData(data)
+                if(!isNaN(domestic_postage_check) && domestic_postage_check)
                 {
+                    $('#domestic-post').tooltip('destroy');
+
+                    if(!isNaN(world_postage_check) && world_postage_check)
                     {
-                        //CLEAR ANY EXISTING PLOTTED MARKERS
-                        this.clearOverlays.call(this, null);
-                        this.mapBounds = new google.maps.LatLngBounds();
+                        $('#world-post').tooltip('destroy');
 
-                        this.parcelObject = data.parcel;
+                        $("#sale-item-form").submit();
+                    }
+                    else
+                    {
+                        $('#world-post').removeClass().addClass('form-group has-error');
 
-                        //PLOT PARCEL MARKERS
-                        var parcel_start_lat = data.parcel.start_lat;
-                        var parcel_start_lng = data.parcel.start_lng;
-                        var parcel_end_lat = data.parcel.end_lat;
-                        var parcel_end_lng = data.parcel.end_lng;
+                        $('#world-post').tooltip(
+                            {
+                                'show': true,
+                                'placement': 'left',
+                                'title': "Please enter a world postage cost"
+                            });
 
-                        this.plotCircle.call(this, parcel_start_lat, parcel_start_lng, range);
-                        this.plotCircle.call(this, parcel_end_lat, parcel_end_lng, range);
+                        $('#world-post').tooltip('show');
+                    }
+                }
+                else
+                {
+                    $('#domestic-post').removeClass().addClass('form-group has-error');
 
-                        //PLOT JOURNEY RESULTS MARKER
-                        var resultsArray = data.matches;
-
-                        for (var i = 0; i < resultsArray.length; i++)
+                    $('#domestic-post').tooltip(
                         {
-                            var match = resultsArray[i];
-                            this.plotResultMarkers.call(this, match);
-                        }
+                            'show': true,
+                            'placement': 'left',
+                            'title': "Please enter a standard postage cost"
+                        });
 
-                        //RESET ZOOM / POSITION BASED ON NEW MARKERS
-                        map.setCenter(this.mapBounds.getCenter());
-                        map.fitBounds(this.mapBounds);
-                        map.setZoom(map.getZoom()-1);
+                    $('#domestic-post').tooltip('show');
 
-                        //PRINT RESULTS IN HTML
-                        this.listResults.call(this, resultsArray);
+                    if(!isNaN(world_postage_check) && world_postage_check)
+                    {
+                        $('#world-post').tooltip('destroy');
+                    }
+                    else
+                    {
+                        $('#world-post').removeClass().addClass('form-group has-error');
 
+                        $('#world-post').tooltip(
+                            {
+                                'show': true,
+                                'placement': 'left',
+                                'title': "Please enter a world postage cost"
+                            });
+
+                        $('#world-post').tooltip('show');
                     }
                 }
 
-    }
-
-
-
-
-/*********************************************************************************
- * METHOD plotResultMarkers.
- * Plot markers and routes for
- * each matching result
- */
-MapObject.prototype.plotResultMarkers = function (match)
-{
-
-
-    //GET DATA OF MATCH
-    var start_latlng = new google.maps.LatLng( match.start_lat, match.start_lng);
-    var end_latlng = new google.maps.LatLng( match.end_lat, match.end_lng);
-    var match_id = match.id;
-
-    //PLOT START AND END MARKERS
-    var start_marker = new google.maps.Marker
-(
-    {
-        position: start_latlng,
-        map: map,
-        icon: '/img/journey_icon.png',
-        id: match_id
-    }
-    );
-
-
-    var end_marker = new google.maps.Marker
-    (
-        {
-            position: end_latlng,
-            map: map,
-            icon: '/img/journey_icon.png',
-            id: match_id
-        }
-    );
-
-
-    //LINK MARKERS WITH ROUTE LINE
-    var route = new google.maps.Polyline
-    (
-        {
-        path: [start_latlng, end_latlng],
-        geodesic: true,
-        map: map,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2,
-        id: match_id
-        }
-    );
-
-
-    //GENERATE CONTENTS OF INFOWINDOW
-
-    var info_div = document.createElement('div');
-    info_div.id = 'infowindowcontent';
-
-    var user = document.createElement('h3');
-    var user_link = document.createElement('a');
-    user_link.href = "http://quicko/users/"+match.owner.id;
-    user_link.text=  match.owner.name;
-    user.appendChild(user_link);
-
-    var content = document.createElement('p');
-    var start_statement = Math.round(match.startdistance * 100) / 100 + ' miles from your starting point';
-    var end_statement =  Math.round(match.enddistance * 100) / 100 + ' miles from your end point';
-
-    var contentString = "<br />" + start_statement + "<br />" + end_statement;
-    content.innerHTML = contentString;
-
-    info_div.appendChild(user);
-    info_div.appendChild(content);
-
-
-    //GENERATE INFOWINDOW OBJECT
-    var infowindow = new google.maps.InfoWindow
-    (
-        {
-            content: info_div
-        }
-    );
-
-
-    //TODO DRY UP THESE THREE STATEMENTS
-    end_marker.addListener
-    (
-        'click', $.proxy
-        (function()
+            }
+            else
             {
 
-                if (this.openinfowindow)
+                $("#world_postage_cost").val('');
+
+                if(!isNaN(domestic_postage_check) && domestic_postage_check)
                 {
-                    this.openinfowindow.close();
+                    $("#sale-item-form").submit();
                 }
-                infowindow.open(map, end_marker);
-                this.openinfowindow = infowindow;
-
-            },this
-        )
-    );
-
-    route.addListener
-        (
-            'click', $.proxy
-        (function()
-            {
-
-                if (this.openinfowindow)
+                else
                 {
-                    this.openinfowindow.close();
-                }
-                infowindow.open(map, route);
-                this.openinfowindow = infowindow;
+                    $('#domestic-post').removeClass().addClass('form-group has-error');
 
-            },this
-        )
-        );
-
-    start_marker.addListener
-        (
-            'click', $.proxy
-        (function()
-            {
-
-                if (this.openinfowindow)
-                {
-                    this.openinfowindow.close();
-                }
-                infowindow.open(map, start_marker);
-                this.openinfowindow = infowindow;
-
-            },this
-        )
-        );
-
-
-    //POPULATE MARKERS ARRAY
-    this.markersArray.push(start_marker);
-    this.markersArray.push(end_marker);
-    this.markersArray.push(route);
-
-}
-
-
-
-
-/*********************************************************************************
- * METHOD plotCircle
- * Plots a circle of radius 'range'
- * around a point
- */
-MapObject.prototype.plotCircle = function (lat, lng, range)
-{
-
-    var latlng = new google.maps.LatLng( lat, lng );
-
-    //CREATE MARKER
-    var marker = new google.maps.Marker
-    (
-        {
-            position: latlng,
-            map: map,
-            icon: '/img/parcel_icon.png'
-        }
-    );
-
-
-    //DRAW CIRCLE
-    var circle = new google.maps.Circle
-    (
-        {
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-        map: map,
-        center: latlng,
-        radius: range * 1609.34
-        }
-    );
-
-    //POPULATE MARKERS ARRAY
-    this.markersArray.push(circle);
-    this.markersArray.push(marker);
-
-    //EXTEND MAP BOUNDARIES
-    this.mapBounds.extend(latlng);
-
-}
-
-
-
-/*********************************************************************************
- * METHOD listResults.
- * Generate HTML objects
- * for each result
- */
-MapObject.prototype.listResults = function (resultsArray)
-{
-    //SELECT MATCHLIST AND EMPTY IF POPULATED
-    var target_div = document.getElementById('matchlist');
-    target_div.innerHTML = "";
-
-    if (resultsArray.length == 0)
-    {
-        var new_div = document.createElement('div');
-        new_div.id = "no-results";
-        new_div.innerHTML = "Sorry, no results could be found for your parcel!"
-        target_div.appendChild(new_div);
-    }
-    else
-    {
-
-        //DEFINE GENERIC STRINGS
-        var title_str = "Journey #"
-        var start_dist_str = " miles from your start point.";
-        var end_dist_str = " miles from your end point.";
-
-        //LOOP THROUGH MATCHES
-        for (var i = 0; i < resultsArray.length; i++)
-        {
-            //CREATE THE CONTAINER DIV
-            var new_div = document.createElement('div');
-            new_div.id = resultsArray[i].id;
-
-            //CREATE THE HEADING
-            var heading = document.createElement('h3');
-            heading.innerHTML = title_str + resultsArray[i].id;
-
-            //CREATE THE LIST
-            var list = document.createElement('ul');
-
-            //CREATE THE LIST ITEMS
-            var roundedStart = Math.round(resultsArray[i].startdistance * 100) / 100;
-            var roundedEnd = Math.round(resultsArray[i].enddistance * 100) / 100;
-
-            var start = document.createElement('li');
-            start.innerHTML = roundedStart + start_dist_str;
-
-            var end = document.createElement('li');
-            end.innerHTML = roundedEnd + end_dist_str;
-
-            //USER LINKS
-            var user = document.createElement('li');
-            var user_link = document.createElement('a');
-            user_link.href = "http://quicko/users/"+resultsArray[i].owner.id;
-            user_link.text=  resultsArray[i].owner.name;
-            user.appendChild(user_link);
-
-            //MESSAGE LINK
-
-            var message = document.createElement('li');
-            var message_link = document.createElement('a');
-            message_link.href = "http://quicko/messages/create/"+resultsArray[i].owner.id+"/"+resultsArray[i].id+"/"+this.parcelObject.id;
-            message_link.text = "Contact this User";
-            message.appendChild(message_link);
-
-            //JOIN IT ALL TOGETHER
-            list.appendChild(user);
-            list.appendChild(start);
-            list.appendChild(end);
-            list.appendChild(message);
-            new_div.appendChild(heading);
-            new_div.appendChild(list);
-            target_div.appendChild(new_div);
-        }
-
-    }
-
-}
-
-
-
-/**********************************************************************************************************
-PROCEDURES AND HANDLERS
- **********************************************************************************************************/
-
-$(document).ready((function()
-    {
-        var defaultRange = 10;
-
-        /*********************************************************************************
-         * HANDLER rangeSlider.
-         * Loads slider if rangeslider DOM element
-         * is found on page
-         */
-        if ( $( "#rangeslider" ).length )
-        {
-            $( "#rangeamount" ).val( defaultRange + " miles" );
-            $(function()
-            {
-                $( "#rangeslider" ).slider
-                (
-                    {
-                        min: 1,
-                        max: 30,
-                        value: defaultRange,
-                        slide: function( event, ui )
+                    $('#domestic-post').tooltip(
                         {
-                            $( "#rangeamount" ).val( ui.value + " miles" );
-                        }
-                    }
-                );
-            });
+                            'show': true,
+                            'placement': 'left',
+                            'title': "Please enter a standard postage cost"
+                        });
+
+                    $('#domestic-post').tooltip('show');
+                }
+            }
         }
 
+    });
 
-        /*********************************************************************************
-         * HANDLER loadMap.
-         * Loads map if map DOM element
-         * is found on page
-         */
-        if ( $( "#map" ).length )
+
+
+
+});
+
+
+var availableTags =
+    [
+        "Afghanistan",
+        "Albania",
+        "Algeria",
+        "Andorra",
+        "Angola",
+        "Antigua and Barbuda",
+        "Argentina",
+        "Armenia",
+        "Aruba",
+        "Australia",
+        "Austria",
+        "Azerbaijan",
+        "Bahamas, The",
+        "Bahrain",
+        "Bangladesh",
+        "Barbados",
+        "Belarus",
+        "Belgium",
+        "Belize",
+        "Benin",
+        "Bhutan",
+        "Bolivia",
+        "Bosnia and Herzegovina",
+        "Botswana",
+        "Brazil",
+        "Brunei",
+        "Bulgaria",
+        "Burkina Faso",
+        "Burma",
+        "Burundi",
+        "Cambodia",
+        "Cameroon",
+        "Canada",
+        "Cape Verde",
+        "Central African Republic",
+        "Chad",
+        "Chile",
+        "China",
+        "Colombia",
+        "Comoros",
+        "Congo, Democratic Republic of the",
+        "Congo, Republic of the",
+        "Costa Rica",
+        "Cote d'Ivoire",
+        "Croatia",
+        "Cuba",
+        "Curacao",
+        "Cyprus",
+        "Czech Republic",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "El Salvador",
+        "Equatorial Guinea",
+        "Eritrea",
+        "Estonia",
+        "Ethiopia",
+        "Fiji",
+        "Finland",
+        "France",
+        "Gabon",
+        "Gambia, The",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Greece",
+        "Grenada",
+        "Guatemala",
+        "Guinea",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Honduras",
+        "Hong Kong",
+        "Hungary",
+        "Iceland",
+        "India",
+        "Indonesia",
+        "Iran",
+        "Iraq",
+        "Ireland",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Japan",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Korea, North",
+        "Korea, South",
+        "Kosovo",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Laos",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liberia",
+        "Libya",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Macau",
+        "Macedonia",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Mali",
+        "Malta",
+        "Marshall Islands",
+        "Mauritania",
+        "Mauritius",
+        "Mexico",
+        "Micronesia",
+        "Moldova",
+        "Monaco",
+        "Mongolia",
+        "Montenegro",
+        "Morocco",
+        "Mozambique",
+        "Namibia",
+        "Nauru",
+        "Nepal",
+        "Netherlands",
+        "Netherlands Antilles",
+        "New Zealand",
+        "Nicaragua",
+        "Niger",
+        "Nigeria",
+        "North Korea",
+        "Norway",
+        "Oman",
+        "Pakistan",
+        "Palau",
+        "Palestinian Territories",
+        "Panama",
+        "Papua New Guinea",
+        "Paraguay",
+        "Peru",
+        "Philippines",
+        "Poland",
+        "Portugal",
+        "Qatar",
+        "Romania",
+        "Russia",
+        "Rwanda",
+        "Saint Kitts and Nevis",
+        "Saint Lucia",
+        "Saint Vincent and the Grenadines",
+        "Samoa",
+        "San Marino",
+        "Sao Tome and Principe",
+        "Saudi Arabia",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra Leone",
+        "Singapore",
+        "Sint Maarten",
+        "Slovakia",
+        "Slovenia",
+        "Solomon Islands",
+        "Somalia",
+        "South Africa",
+        "South Korea",
+        "South Sudan",
+        "Spain",
+        "Sri Lanka",
+        "Sudan",
+        "Suriname",
+        "Swaziland",
+        "Sweden",
+        "Switzerland",
+        "Syria",
+        "Taiwan",
+        "Tajikistan",
+        "Tanzania",
+        "Thailand",
+        "Timor-Leste",
+        "Togo",
+        "Tonga",
+        "Trinidad and Tobago",
+        "Tunisia",
+        "Turkey",
+        "Turkmenistan",
+        "Tuvalu",
+        "Uganda",
+        "Ukraine",
+        "United Arab Emirates",
+        "United Kingdom",
+        "United States of America",
+        "Uruguay",
+        "Uzbekistan",
+        "Vanuatu",
+        "Venezuela",
+        "Vietnam",
+        "Yemen",
+        "Zambia",
+        "Zimbabwe"
+
+    ];
+
+
+
+$( "#country-select" ).autocomplete({
+    source: availableTags,
+    minLength: 3,
+    delay: 50
+});
+
+//**************************
+//    DEALS WITH RADIO BUTTON FOR INTERNATIONAL POST
+//
+$(document).ready(function()
+{
+
+//    *********************************
+//    HANDLER STEP THROUGH FORM
+
+//    *********************************
+//    STEP ONE
+
+    $("#next-btn1").click(function()
+    {
+
+
+        var buy_price_check = $("#price").val();
+        var currency = $("#currency").val();
+
+        if(!isNaN(buy_price_check)&& buy_price_check)
         {
-            var quickomap = new MapObject();
+            $('#price-group').removeClass().addClass('form-group');
+            $('#price').tooltip('destroy');
+
+            $("#first").hide("slow").delay(200);
+            $("#second").show("slow").delay(200);
+
+
+            document.getElementById("price-statement").innerHTML = buy_price_check + " " + currency;
+            //$("#price-statement").innerHTML =
+
 
         }
-
-
-
-        /*********************************************************************************
-         * HANDLER getInitialResults.
-         * Loads results if match URL
-         * is found
-         */
-        if(window.location.href.indexOf("default") > -1) //TODO I would prefer "defaultmatch"
+        else
         {
-            quickomap.getResults.call(quickomap, defaultRange);
+            $('#price-group').removeClass().addClass('form-group has-error');
+            $('#price').tooltip(
+                {
+                    'show': true,
+                    'placement': 'left',
+                    'title': "A price is needed..."
+                });
+
+            $('#price').tooltip('show');
         }
 
+//    *********************************
+//    STEP TWO
+
+    });
+
+    $("#prev-btn2").click(function()
+    {
+
+        $("#second").hide("slow").delay(200);
+        $("#first").show("slow").delay(200);
+
+    });
 
 
-        /*********************************************************************************
-         * HANDLER getNewResults.
-         * Loads results on update
-         * map click button
-         */
-        $( "#updatemap" ).click(function()
-        {
+    $("#form-submit").click(function()
+    {
 
-            var range = $( "#rangeslider").slider("value");
-            quickomap.getResults.call(quickomap, range);
+       var agreed_check = document.getElementById('agreement').checked;
 
-        });
+       if(agreed_check)
+       {
+           $('#agreement-group').tooltip('destroy');
+           $("#buyorder-form").submit();
+       }
+       else
+       {
+           $('#agreement-group').tooltip(
+               {
+                   'show': true,
+                   'placement': 'left',
+                   'title': "You must agree to the terms"
+               });
 
+           $('#agreement-group').tooltip('show');
+       }
 
-
-        /*********************************************************************************
-         * HANDLER showPointsOnMap.
-         * Plots points on map
-         * for a given pair of addresses
-         */
-        $( "#show_on_map" ).click(function()
-        {
-            quickomap.clearHiddenInputs;
-            quickomap.encodeAddressURLs.call(quickomap, null);
-            quickomap.clearOverlays.call(quickomap, null);
-
-            var markersRequired = true;
-            quickomap.geocodeAddresses.call(quickomap, markersRequired);
-
-            $.when.apply($, quickomap.ajaxArray).done
-                (
-                    $.proxy
-                    (
-                        function()
-                        {
-
-                            quickomap.preparePoints.call(quickomap, null);
-
-                        },quickomap
-                    )
-                )
-        });
-
-    })());
+    });
 
 
+
+
+});
+$(document).ready(function()
+{
+
+    $("#match-loading").show();
+    $("#match-loading").delay(1000).hide("slow");
+    $("#match-statement").delay(1500).show("slow");
+
+
+
+
+});
 //# sourceMappingURL=all.js.map
