@@ -215,4 +215,5 @@ $( "#country-select" ).autocomplete({
     source: availableTags,
     minLength: 3,
     delay: 50
+    //TODO NEED TO ENSURE INPUTS ARE ONLY ALLOWED IN THIS FORMAT
 });

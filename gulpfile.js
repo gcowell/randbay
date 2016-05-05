@@ -35,10 +35,20 @@ elixir(function(mix) {
             'libs/bootstrap.min.js',
             'libs/html5.shiv.js',
             'libs/respond.min.js',
+            'libs/jquery.wait.js',
+            'libs/jquery.cookie.js',
             'SaleItemForm.js',
+            'SaleItemEdit.js',
+            'SaleItemIndex.js',
             'CountryAutocomplete.js',
             'BuyOrderForm.js',
-            'BuyOrderMatch.js'
+            'BuyOrderMatch.js',
+            'TransactionsIndex.js',
+            'TransactionsItem.js',
+            'TimeZone.js',
+            'UserDashboard.js'
+
+
 
         ]);
 

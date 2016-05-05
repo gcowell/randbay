@@ -26,7 +26,7 @@
                     {!! Form::text('price', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="col-md-2">
-                    {!! Form::select('currency', ['USD' => 'USD', 'GBP' => 'GBP', 'EUR' => 'EUR'], 'GBP', ['id' => 'currency']) !!}
+                    {!! Form::select('requested_currency', ['USD' => 'USD', 'GBP' => 'GBP', 'EUR' => 'EUR'], 'GBP', ['id' => 'requested_currency']) !!}
                 </div>
             </div>
             <hr/>

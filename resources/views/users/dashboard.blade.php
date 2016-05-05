@@ -2,7 +2,52 @@
 
 @section('content')
 
-<h1>{{$user->name}}'s Dashboard</h1>
+<div class="col-md-12">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h1>{{$user->name}}'s Dashboard</h1>
+        </div>
+        <div class="col-md-6">
+            <div id="transaction-rating" hidden="">{{ round($user->seller_rating) }}</div>
+            <fieldset class="rated">
+                <input type="radio" id="rated-star5" name="rated" value="5" disabled /><label for="star5" title="Rocks!">5 stars</label>
+                <input type="radio" id="rated-star4" name="rated" value="4" disabled /><label for="star4" title="Pretty good">4 stars</label>
+                <input type="radio" id="rated-star3" name="rated" value="3" disabled /><label for="star3" title="Meh">3 stars</label>
+                <input type="radio" id="rated-star2" name="rated" value="2" disabled /><label for="star2" title="Kinda bad">2 stars</label>
+                <input type="radio" id="rated-star1" name="rated" value="1" disabled /><label for="star1" title="Sucks big time">1 star</label>
+            </fieldset>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-2" id="sidebar-container">
+
+            <ul>
+                <li><a href="/transactions/">My Transactions</a></li>
+                <li><a href="/saleitems/">My Saleitems</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-9" id="notifications-container">
+            <h3>Notifications</h3>
+            <div id="notifications-body">
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
 
 
 @stop

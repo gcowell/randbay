@@ -22,7 +22,7 @@
 						{!! csrf_field() !!}
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Name</label>
+							<label class="col-md-4 control-label">Username</label>
 							<div class="col-md-6">
 								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
 							</div>
@@ -53,6 +53,13 @@
                             <label class="col-md-4 control-label">Country</label>
                             <div class="col-md-6">
                                 <input type="country" class="form-control" name="country" id="country-select">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Paypal Email</label>
+                            <div class="col-md-6">
+                                <input type="paypal_email" class="form-control" name="country" id="paypal-select">
                             </div>
                         </div>
 

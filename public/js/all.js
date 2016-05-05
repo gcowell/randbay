@@ -32,31 +32,604 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
  *  */
 
 !function(a){"use strict";a.matchMedia=a.matchMedia||function(a){var b,c=a.documentElement,d=c.firstElementChild||c.firstChild,e=a.createElement("body"),f=a.createElement("div");return f.id="mq-test-1",f.style.cssText="position:absolute;top:-100em",e.style.background="none",e.appendChild(f),function(a){return f.innerHTML='&shy;<style media="'+a+'"> #mq-test-1 { width: 42px; }</style>',c.insertBefore(e,d),b=42===f.offsetWidth,c.removeChild(e),{matches:b,media:a}}}(a.document)}(this),function(a){"use strict";function b(){u(!0)}var c={};a.respond=c,c.update=function(){};var d=[],e=function(){var b=!1;try{b=new a.XMLHttpRequest}catch(c){b=new a.ActiveXObject("Microsoft.XMLHTTP")}return function(){return b}}(),f=function(a,b){var c=e();c&&(c.open("GET",a,!0),c.onreadystatechange=function(){4!==c.readyState||200!==c.status&&304!==c.status||b(c.responseText)},4!==c.readyState&&c.send(null))};if(c.ajax=f,c.queue=d,c.regex={media:/@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi,keyframes:/@(?:\-(?:o|moz|webkit)\-)?keyframes[^\{]+\{(?:[^\{\}]*\{[^\}\{]*\})+[^\}]*\}/gi,urls:/(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g,findStyles:/@media *([^\{]+)\{([\S\s]+?)$/,only:/(only\s+)?([a-zA-Z]+)\s?/,minw:/\([\s]*min\-width\s*:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/,maxw:/\([\s]*max\-width\s*:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/},c.mediaQueriesSupported=a.matchMedia&&null!==a.matchMedia("only all")&&a.matchMedia("only all").matches,!c.mediaQueriesSupported){var g,h,i,j=a.document,k=j.documentElement,l=[],m=[],n=[],o={},p=30,q=j.getElementsByTagName("head")[0]||k,r=j.getElementsByTagName("base")[0],s=q.getElementsByTagName("link"),t=function(){var a,b=j.createElement("div"),c=j.body,d=k.style.fontSize,e=c&&c.style.fontSize,f=!1;return b.style.cssText="position:absolute;font-size:1em;width:1em",c||(c=f=j.createElement("body"),c.style.background="none"),k.style.fontSize="100%",c.style.fontSize="100%",c.appendChild(b),f&&k.insertBefore(c,k.firstChild),a=b.offsetWidth,f?k.removeChild(c):c.removeChild(b),k.style.fontSize=d,e&&(c.style.fontSize=e),a=i=parseFloat(a)},u=function(b){var c="clientWidth",d=k[c],e="CSS1Compat"===j.compatMode&&d||j.body[c]||d,f={},o=s[s.length-1],r=(new Date).getTime();if(b&&g&&p>r-g)return a.clearTimeout(h),h=a.setTimeout(u,p),void 0;g=r;for(var v in l)if(l.hasOwnProperty(v)){var w=l[v],x=w.minw,y=w.maxw,z=null===x,A=null===y,B="em";x&&(x=parseFloat(x)*(x.indexOf(B)>-1?i||t():1)),y&&(y=parseFloat(y)*(y.indexOf(B)>-1?i||t():1)),w.hasquery&&(z&&A||!(z||e>=x)||!(A||y>=e))||(f[w.media]||(f[w.media]=[]),f[w.media].push(m[w.rules]))}for(var C in n)n.hasOwnProperty(C)&&n[C]&&n[C].parentNode===q&&q.removeChild(n[C]);n.length=0;for(var D in f)if(f.hasOwnProperty(D)){var E=j.createElement("style"),F=f[D].join("\n");E.type="text/css",E.media=D,q.insertBefore(E,o.nextSibling),E.styleSheet?E.styleSheet.cssText=F:E.appendChild(j.createTextNode(F)),n.push(E)}},v=function(a,b,d){var e=a.replace(c.regex.keyframes,"").match(c.regex.media),f=e&&e.length||0;b=b.substring(0,b.lastIndexOf("/"));var g=function(a){return a.replace(c.regex.urls,"$1"+b+"$2$3")},h=!f&&d;b.length&&(b+="/"),h&&(f=1);for(var i=0;f>i;i++){var j,k,n,o;h?(j=d,m.push(g(a))):(j=e[i].match(c.regex.findStyles)&&RegExp.$1,m.push(RegExp.$2&&g(RegExp.$2))),n=j.split(","),o=n.length;for(var p=0;o>p;p++)k=n[p],l.push({media:k.split("(")[0].match(c.regex.only)&&RegExp.$2||"all",rules:m.length-1,hasquery:k.indexOf("(")>-1,minw:k.match(c.regex.minw)&&parseFloat(RegExp.$1)+(RegExp.$2||""),maxw:k.match(c.regex.maxw)&&parseFloat(RegExp.$1)+(RegExp.$2||"")})}u()},w=function(){if(d.length){var b=d.shift();f(b.href,function(c){v(c,b.href,b.media),o[b.href]=!0,a.setTimeout(function(){w()},0)})}},x=function(){for(var b=0;b<s.length;b++){var c=s[b],e=c.href,f=c.media,g=c.rel&&"stylesheet"===c.rel.toLowerCase();e&&g&&!o[e]&&(c.styleSheet&&c.styleSheet.rawCssText?(v(c.styleSheet.rawCssText,e,f),o[e]=!0):(!/^([a-zA-Z:]*\/\/)/.test(e)&&!r||e.replace(RegExp.$1,"").split("/")[0]===a.location.host)&&("//"===e.substring(0,2)&&(e=a.location.protocol+e),d.push({href:e,media:f})))}w()};x(),c.update=x,c.getEmValue=t,a.addEventListener?a.addEventListener("resize",b,!1):a.attachEvent&&a.attachEvent("onresize",b)}}(this);
+/**
+ * jquery.wait - insert simple delays into your jquery method chains
+ * @author Matthew Lee matt@madleedesign.com
+ */
 
+(function ($) {
+    function jQueryDummy ($real, delay, _fncQueue) {
+        // A Fake jQuery-like object that allows us to resolve the entire jQuery
+        // method chain, pause, and resume execution later.
 
+        var dummy = this;
+        this._fncQueue = (typeof _fncQueue === 'undefined') ? [] : _fncQueue;
+        this._delayCompleted = false;
+        this._$real = $real;
 
+        if (typeof delay === 'number' && delay >= 0 && delay < Infinity)
+            this.timeoutKey = window.setTimeout(function () {
+                dummy._performDummyQueueActions();
+            }, delay);
 
+        else if (delay !== null && typeof delay === 'object' && typeof delay.promise === 'function')
+            delay.then(function () {
+                dummy._performDummyQueueActions();
+            });
 
+        else if (typeof delay === 'string')
+            $real.one(delay, function () {
+                dummy._performDummyQueueActions();
+            });
 
+        else
+            return $real;
+    }
 
+    jQueryDummy.prototype._addToQueue = function(fnc, arg){
+        // When dummy functions are called, the name of the function and
+        // arguments are put into a queue to execute later
 
+        this._fncQueue.unshift({ fnc: fnc, arg: arg });
 
+        if (this._delayCompleted)
+            return this._performDummyQueueActions();
+        else
+            return this;
+    };
 
-//**************************
-//    DEALS WITH RADIO BUTTON FOR INTERNATIONAL POST
-//
-$(document).ready(function()
+    jQueryDummy.prototype._performDummyQueueActions = function(){
+        // Start executing queued actions.  If another `wait` is encountered,
+        // pass the remaining stack to a new jQueryDummy
+
+        this._delayCompleted = true;
+
+        var next;
+        while (this._fncQueue.length > 0) {
+            next = this._fncQueue.pop();
+
+            if (next.fnc === 'wait') {
+                next.arg.push(this._fncQueue);
+                return this._$real = this._$real[next.fnc].apply(this._$real, next.arg);
+            }
+
+            this._$real = this._$real[next.fnc].apply(this._$real, next.arg);
+        }
+
+        return this;
+    };
+
+    $.fn.wait = function(delay, _queue) {
+        // Creates dummy object that dequeues after a times delay OR promise
+
+        return new jQueryDummy(this, delay, _queue);
+    };
+
+    for (var fnc in $.fn) {
+        // Add shadow methods for all jQuery methods in existence.  Will not
+        // shadow methods added to jQuery _after_ this!
+        // skip non-function properties or properties of Object.prototype
+
+        if (typeof $.fn[fnc] !== 'function' || !$.fn.hasOwnProperty(fnc))
+            continue;
+
+        jQueryDummy.prototype[fnc] = (function (fnc) {
+            return function(){
+                var arg = Array.prototype.slice.call(arguments);
+                return this._addToQueue(fnc, arg);
+            };
+        })(fnc);
+    }
+})(jQuery);
+/*!
+ * jQuery Cookie Plugin v1.4.1
+ * https://github.com/carhartl/jquery-cookie
+ *
+ * Copyright 2006, 2014 Klaus Hartl
+ * Released under the MIT license
+ */
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD (Register as an anonymous module)
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        // Node/CommonJS
+        module.exports = factory(require('jquery'));
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function ($) {
+
+    var pluses = /\+/g;
+
+    function encode(s) {
+        return config.raw ? s : encodeURIComponent(s);
+    }
+
+    function decode(s) {
+        return config.raw ? s : decodeURIComponent(s);
+    }
+
+    function stringifyCookieValue(value) {
+        return encode(config.json ? JSON.stringify(value) : String(value));
+    }
+
+    function parseCookieValue(s) {
+        if (s.indexOf('"') === 0) {
+            // This is a quoted cookie as according to RFC2068, unescape...
+            s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+        }
+
+        try {
+            // Replace server-side written pluses with spaces.
+            // If we can't decode the cookie, ignore it, it's unusable.
+            // If we can't parse the cookie, ignore it, it's unusable.
+            s = decodeURIComponent(s.replace(pluses, ' '));
+            return config.json ? JSON.parse(s) : s;
+        } catch(e) {}
+    }
+
+    function read(s, converter) {
+        var value = config.raw ? s : parseCookieValue(s);
+        return $.isFunction(converter) ? converter(value) : value;
+    }
+
+    var config = $.cookie = function (key, value, options) {
+
+        // Write
+
+        if (arguments.length > 1 && !$.isFunction(value)) {
+            options = $.extend({}, config.defaults, options);
+
+            if (typeof options.expires === 'number') {
+                var days = options.expires, t = options.expires = new Date();
+                t.setMilliseconds(t.getMilliseconds() + days * 864e+5);
+            }
+
+            return (document.cookie = [
+                encode(key), '=', stringifyCookieValue(value),
+                options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+                options.path    ? '; path=' + options.path : '',
+                options.domain  ? '; domain=' + options.domain : '',
+                options.secure  ? '; secure' : ''
+            ].join(''));
+        }
+
+        // Read
+
+        var result = key ? undefined : {},
+        // To prevent the for loop in the first place assign an empty array
+        // in case there are no cookies at all. Also prevents odd result when
+        // calling $.cookie().
+            cookies = document.cookie ? document.cookie.split('; ') : [],
+            i = 0,
+            l = cookies.length;
+
+        for (; i < l; i++) {
+            var parts = cookies[i].split('='),
+                name = decode(parts.shift()),
+                cookie = parts.join('=');
+
+            if (key === name) {
+                // If second argument (value) is a function it's a converter...
+                result = read(cookie, value);
+                break;
+            }
+
+            // Prevent storing a cookie that we couldn't decode.
+            if (!key && (cookie = read(cookie)) !== undefined) {
+                result[name] = cookie;
+            }
+        }
+
+        return result;
+    };
+
+    config.defaults = {};
+
+    $.removeCookie = function (key, options) {
+        // Must not alter options, thus extending a fresh object...
+        $.cookie(key, '', $.extend({}, options, { expires: -1 }));
+        return !$.cookie(key);
+    };
+
+}));
+if(window.location.href.indexOf('saleitems/create')>-1)
 {
-    $("#world-post").hide();
-    $("#domestic-post").hide();
-    $("#second").hide();
-    $("#third").hide();
+
+    (function () {
 
 
 
+        //**************************
+        //    DEALS WITH RADIO BUTTON FOR INTERNATIONAL POST
+        //
+        $(document).ready(function()
+        {
 
-//    *********************************
-//    HANDLER TOGGLE WORLD POSTAGE
+            var currencies = {USD : '$', GBP: '£', EUR : '€'};
+            var selected_currency = $("#currency-selector :selected").text();
+            var currency_symbol = currencies[selected_currency];
+            $('.input-symbol span').html(currency_symbol);
+
+            $("#currency-selector").change(function()
+            {
+                selected_currency = $("#currency-selector :selected").text();
+                currency_symbol = currencies[selected_currency];
+                $('.input-symbol span').html(currency_symbol);
+                $('#price').tooltip('destroy');
+
+            });
+
+            $("label[for='image']").html('<span class="glyphicon glyphicon-cloud-upload"></span> Upload a Picture');
+
+
+            $("#world-post").hide();
+            $("#domestic-post").hide();
+            $("#second").hide();
+            $("#third").hide();
+            $("#fourth").hide();
+
+
+        //    *********************************
+        //    HANDLER TOGGLE WORLD POSTAGE
+
+            $("#postoption1").click(function()
+            {
+                $("#domestic-post").show("fast").delay(200);
+                $("#world-post").show("fast").delay(200);
+            });
+
+            $("#postoption2").click(function()
+            {
+                $("#domestic-post").show("fast").delay(200);
+                $("#world-post").hide("fast").delay(200);
+                $("#world_postage_cost").val('');
+            });
+
+        //    *********************************
+        //    HANDLER STEP THROUGH FORM
+
+        //    *********************************
+        //    STEP ONE
+
+            $("#next-btn1").click(function()
+            {
+
+               var desc_check = $("#description").val();
+
+               if(desc_check)
+               {
+                   $('#description-group').removeClass().addClass('form-group');
+                   $('#description').tooltip('destroy');
+
+                   $("#first").hide("slow").delay(200);
+                   $("#second").show("slow").delay(200);
+
+                   //Just in case
+                   $("#third").hide();
+                   $("#fourth").hide();
+
+
+               }
+               else
+               {
+                   $('#description-group').removeClass().addClass('form-group has-error');
+                   $('#description').tooltip(
+                       {
+                       'show': true,
+                       'placement': 'left',
+                       'title': "A description is needed..."
+                       });
+
+                   $('#description').tooltip('show');
+               }
+
+            });
+
+
+            //    *********************************
+            //    STEP TWO
+
+            $(function()
+            {
+                $("#image").change(function()
+                {
+
+                    $("#message").empty(); // To remove the previous error message
+                    var file = this.files[0];
+                    var imagefile = file.type;
+
+                    var match=
+                        [
+                            "image/jpeg",
+                            "image/png",
+                            "image/jpg",
+                            "image/bmp"
+                        ];
+//
+                    if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]) || (imagefile==match[3])))
+                    {
+                        $('#previewing').attr('src','/img/loader_small.gif').wait(1000).attr('src','/img/noimage.png');
+                        $("#message").wait(1000).html('<div class="alert alert-danger">Please Select A valid Image File</div>');
+                        return false;
+                    }
+                    else
+                    {
+
+                        var reader = new FileReader();
+                        reader.onload = imageIsLoaded;
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            });
+
+            function imageIsLoaded(e)
+            {
+                $("#image").css("color","green");
+                $('#image_preview').css("display", "block");
+                $('#previewing').attr('src','/img/loader_small.gif').wait(1000).attr('src', e.target.result).css("maxWidth", "100%");
+
+                $("label[for='image']").wait(1000).html('<span class="glyphicon glyphicon-cloud-upload"></span> Change Picture');
+
+
+            };
+
+
+
+            $("#prev-btn2").click(function()
+            {
+
+                $("#second").hide("slow").delay(200);
+                $("#first").show("slow").delay(200);
+
+                //Just in case
+                $("#fourth").hide();
+                $("#third").hide();
+
+
+            });
+
+
+            $("#next-btn2").click(function()
+            {
+
+                var img_check = $("#image").val();
+
+                if(img_check)
+                {
+                    $('#image-group').removeClass().addClass('form-group');
+                    $('#image').tooltip('destroy');
+
+                    $("#second").hide("slow").delay(200);
+                    $("#third").show("slow").delay(200);
+
+                    //Just in case
+                    $("#first").hide();
+                    $("#fourth").hide();
+
+
+                }
+                else
+                {
+                    $('#image-group').removeClass().addClass('form-group has-error');
+                    $('#image').tooltip(
+                        {
+                            'show': true,
+                            'placement': 'left',
+                            'title': "Please upload an image..."
+                        });
+
+                    $('#image').tooltip('show');
+                }
+
+            });
+
+
+            //    *********************************
+            //    STEP THREE
+
+
+            $("#prev-btn3").click(function()
+            {
+
+                $("#third").hide("slow").delay(200);
+                $("#second").show("slow").delay(200);
+
+                //Just in case
+                $("#fourth").hide();
+                $("#first").hide();
+
+
+            });
+
+            $("#next-btn3").click(function()
+            {
+
+                var price_check = $("#price").val();
+
+                if(!isNaN(price_check)&& price_check && price_check >= 1)
+                {
+
+                    $('#price-group').removeClass().addClass('form-group');
+                    $('#price').tooltip('destroy');
+
+                    $("#third").hide("slow").delay(200);
+                    $("#fourth").show("slow").delay(200);
+
+                    //Just in case
+                    $("#first").hide();
+                    $("#second").hide();
+
+
+                }
+                else
+                {
+
+                    $('#price-group').removeClass().addClass('form-group has-error');
+
+                    $('#price').tooltip(
+                        {
+                            'show': true,
+                            'placement': 'left',
+                            'title': "Please enter a valid price, greater than " + currencies[selected_currency] + "1.00"
+                        });
+
+                    $('#price').tooltip('show');
+                }
+            });
+
+        //    *********************************
+        //    STEP FOUR
+
+            $("#prev-btn4").click(function()
+            {
+                $("#fourth").hide("slow").delay(200);
+                $("#third").show("slow").delay(200);
+
+                //Just in case
+                $("#first").hide();
+                $("#second").hide();
+
+
+            });
+
+
+
+            $("#form-submit").click(function()
+            {
+
+                $('#world-post').removeClass().addClass('form-group');
+                $('#domestic-post').removeClass().addClass('form-group');
+
+
+                var international_yes_check = $("#postoption1").hasClass("btn btn-default active");
+                var international_no_check = $("#postoption2").hasClass("btn btn-default active");
+
+                var domestic_postage_check = $("#domestic_postage_cost").val();
+                var world_postage_check = $("#world_postage_cost").val();
+
+                if(international_yes_check == false && international_no_check == false)
+                {
+
+                    $('#postage-toggle').tooltip(
+                        {
+                            'show': true,
+                            'placement': 'left',
+                            'title': "Please select a postage option"
+                        });
+
+                    $('#postage-toggle').tooltip('show');
+                }
+                else
+                {
+                    $('#postage-toggle').tooltip('destroy');
+
+                    if(international_yes_check == true)
+                    {
+
+                        if(!isNaN(domestic_postage_check) && domestic_postage_check)
+                        {
+                            $('#domestic-post').tooltip('destroy');
+
+                            if(!isNaN(world_postage_check) && world_postage_check)
+                            {
+                                $('#world-post').tooltip('destroy');
+
+                                $("#sale-item-form").submit();
+                            }
+                            else
+                            {
+                                $('#world-post').removeClass().addClass('form-group has-error');
+
+                                $('#world-post').tooltip(
+                                    {
+                                        'show': true,
+                                        'placement': 'left',
+                                        'title': "Please enter a world postage cost"
+                                    });
+
+                                $('#world-post').tooltip('show');
+                            }
+                        }
+                        else
+                        {
+                            $('#domestic-post').removeClass().addClass('form-group has-error');
+
+                            $('#domestic-post').tooltip(
+                                {
+                                    'show': true,
+                                    'placement': 'left',
+                                    'title': "Please enter a standard postage cost"
+                                });
+
+                            $('#domestic-post').tooltip('show');
+
+                            if(!isNaN(world_postage_check) && world_postage_check)
+                            {
+                                $('#world-post').tooltip('destroy');
+                            }
+                            else
+                            {
+                                $('#world-post').removeClass().addClass('form-group has-error');
+
+                                $('#world-post').tooltip(
+                                    {
+                                        'show': true,
+                                        'placement': 'left',
+                                        'title': "Please enter a world postage cost"
+                                    });
+
+                                $('#world-post').tooltip('show');
+                            }
+                        }
+
+                    }
+                    else
+                    {
+
+                        $("#world_postage_cost").val('');
+
+                        if(!isNaN(domestic_postage_check) && domestic_postage_check)
+                        {
+                            $("#sale-item-form").submit();
+                        }
+                        else
+                        {
+                            $('#domestic-post').removeClass().addClass('form-group has-error');
+
+                            $('#domestic-post').tooltip(
+                                {
+                                    'show': true,
+                                    'placement': 'left',
+                                    'title': "Please enter a standard postage cost"
+                                });
+
+                            $('#domestic-post').tooltip('show');
+                        }
+                    }
+                }
+
+            });
+
+        });
+
+    })();
+
+}
+if(window.location.href.indexOf('/saleitems/')>-1  && window.location.href.indexOf('create') == -1)
+{
+    console.log('i am on');
+
+    $("label[for='image']").html('<span class="glyphicon glyphicon-cloud-upload"></span> Change Picture');
+
+    var currencies = {USD : '$', GBP: '£', EUR : '€'};
+    var selected_currency = $(".input-symbol span").first().text();
+    var currency_symbol = currencies[selected_currency];
+    $('.input-symbol span').html(currency_symbol);
+
+    $("#updated-item").delay(2000).hide('slow');
 
     $("#postoption1").click(function()
     {
@@ -69,230 +642,260 @@ $(document).ready(function()
         $("#domestic-post").show("fast").delay(200);
         $("#world-post").hide("fast").delay(200);
         $("#world_postage_cost").val('');
-    });
-
-//    *********************************
-//    HANDLER STEP THROUGH FORM
-
-//    *********************************
-//    STEP ONE
-
-    $("#next-btn1").click(function()
-    {
-
-       var desc_check = $("#description").val();
-
-       if(desc_check)
-       {
-           $('#description-group').removeClass().addClass('form-group');
-           $('#description').tooltip('destroy');
-
-           $("#first").hide("slow").delay(200);
-           $("#second").show("slow").delay(200);
-
-           //Just in case
-           $("#third").hide();
-
-
-       }
-       else
-       {
-           $('#description-group').removeClass().addClass('form-group has-error');
-           $('#description').tooltip(
-               {
-               'show': true,
-               'placement': 'left',
-               'title': "A description is needed..."
-               });
-
-           $('#description').tooltip('show');
-       }
-
-//    *********************************
-//    STEP TWO
-
-    });
-
-    $("#prev-btn2").click(function()
-    {
-
-        $("#second").hide("slow").delay(200);
-        $("#first").show("slow").delay(200);
-
-        //Just in case
-        $("#third").hide();
-
-    });
-
-    $("#next-btn2").click(function()
-    {
-
-        var price_check = $("#price").val();
-
-        if(!isNaN(price_check)&& price_check)
-        {
-
-            $('#price-group').removeClass().addClass('form-group');
-            $('#price').tooltip('destroy');
-
-            $("#second").hide("slow").delay(200);
-            $("#third").show("slow").delay(200);
-
-            //Just in case
-            $("#first").hide();
-
-        }
-        else
-        {
-
-            $('#price-group').removeClass().addClass('form-group has-error');
-
-            $('#price').tooltip(
-                {
-                    'show': true,
-                    'placement': 'left',
-                    'title': "A price is needed..."
-                });
-
-            $('#price').tooltip('show');
-        }
-    });
-
-//    *********************************
-//    STEP THREE
-
-    $("#prev-btn3").click(function()
-    {
-        $("#third").hide("slow").delay(200);
-        $("#second").show("slow").delay(200);
-
-        //Just in case
-        $("#first").hide();
-
-    });
-
-
-
-    $("#form-submit").click(function()
-    {
-
+        $('#world-post').tooltip('destroy');
         $('#world-post').removeClass().addClass('form-group');
-        $('#domestic-post').removeClass().addClass('form-group');
+    });
 
 
-        var international_yes_check = $("#postoption1").hasClass("btn btn-default active");
-        var international_no_check = $("#postoption2").hasClass("btn btn-default active");
-
-        var domestic_postage_check = $("#domestic_postage_cost").val();
-        var world_postage_check = $("#world_postage_cost").val();
-
-        if(international_yes_check == false && international_no_check == false)
+    $(function()
+    {
+        $("#image").change(function()
         {
 
-            $('#postage-toggle').tooltip(
-                {
-                    'show': true,
-                    'placement': 'left',
-                    'title': "Please select a postage option"
-                });
+            $("#message").empty(); // To remove the previous error message
+            var file = this.files[0];
+            var imagefile = file.type;
 
-            $('#postage-toggle').tooltip('show');
-        }
-        else
+            var match=
+                [
+                    "image/jpeg",
+                    "image/png",
+                    "image/jpg",
+                    "image/bmp"
+                ];
+//
+            if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]) || (imagefile==match[3])))
+            {
+                $('#previewing').attr('src','/img/loader_small.gif').wait(1000).attr('src','/img/noimage.png');
+                $("#message").wait(1000).html('<div class="alert alert-danger">Please Select A valid Image File</div>');
+                return false;
+            }
+            else
+            {
+                var reader = new FileReader();
+                reader.onload = imageIsLoaded;
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    });
+
+    function imageIsLoaded(e)
+    {
+        $("#image").css("color","green");
+        $('#image_preview').css("display", "block");
+        $('#previewing').attr('src','/img/loader_small.gif').wait(1000).attr('src', e.target.result).css("maxWidth", "100%");
+
+        $("label[for='image']").wait(1000).html('<span class="glyphicon glyphicon-cloud-upload"></span> Change Picture');
+    };
+
+    //**************************************************************************
+
+    //ON CHANGE
+
+    $('input').each(function()
+    {
+        var val = this.value;
+        $(this).blur(function()
         {
-            $('#postage-toggle').tooltip('destroy');
+            var desc_check = $("#description").val();
 
-            if(international_yes_check == true)
+            if(desc_check)
+            {
+                $('#description-group').removeClass().addClass('form-group');
+                $('#description').tooltip('destroy');
+
+            }
+            else
+            {
+                $('#description-group').removeClass().addClass('form-group has-error');
+                $('#description').tooltip(
+                    {
+                        'show': true,
+                        'placement': 'left',
+                        'title': "A description is needed..."
+                    });
+
+                $('#description').tooltip('show');
+            }
+
+            var price_check = $("#price").val();
+
+            if(!isNaN(price_check)&& price_check && price_check >= 1)
             {
 
-                if(!isNaN(domestic_postage_check) && domestic_postage_check)
-                {
-                    $('#domestic-post').tooltip('destroy');
+                $('#price-group').removeClass().addClass('form-group');
+                $('#price').tooltip('destroy');
 
-                    if(!isNaN(world_postage_check) && world_postage_check)
-                    {
-                        $('#world-post').tooltip('destroy');
+                $("#third").hide("slow").delay(200);
+                $("#fourth").show("slow").delay(200);
 
-                        $("#sale-item-form").submit();
-                    }
-                    else
-                    {
-                        $('#world-post').removeClass().addClass('form-group has-error');
-
-                        $('#world-post').tooltip(
-                            {
-                                'show': true,
-                                'placement': 'left',
-                                'title': "Please enter a world postage cost"
-                            });
-
-                        $('#world-post').tooltip('show');
-                    }
-                }
-                else
-                {
-                    $('#domestic-post').removeClass().addClass('form-group has-error');
-
-                    $('#domestic-post').tooltip(
-                        {
-                            'show': true,
-                            'placement': 'left',
-                            'title': "Please enter a standard postage cost"
-                        });
-
-                    $('#domestic-post').tooltip('show');
-
-                    if(!isNaN(world_postage_check) && world_postage_check)
-                    {
-                        $('#world-post').tooltip('destroy');
-                    }
-                    else
-                    {
-                        $('#world-post').removeClass().addClass('form-group has-error');
-
-                        $('#world-post').tooltip(
-                            {
-                                'show': true,
-                                'placement': 'left',
-                                'title': "Please enter a world postage cost"
-                            });
-
-                        $('#world-post').tooltip('show');
-                    }
-                }
+                //Just in case
+                $("#first").hide();
+                $("#second").hide();
 
             }
             else
             {
 
-                $("#world_postage_cost").val('');
+                $('#price-group').removeClass().addClass('form-group has-error');
 
-                if(!isNaN(domestic_postage_check) && domestic_postage_check)
+                $('#price').tooltip(
+                    {
+                        'show': true,
+                        'placement': 'left',
+                        'title': "Please enter a valid price, greater than " + currencies[selected_currency] + "1.00"
+                    });
+
+                $('#price').tooltip('show');
+            }
+
+
+
+
+            //**BIG POST MESS
+
+            $('#world-post').removeClass().addClass('form-group');
+            $('#domestic-post').removeClass().addClass('form-group');
+
+            var international_yes_check = $("#postoption1").hasClass("btn btn-default active");
+            var international_no_check = $("#postoption2").hasClass("btn btn-default active");
+
+            var domestic_postage_check = $("#domestic_postage_cost").val();
+            var world_postage_check = $("#world_postage_cost").val();
+
+            if(international_yes_check == false && international_no_check == false)
+            {
+
+                $('#postage-toggle').tooltip(
+                    {
+                        'show': true,
+                        'placement': 'left',
+                        'title': "Please select a postage option"
+                    });
+
+                $('#postage-toggle').tooltip('show');
+            }
+            else
+            {
+                $('#postage-toggle').tooltip('destroy');
+
+                if(international_yes_check == true)
                 {
-                    $("#sale-item-form").submit();
+
+                    if(!isNaN(domestic_postage_check) && domestic_postage_check)
+                    {
+                        $('#domestic-post').tooltip('destroy');
+
+                        if(!isNaN(world_postage_check) && world_postage_check)
+                        {
+                            //S'ALL GOOD NIGGA
+                            $('#world-post').tooltip('destroy');
+                        }
+                        else
+                        {
+                            $('#world-post').removeClass().addClass('form-group has-error');
+
+                            $('#world-post').tooltip(
+                                {
+                                    'show': true,
+                                    'placement': 'left',
+                                    'title': "Please enter a world postage cost"
+                                });
+
+                            $('#world-post').tooltip('show');
+                        }
+                    }
+                    else
+                    {
+                        $('#domestic-post').removeClass().addClass('form-group has-error');
+
+                        $('#domestic-post').tooltip(
+                            {
+                                'show': true,
+                                'placement': 'left',
+                                'title': "Please enter a standard postage cost"
+                            });
+
+                        $('#domestic-post').tooltip('show');
+
+                        if(!isNaN(world_postage_check) && world_postage_check)
+                        {
+                            $('#world-post').tooltip('destroy');
+                        }
+                        else
+                        {
+                            $('#world-post').removeClass().addClass('form-group has-error');
+
+                            $('#world-post').tooltip(
+                                {
+                                    'show': true,
+                                    'placement': 'left',
+                                    'title': "Please enter a world postage cost"
+                                });
+
+                            $('#world-post').tooltip('show');
+                        }
+                    }
+
                 }
                 else
                 {
-                    $('#domestic-post').removeClass().addClass('form-group has-error');
 
-                    $('#domestic-post').tooltip(
-                        {
-                            'show': true,
-                            'placement': 'left',
-                            'title': "Please enter a standard postage cost"
-                        });
+                    $("#world_postage_cost").val('');
+                    $('#world-post').tooltip('destroy');
 
-                    $('#domestic-post').tooltip('show');
+
+                    if(!isNaN(domestic_postage_check) && domestic_postage_check)
+                    {
+                        //S'ALL GOOD NIGGA
+                        $('#domestic-post').tooltip('destroy');
+
+
+                    }
+                    else
+                    {
+                        $('#domestic-post').removeClass().addClass('form-group has-error');
+
+                        $('#domestic-post').tooltip(
+                            {
+                                'show': true,
+                                'placement': 'left',
+                                'title': "Please enter a standard postage cost"
+                            });
+
+                        $('#domestic-post').tooltip('show');
+                    }
                 }
             }
-        }
+
+        })
 
     });
 
 
+}
 
+if(window.location.pathname == '/saleitems')
+{
+    (function ()
+    {
 
-});
+        $(document).ready(function()
+        {
+            var currencies = {USD : '$', GBP: '£', EUR : '€'};
+            $('.currency-symbol').each(
+                (function()
+                {
+                    var symbol = currencies[$( this ).text()];
+                    $( this ).html(symbol);
+                }));
+
+            $("#deleted-item").delay(2000).hide('slow');
+
+        });
+
+    })();
+}
 
 
 var availableTags =
@@ -510,105 +1113,406 @@ $( "#country-select" ).autocomplete({
     source: availableTags,
     minLength: 3,
     delay: 50
+    //TODO NEED TO ENSURE INPUTS ARE ONLY ALLOWED IN THIS FORMAT
 });
-
-//**************************
-//    DEALS WITH RADIO BUTTON FOR INTERNATIONAL POST
-//
-$(document).ready(function()
+if(window.location.href.indexOf('buyorders/create')>-1)
 {
 
-//    *********************************
-//    HANDLER STEP THROUGH FORM
-
-//    *********************************
-//    STEP ONE
-
-    $("#next-btn1").click(function()
-    {
-
-
-        var buy_price_check = $("#price").val();
-        var currency = $("#currency").val();
-
-        if(!isNaN(buy_price_check)&& buy_price_check)
+    (function () {
+    //**************************
+    //    DEALS WITH RADIO BUTTON FOR INTERNATIONAL POST
+    //
+        $(document).ready(function()
         {
-            $('#price-group').removeClass().addClass('form-group');
-            $('#price').tooltip('destroy');
 
-            $("#first").hide("slow").delay(200);
-            $("#second").show("slow").delay(200);
+        //    *********************************
+        //    HANDLER STEP THROUGH FORM
+
+        //    *********************************
+        //    STEP ONE
+
+            $("#next-btn1").click(function()
+            {
 
 
-            document.getElementById("price-statement").innerHTML = buy_price_check + " " + currency;
-            //$("#price-statement").innerHTML =
+                var buy_price_check = $("#price").val();
+                var currency = $("#requested_currency").val();
 
-
-        }
-        else
-        {
-            $('#price-group').removeClass().addClass('form-group has-error');
-            $('#price').tooltip(
+                if(!isNaN(buy_price_check)&& buy_price_check)
                 {
-                    'show': true,
-                    'placement': 'left',
-                    'title': "A price is needed..."
-                });
+                    $('#price-group').removeClass().addClass('form-group');
+                    $('#price').tooltip('destroy');
 
-            $('#price').tooltip('show');
-        }
+                    $("#first").hide("slow").delay(200);
+                    $("#second").show("slow").delay(200);
 
-//    *********************************
-//    STEP TWO
-
-    });
-
-    $("#prev-btn2").click(function()
-    {
-
-        $("#second").hide("slow").delay(200);
-        $("#first").show("slow").delay(200);
-
-    });
+                    var currencies = {USD : '$', GBP: '£', EUR : '€'};
 
 
-    $("#form-submit").click(function()
-    {
+                    document.getElementById("price-statement").innerHTML = currencies[currency] + " " + buy_price_check;
 
-       var agreed_check = document.getElementById('agreement').checked;
 
-       if(agreed_check)
-       {
-           $('#agreement-group').tooltip('destroy');
-           $("#buyorder-form").submit();
-       }
-       else
-       {
-           $('#agreement-group').tooltip(
+                }
+                else
+                {
+                    $('#price-group').removeClass().addClass('form-group has-error');
+                    $('#price').tooltip(
+                        {
+                            'show': true,
+                            'placement': 'left',
+                            'title': "A price is needed..."
+                        });
+
+                    $('#price').tooltip('show');
+                }
+
+        //    *********************************
+        //    STEP TWO
+
+            });
+
+            $("#prev-btn2").click(function()
+            {
+
+                $("#second").hide("slow").delay(200);
+                $("#first").show("slow").delay(200);
+
+            });
+
+
+            $("#form-submit").click(function()
+            {
+
+               var agreed_check = document.getElementById('agreement').checked;
+
+               if(agreed_check)
                {
-                   'show': true,
-                   'placement': 'left',
-                   'title': "You must agree to the terms"
-               });
+                   $('#agreement-group').tooltip('destroy');
+                   $("#buyorder-form").submit();
+               }
+               else
+               {
+                   $('#agreement-group').tooltip(
+                       {
+                           'show': true,
+                           'placement': 'left',
+                           'title': "You must agree to the terms"
+                       });
 
-           $('#agreement-group').tooltip('show');
-       }
+                   $('#agreement-group').tooltip('show');
+               }
 
-    });
+            });
 
+        });
 
+    })();
 
-
-});
-$(document).ready(function()
+}
+if(window.location.pathname == '/buyorders')
 {
 
-    $("#match-loading").show();
-    $("#match-loading").delay(1000).hide("slow");
-    $("#match-statement").delay(1500).show("slow");
+    (function ()
+    {
+
+        $(document).ready(function()
+        {
+
+            $("#match-loading").show();
+
+            var currency = $('input[name=currency]').val();
+            var currencies = {USD : '$', GBP: '£', EUR : '€'};
+            var currency_symbol = currencies[currency];
+
+            $('#currency-symbol').text(currency_symbol);
+
+            $("#match-loading").delay(1000).hide("slow");
+            $("#match-statement").delay(1500).show("slow");
+
+            $("#go-back").click(function()
+            {
+
+                window.location = '/buyorders/create';
+
+            })
+
+
+            $("#proceed").click(function()
+            {
+
+                $("#transaction-form").submit();
+
+            })
+
+            $("#redo").click(function()
+            {
+                var buyorder_id = $('input[name=buyorder_id]').val();
+
+
+                $("#match-statement").hide();
+                $("#match-loading").show();
+                $.ajax(
+                    {
+                        dataType: "json",
+                        url: '/buyorders/redo/'+buyorder_id,
+                        success: getSaleitemData
+                    });
+
+                function getSaleitemData(data)
+                {
+                    {
+                        var cost = data.total_cost;
+
+                        $('input[name=saleitem_id]').val(data.id);
+                        $('input[name=seller_id]').val(data.user_id);
+                        $('input[name=price]').val(data.total_cost);
+
+                        $('#total-cost-confirm').text(cost.toFixed(2));
+
+                        $("#match-loading").delay(200).hide("slow");
+                        $("#match-statement").delay(250).show("slow");
+
+                    }
+                }
+
+            })
+
+
+
+        });
+    })();
+}
+if(window.location.pathname == '/transactions')
+{
+
+
+
+    (function ()
+    {
+
+        $(document).ready(function()
+        {
+
+            if ($('#alertModal'))
+            {
+                $('#alertModal').modal('show');
+            }
+
+            if(location.hash)
+            {
+                $(".tab-pane").removeClass('tab-pane active').addClass('tab-pane');
+                $('a[href=' + location.hash + ']').tab('show');
+                var id_string = location.hash.substring(1);
+                $(location.hash).removeClass('tab-pane').addClass('tab-pane active');
+
+            }
+            else
+            {
+                var preSelectedTab = localStorage.getItem('selectedTab');
+
+                if (preSelectedTab)
+                {
+                    $(".tab-pane").removeClass('tab-pane active').addClass('tab-pane');
+                    $('a[href=' + preSelectedTab + ']').tab('show');
+                    $(preSelectedTab).removeClass('tab-pane').addClass('tab-pane active');
+                    location.hash = preSelectedTab;
+
+                }
+                else
+                {
+                    $(".tab-pane").removeClass('tab-pane active').addClass('tab-pane');
+                    var default_tab_href = '#items-bought';
+                    location.hash = default_tab_href;
+                    $('a[href=' + location.hash + ']').tab('show');
+                    $('#items-bought').removeClass('tab-pane').addClass('tab-pane active');
+                }
+            }
+
+            localStorage.setItem('selectedTab', location.hash);
+
+            /////////////////////////////////////////////////////////////
+
+            $(document.body).on("click", "a[data-toggle]", function(event) {
+                $(".tab-pane").removeClass('tab-pane active').addClass('tab-pane');
+                location.hash = this.getAttribute("href");
+            });
+
+            $(window).on('popstate', function() {
+                var anchor = location.hash || $("a[data-toggle=tab]").first().attr("href");
+                $(".tab-pane").removeClass('tab-pane active').addClass('tab-pane');
+                $('a[href=' + anchor + ']').tab('show');
+            });
+
+
+            //for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e)
+            {
+                //save the latest tab; use cookies if you like 'em better:
+                localStorage.setItem('selectedTab', $(e.target).attr('href'));
+            });
 
 
 
 
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+            $(".shipping-address").each(function(i, element)
+            {
+                //TODO pass in jquery context so that we can use html() - more stable
+
+                var JSON_address = element.innerHTML;
+                if(JSON_address)
+                {
+                    var address = $.parseJSON(JSON_address);
+                    var human_address = address.recipient_name + '<br>' + address.line1 + '<br>' +  address.city + '<br>' + address.state + '<br>' + address.postal_code + '<br>' + address.country_code;
+
+                    element.innerHTML = human_address;
+
+                }
+
+            });
+
+            $("#payment-success").delay(4000).hide("slow");
+
+
+        });
+    })();
+}
+if(window.location.href.indexOf('/transactions/')>-1)
+{
+
+    (function ()
+    {
+
+        $(document).ready(function()
+        {
+            var rating = $("#transaction-rating").html();
+            var checked_id = '#rated-star' + rating;
+            var checked_radio = $(checked_id);
+
+            checked_radio.prop("disabled", false);
+            checked_radio.prop("checked", true);
+
+            var element = $(".shipping-address");
+            var JSON_address = element.html();
+
+            if(JSON_address)
+            {
+                var address = $.parseJSON(JSON_address);
+                var human_address = address.recipient_name + '<br>' + address.line1 + '<br>' +  address.city + '<br>' + address.state + '<br>' + address.postal_code + '<br>' + address.country_code;
+
+                element.html(human_address);
+            }
+
+        });
+    })();
+}
+
+//TODO - CHECK IF THIS NEEDS TO BE RUN AFTER THE DOCUMENT LOADS
+//var this_date = new Date()
+//var this_offset = this_date.getTimezoneOffset();
+//
+//$.ajax({
+//    type: 'POST',
+//    url: "/time",
+//    data:
+//    {
+//        offset: this_offset,
+//        '_token': $('meta[name="csrf-token"]').attr('content')
+//    }
+//});
+if(window.location.href.indexOf('/users/dashboard') > -1)
+{
+    (function ()
+    {
+
+        $(document).ready(function()
+        {
+
+
+//            var tits = $("");
+//            console.log(tits);
+//                .click(function()
+//            {
+//                var parent = $(this).parents();
+//                console.log(parent);
+//                //set colour to normal
+//            });
+
+
+            $.ajax(
+                {
+                    type: 'GET',
+                    url: "/notifications",
+                    data:
+                    {
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: handleData
+            });
+
+            function handleData (data)
+            {
+//                if(data.html == "")
+//                {
+//                    data.html = "<span>You have no notifications!</span>";
+//                }
+
+
+                $('#notifications-body').hide();
+                $('#notifications-body').html(data.html);
+                $('#notifications-body').show("fast");
+
+            }
+
+            var rating = $("#transaction-rating").html();
+            var checked_id = '#rated-star' + rating;
+            var checked_radio = $(checked_id);
+
+            checked_radio.prop("disabled", false);
+            checked_radio.prop("checked", true);
+
+            $('#notifications-container').on('click', '#mark-as-read', function(){
+
+                var notification = $(this).parents(".notification-item");
+                notification.css("background-color", "#cccccc" );
+
+                var id = notification.attr('data-notification-id');
+
+                $(this).hide();
+
+                $.ajax(
+                    {
+                        type: 'GET',
+                        url: "/notifications/read/"+id ,
+                        data:
+                        {
+                            '_token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: updateNotification
+                    });
+
+                function updateNotification()
+                {
+
+                }
+
+
+            });
+
+
+        });
+    })();
+}
 //# sourceMappingURL=all.js.map

@@ -1,7 +1,21 @@
-/**
- * Created with JetBrains PhpStorm.
- * User: Bum
- * Date: 17/03/16
- * Time: 22:34
- * To change this template use File | Settings | File Templates.
- */
+if(window.location.pathname == '/saleitems')
+{
+    (function ()
+    {
+
+        $(document).ready(function()
+        {
+            var currencies = {USD : '$', GBP: '£', EUR : '€'};
+            $('.currency-symbol').each(
+                (function()
+                {
+                    var symbol = currencies[$( this ).text()];
+                    $( this ).html(symbol);
+                }));
+
+            $("#deleted-item").delay(2000).hide('slow');
+
+        });
+
+    })();
+}

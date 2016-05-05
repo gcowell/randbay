@@ -27,11 +27,12 @@ class SaleitemRequest extends Request
         return
             [
                 'description' => 'required',
-                'price' => ['required', 'numeric'],
-                'currency' => 'required',
+                'price' => ['required', 'numeric', 'min:1'],
+                'native_currency' => 'required',
                 'international' => 'required',
-                'domestic_postage_cost' => ['required', 'numeric'],
+                'domestic_postage_cost' => ['required', 'numeric', 'min:1'],
                 'world_postage_cost' => ['required_if:international,true', 'numeric'],
+                'image'  => 'required|mimes:jpeg,jpg,bmp,png'
 
             ];
 

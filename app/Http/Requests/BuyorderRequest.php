@@ -21,7 +21,7 @@ class BuyorderRequest extends Request
         return
             [
                 'price' => ['required', 'numeric'],
-                'currency' => 'required',
+                'requested_currency' => 'required',
 
             ];
 

@@ -9,7 +9,9 @@ use App\Http\Requests;
 use App\Http\Requests\BuyorderRequest;
 use App\Http\Controllers\Controller;
 use App\Buyorder;
-use Auth;
+use App\Currencies;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class BuyordersController extends Controller
 {
@@ -20,39 +22,39 @@ class BuyordersController extends Controller
     }
 
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+//**********************************************************************************************************************
+
+    //NO NEED FOR THIS METHOD, SO JUST REDIRECT TO CREATE
     public function index()
     {
-        $buyorders = Buyorder::all();
-
-        return view('buyorder.index')->with(['buyorders' => $buyorders]);
+        return redirect('buyorders/create');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+//**********************************************************************************************************************
+
+    //DIRECTS TO BUYORDER CREATION FORM
     public function create()
     {
         return view('buyorders.create');
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+//**********************************************************************************************************************
+
+    //POSTS BUYORDER TO DB AND FINDS MATCHING SALEITEM
     public function find(BuyorderRequest $request)
     {
-        $buyorder = new Buyorder($request->all());
-        $buyorder['country'] = Auth::user()->getCountry();
+        //ALL PRICES IN DB ARE IN GBP!
+        $currencies = new Currencies();
+        $requested_currency = $request->requested_currency;
+
+        //TODO - MAYBE ADD RATE TO BUYORDER ALSO???
+
+        $buyorder = new Buyorder();
+        $buyorder->requested_currency = $requested_currency;
+        $buyorder->price = $currencies->convertToBaseGDP($requested_currency, $request->price);
+        $buyorder->country = Auth::user()->getCountry();
+        $buyorder->matched = 'false';
 
         $saleitem = new Saleitem();
         $result = $saleitem->matchOrderToSaleitem($buyorder);
@@ -60,56 +62,31 @@ class BuyordersController extends Controller
         if($result)
         {
             Auth::user()->buyorders()->save($buyorder);
-
         }
 
         return view('buyorders.match')->with(['saleitem' => $result, 'buyorder' => $buyorder ]);
 
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function redo(Request $request, $id)
     {
-        //
+        if(!$request->ajax())
+        {
+            return redirect('buyorders/create');
+        }
+
+        $buyorder = Buyorder::findOrFail($id);
+        $saleitem = new Saleitem();
+        $result = $saleitem->matchOrderToSaleitem($buyorder);
+
+        $JSON_result = json_encode($result);
+
+        return $JSON_result;
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+//**********************************************************************************************************************
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
 }

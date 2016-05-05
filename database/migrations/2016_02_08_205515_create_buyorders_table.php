@@ -18,17 +18,11 @@ class CreateBuyordersTable extends Migration
 
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->decimal('price', 5, 2);
-            $table->string('currency');
+            $table->decimal('price', 7, 2);
+            $table->string('requested_currency');
             $table->string('country');
-            $table->boolean('matched');
+            $table->string('matched');
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-
 
         });
     }

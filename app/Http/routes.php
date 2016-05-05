@@ -27,16 +27,63 @@ Route::get('users/{id}', 'UserController@show');
 
 
 //Sale Item routes
-Route::get('saleitems', 'SaleitemsController@index');
-Route::get('saleitems/create', 'SaleitemsController@create');
+Route::post('saleitems/rate/{id}', 'SaleitemsController@rate');
+Route::post('saleitems/{id}', 'SaleitemsController@update');
 Route::post('saleitems', 'SaleitemsController@store');
-Route::get('saleitems/{id}', 'SaleitemsController@show');
 
-//Sale Item routes
+Route::get('saleitems/transaction/{id}', 'SaleitemsController@showSaleItemTransaction');
+Route::get('saleitems/create', 'SaleitemsController@create');
+Route::get('saleitems/{id}', 'SaleitemsController@show');
+Route::get('saleitems', 'SaleitemsController@index');
+
+Route::delete('saleitems/{id}', 'SaleitemsController@destroy');
+
+
+//Buy Order routes
 Route::get('buyorders', 'BuyOrdersController@index');
 Route::get('buyorders/create', 'BuyOrdersController@create');
+Route::get('buyorders/redo/{id}', 'BuyOrdersController@redo');
+
 Route::post('buyorders', 'BuyOrdersController@find');
-Route::get('buyorders/{id}', 'BuyOrdersController@show');
+
+//Transactions routes
+Route::get('transactions', 'TransactionsController@index');
+Route::post('transactions', 'TransactionsController@create');
+Route::get('transactions/{id}', 'TransactionsController@show');
+Route::put('transactions/{id}', 'TransactionsController@update');
+
+
+// this is after make the payment, PayPal redirect back to your site
+Route::get('transactions/payment/status', array(
+    'as' => 'payment.status',
+    'uses' => 'TransactionsController@getPaymentStatus',
+));
+
+//Images routes
+Route::get('images/{filename}', function ($filename)
+{
+    $path = storage_path() . '\\items\\' . $filename;
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
+
+//TIME ROUTE - Not currently used
+//Route::post('time', 'TimeController@setTimeDiff');
+
+//Notification Routes
+Route::get('notifications', 'NotificationsController@index');
+Route::get('notifications/read/{id}', 'NotificationsController@markAsRead');
+
+//TODO REMOVE!
+//TEMPORARY Currency Routes
+Route::get('currencies', 'TempCurrencyController@getRate');
+
+
+
 
 
 

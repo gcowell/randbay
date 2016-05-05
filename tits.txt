@@ -1,28 +1,56 @@
-
-IP ping to determine country and preferred currency on user registration
-
-Experiment with allowing guest to fill in form, but require login when finished
-
- 
-
- 
-Saleitem index:
--Clickable links for each entry 
--edit, delete etc.
+FEATURES
 
 
 
- 
--add the buy and sell links to
+-emails
 
--pagination of saleitems
-
--currency issue
-
--transaction object
-
--paypal API stuff
-
--fix login/register at end of saleitem
+-sort out middleware
 
 -general pages
+
+-new notifications icon on taskbar
+
+-Do all TODOES
+
+-remove mark as unshipped and I have not received (make i have not received a separate link to file a support request)
+
+-support tickets
+
+
+
+
+BUGS
+
+-images disappearing on saleitem index ??
+
+-cURL issue with 0 millisecond timeout
+
+-fix payment details
+
+
+
+AESTHETICS
+
+-Autocomplete on numerical fields
+
+-Auto decimals on numerical fields
+
+-title of saleitem on transaction show page
+
+-general page onload stuff
+
+-buyorder needs currency in bar
+
+-currencies on transaction and edit item pages
+
+-pictures of items on transaction page
+
+-stop jumping transaction page around when hash tabbing
+
+-decimals need to be 50,XX on buyorder success page, not 50.X,
+
+
+
+
+
+

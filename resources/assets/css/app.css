@@ -1,17 +1,243 @@
-html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
-#maincontent { height: 100%; width: 100%; margin: 10}
-#sale-item-entry { background-color: #cccccc;     border-radius: 15px;}
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+#maincontent {
+    height: 100%;
+    width: 100%;
+    margin: 10
+}
+#sale-item-entry {
+    background-color: #cccccc;
+    border-radius: 15px;
+}
 
-#time-status {font-size: 60%; font-style: italic;}
+#buy-item-entry {
+    background-color: #cccccc;
+    border-radius: 15px;
+}
+#time-status {
+    font-size: 90%;
+    font-style: italic;
+}
 
-.terms-agreement {font-size: 90%; font-style: italic;}
+.terms-agreement {
+    font-size: 90%;
+    font-style: italic;
+}
 
-#match-loading {text-align: center}
+#match-loading {
+    text-align: center
+}
 
 #loader-gif{
     display: block;
     margin-left: auto;
     margin-right: auto }
 
-/*# sourceMappingURL=app.css.map */
+
+#previewing{
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+input[name=image] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+label[for=image] {
+
+    max-width: 80%;
+    font-size: 1.25rem;
+    border-radius: 10px;
+
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+
+    font-weight: 700;
+    color: white;
+    background-color: mediumpurple;
+    display: inline-block;
+}
+
+#image-edit{
+/*INNER DIV*/
+    height: 300px;
+    width: 300px;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+#image-preview{
+
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+#image-list{
+
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+
+/*********************************************************************************
+
+/*star rating stuff*/
+
+
+.rating {
+    float:left;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+    position:absolute;
+    left:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > label:active {
+    position:relative;
+    top:0px;
+    left:0px;
+}
+
+/*********************************************************************************
+/*Rated labels*/
+.rated:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    /*cursor:pointer;*/
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rated {
+    float:left;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rated:not(:checked) > input {
+    position:absolute;
+    left:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rated:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rated > input:checked ~ label {
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rated > label:active {
+    position:relative;
+    top:0px;
+    left:0px;
+}
+
+
+/*********************************************************************************
+/*Form currencies*/
+
+.input-symbol{
+  position:relative;
+}
+.input-symbol span{
+  position: absolute;
+  transform: translate(0,-50%);
+  top:50%;
+  pointer-events:none;
+  margin-left:0.2em;
+}
+.input-symbol input{
+  text-indent:1em;
+}
+
+
+
+
+#sidebar-container
+{
+    border:1px solid black;
+}
+
 

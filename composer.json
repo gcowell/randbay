@@ -9,7 +9,9 @@
         "laravel/framework": "5.1.*",
         "bestmomo/scafold": "dev-master",
         "illuminate/html": "^5.0",
-        "laracasts/utilities": "~2.0"
+        "laracasts/utilities": "~2.0",
+        "paypal/rest-api-sdk-php": "*",
+        "paypal/adaptivepayments-sdk-php":"v3.9.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

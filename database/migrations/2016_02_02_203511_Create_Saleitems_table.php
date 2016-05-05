@@ -19,20 +19,19 @@ class CreateSaleitemsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('description');
-            $table->string('currency');
+            $table->string('native_currency');
             $table->decimal('price', 10, 2);
             $table->string('international');
             $table->decimal('domestic_postage_cost', 5, 2);
             $table->decimal('world_postage_cost', 5, 2)->nullable();
-            $table->boolean('matched');
+            $table->string('matched');
             $table->string('country_of_origin');
+            $table->string('image_type');
+            $table->decimal('currency_rate', 10, 5);
+            $table->smallInteger('rating')->nullable();
+            $table->decimal('seller_rating')->unsigned();
+            $table->timestamp('engaged_until');
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-
 
         });
     }
