@@ -1,10 +1,11 @@
 @extends('app')
 
 @section('content')
+<div class="bg-register"></div>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
+			<div class="panel panel-default" id="log-panel">
 				<div class="panel-heading">Register</div>
 				<div class="panel-body">
 					@if (count($errors) > 0)
@@ -52,14 +53,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Country</label>
                             <div class="col-md-6">
-                                <input type="country" class="form-control" name="country" id="country-select">
+                                <input type="text" class="form-control" name="country" id="country-select">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">Paypal Email</label>
                             <div class="col-md-6">
-                                <input type="paypal_email" class="form-control" name="country" id="paypal-select">
+                                <input type="email" class="form-control" name="paypal_email" id="paypal-select">
                             </div>
                         </div>
 
@@ -70,6 +71,11 @@
 								</button>
 							</div>
 						</div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                Already a Randbay member yet? Login over <a href="{{ url('/auth/login') }}">here</a>
+                            </div>
+                        </div>
 					</form>
 				</div>
 			</div>

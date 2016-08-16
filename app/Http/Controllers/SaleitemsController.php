@@ -11,16 +11,19 @@ use App\Http\Requests\SaleitemRequest;
 use App\Http\Requests\SaleitemUpdateRequest;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+
 
 class SaleitemsController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'create']);
+        $this->middleware('auth',['except' => 'returnRandomItems' ]);
         $this->moveDestinationPath = storage_path() . '\\items\\';
     }
 
@@ -177,6 +180,12 @@ class SaleitemsController extends Controller
 
         $rating = Input::get('rating');
 
+        if ($rating == null)
+        {
+            return Redirect::back()->withErrors(['Please leave a rating between 1 and 5 stars']);
+        }
+
+
         $saleitem = Saleitem::findOrFail($id);
         $saleitem->addRating($rating);
         $saleitem->save();
@@ -207,6 +216,25 @@ class SaleitemsController extends Controller
 
 
         return redirect('/transactions/'. $transaction->id);
+
+    }
+
+
+    public function returnRandomItems(Request $request)
+    {
+        if(!$request->ajax())
+        {
+            return redirect('/');
+            exit;
+        }
+
+        $saleitem = new Saleitem();
+        $random_saleitems = $saleitem->getRandomItems();
+
+        $returnHTML = view('partials.selling_now_banner')->with('random_saleitems', $random_saleitems)->render();
+
+        return response()->json(['success' => true, 'html'=>$returnHTML]);
+
 
     }
 

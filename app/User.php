@@ -26,7 +26,8 @@ class User extends Model implements AuthenticatableContract,
             'email',
             'password',
             'country',
-            'paypal_email'
+            'paypal_email',
+            'seller_rating'
         ];
 
     protected $hidden =
@@ -34,7 +35,8 @@ class User extends Model implements AuthenticatableContract,
             'email',
             'password',
             'remember_token',
-            'paypal_email'
+            'paypal_email',
+            'privileges'
         ];
 
 
@@ -67,6 +69,31 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Notification', 'recipient_id');
     }
 
+    public function supportTicketsRaised()
+    {
+        return $this->hasMany('App\SupportTicket', 'complainer_id');
+    }
+
+    public function supportTicketsAgainst()
+    {
+        return $this->hasMany('App\SupportTicket', 'complainee_id');
+    }
+
+
+//**********************************************************************************************************************
+
+    public function checkAdminPrivilege()
+    {
+        if($this->privileges == 'administrator')
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 
 //**********************************************************************************************************************
 

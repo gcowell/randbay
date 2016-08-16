@@ -51,10 +51,10 @@ return [
 
         'sqs' => [
             'driver' => 'sqs',
-            'key'    => 'your-public-key',
-            'secret' => 'your-secret-key',
-            'queue'  => 'your-queue-url',
-            'region' => 'us-east-1',
+            'key'    => 'AKIAICHVYZ5742UFSFJQ',
+            'secret' => 'r4O4Q24nMhXGD6viBD3Vrk8YtjMOKFRx89f9bxab',
+            'queue'  => 'https://sqs.eu-west-1.amazonaws.com/777229698195/test',
+            'region' => 'eu-west-1',
         ],
 
         'iron' => [

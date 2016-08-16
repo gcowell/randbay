@@ -19,20 +19,11 @@ class Notification extends Model
     }
 
 
-    //TODO NEED TO ADD AN ARRAY WITH SOME INFO IN IT
-
-//    ['item' => $saleitem->description, 'origin' => $saleitem->country_of_origin, ]
-
     public function getAssociatedTransaction()
     {
         return $this->hasOne('App\Transaction', 'saleitem_id', 'id')->first();
     }
 
-    //You have sold your item: xxxxxx - view transaction
-    //You have bought item: xxxxxx - view transaction
-    //Your item has been marked as dispatched
-    //The item you sent has been received
-    //Your item was rated xxxx
 
     public function markAsRead()
     {
@@ -57,6 +48,8 @@ class Notification extends Model
         $this->item_img_path =  array_key_exists ( 'item_img_path', $details )  ? $details['item_img_path'] : null;
         $this->item_rating =  array_key_exists ( 'item_rating', $details )  ? $details['item_rating'] : null;
         $this->item_country_of_origin =  array_key_exists ( 'item_country_of_origin', $details )  ? $details['item_country_of_origin'] : null;
+        $this->item_support_ticket_id =  array_key_exists ( 'item_support_ticket_id', $details )  ? $details['item_support_ticket_id'] : null;
+
 
         $this->save();
 

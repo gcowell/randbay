@@ -2,71 +2,114 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/js/TimeZone.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/js/UserDashboard.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/notifications/bought-type.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/notifications/dispatched-type.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/notifications/framework.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/notifications/rated-type.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/notifications/received-type.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/notifications/sold-type.blade.php" />
-      <change type="MOVED" beforePath="C:\wamp\www\randbay\database\migrations\2016_02_02_203511_Create_Saleitems_table.php" afterPath="$PROJECT_DIR$/database/migrations/2016_02_02_203511_create_saleitems_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/noimage.png" afterPath="$PROJECT_DIR$/public/img/noimage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2016_02_08_205515_create_buyorders_table.php" afterPath="$PROJECT_DIR$/database/migrations/2016_02_08_205515_create_buyorders_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/bigpicture.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/blank.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/fancybox_loading.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/fancybox_loading@2x.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/fancybox_overlay.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/fancybox_sprite.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/fancybox_sprite@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/jumbo1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/jumbo12.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/line-separator.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/login-back.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/storage/items/question.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/register-back.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/js/Homepage.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/js/How.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/js/NotificationCheck.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Providers/ScafoldServiceProvider.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/js/SupportShow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/mail/bought.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/support/create.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/notifications/evidence-type.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/js/libs/facebook.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/pages/faq.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/partials/footer.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/pages/how.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/support/index.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/css/libs/jquery.fancybox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/js/libs/jquery.fancybox.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/js/libs/jquery.fancybox.pack.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/partials/open_graph_tags.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/pages/rules.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/partials/selling_now_banner.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/support/show.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/mail/sold.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/notifications/ticket-type.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/pages/tips.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/mail/weekly.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/mail/welcome.blade.php" />
+      <change type="DELETED" beforePath="C:\wamp\www\randbay\app\Http\Controllers\TimeController.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\randbay\resources\assets\js\TimeZone.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/items/1.jpg" afterPath="$PROJECT_DIR$/storage/items/1.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/items/10.jpg" afterPath="$PROJECT_DIR$/storage/items/10.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/items/2.jpg" afterPath="$PROJECT_DIR$/storage/items/2.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/items/3.jpg" afterPath="$PROJECT_DIR$/storage/items/3.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/items/7.jpg" afterPath="$PROJECT_DIR$/storage/items/7.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/items/8.jpg" afterPath="$PROJECT_DIR$/storage/items/8.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/items/9.jpg" afterPath="$PROJECT_DIR$/storage/items/9.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2000_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2000_10_12_000000_create_users_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2016_02_18_210056_create_transactions_table.php" afterPath="$PROJECT_DIR$/database/migrations/2016_02_18_210056_create_transactions_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2016_04_18_212658_create_notifications_table.php" afterPath="$PROJECT_DIR$/database/migrations/2016_04_18_212658_create_notifications_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/3000_03_21_212749_create_foreign_keys.php" afterPath="$PROJECT_DIR$/database/migrations/3000_03_21_212749_create_foreign_keys.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/BuyOrderForm.js" afterPath="$PROJECT_DIR$/resources/assets/js/BuyOrderForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/BuyOrderMatch.js" afterPath="$PROJECT_DIR$/resources/assets/js/BuyOrderMatch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Buyorder.php" afterPath="$PROJECT_DIR$/app/Buyorder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/BuyorderRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/BuyorderRequest.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/BuyordersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BuyordersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/CountryAutocomplete.js" afterPath="$PROJECT_DIR$/resources/assets/js/CountryAutocomplete.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Kernel.php" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/SaleItemEdit.js" afterPath="$PROJECT_DIR$/resources/assets/js/SaleItemEdit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Kernel.php" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Notification.php" afterPath="$PROJECT_DIR$/app/Notification.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/NotificationsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/NotificationsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/SaleItemForm.js" afterPath="$PROJECT_DIR$/resources/assets/js/SaleItemForm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/SaleItemIndex.js" afterPath="$PROJECT_DIR$/resources/assets/js/SaleItemIndex.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Saleitem.php" afterPath="$PROJECT_DIR$/app/Saleitem.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/SaleitemRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/SaleitemRequest.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SaleitemsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SaleitemsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Transaction.php" afterPath="$PROJECT_DIR$/app/Transaction.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/TransactionsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/TransactionsController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/TransactionsIndex.js" afterPath="$PROJECT_DIR$/resources/assets/js/TransactionsIndex.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/TransactionsItem.js" afterPath="$PROJECT_DIR$/resources/assets/js/TransactionsItem.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/UserDashboard.js" afterPath="$PROJECT_DIR$/resources/assets/js/UserDashboard.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/all.css.map" afterPath="$PROJECT_DIR$/public/css/all.css.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/all.css" afterPath="$PROJECT_DIR$/public/css/all.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/all.js.map" afterPath="$PROJECT_DIR$/public/js/all.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/all.js" afterPath="$PROJECT_DIR$/public/js/all.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/css/app.css" afterPath="$PROJECT_DIR$/resources/assets/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/notifications/bought-type.blade.php" afterPath="$PROJECT_DIR$/resources/views/notifications/bought-type.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/buyorders/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/buyorders/create.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/saleitems/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/saleitems/create.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/users/dashboard.blade.php" afterPath="$PROJECT_DIR$/resources/views/users/dashboard.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/notifications/dispatched-type.blade.php" afterPath="$PROJECT_DIR$/resources/views/notifications/dispatched-type.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/notifications/framework.blade.php" afterPath="$PROJECT_DIR$/resources/views/notifications/framework.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gulpfile.js" afterPath="$PROJECT_DIR$/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/buyorders/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/buyorders/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/saleitems/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/saleitems/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/transactions/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/transactions/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/libs/jquery.cookie.js" afterPath="$PROJECT_DIR$/resources/assets/js/libs/jquery.cookie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/libs/jquery.wait.js" afterPath="$PROJECT_DIR$/resources/assets/js/libs/jquery.wait.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/buyorders/match.blade.php" afterPath="$PROJECT_DIR$/resources/views/buyorders/match.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partials/nav.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/paypal.php" afterPath="$PROJECT_DIR$/config/paypal.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/paypaladaptive.php" afterPath="$PROJECT_DIR$/config/paypaladaptive.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/queue.php" afterPath="$PROJECT_DIR$/config/queue.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/notifications/rated-type.blade.php" afterPath="$PROJECT_DIR$/resources/views/notifications/rated-type.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/notifications/received-type.blade.php" afterPath="$PROJECT_DIR$/resources/views/notifications/received-type.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/saleitems/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/saleitems/show.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/transactions/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/transactions/show.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/notifications/sold-type.blade.php" afterPath="$PROJECT_DIR$/resources/views/notifications/sold-type.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tits.txt" afterPath="$PROJECT_DIR$/tits.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partials/transaction_hidden_form.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/transaction_hidden_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/users.sql" afterPath="$PROJECT_DIR$/users.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="quicko.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/routes.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460413251011" ignored="false" />
-    <file path="/RegistersUsers.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446495228731" ignored="false" />
+    <file path="/routes.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1465818201453" ignored="false" />
+    <file path="/RegistersUsers.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462535189698" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/symfony/routing/Tests/Fixtures/validresource.xml" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957671" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects/tests/_fixture/GoogleSearch.wsdl" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957671" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects/build/travis-ci.xml" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957671" ignored="false" />
@@ -99,7 +142,6 @@
     <file path="$PROJECT_DIR$/vendor/symfony/routing/phpunit.xml.dist" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957672" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/_files/configuration.colors.false.xml" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957672" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/phpunit/php-code-coverage/build/travis-ci.xml" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957672" ignored="false" />
-    <file path="$PROJECT_DIR$/vendor/danielstjules/stringy/phpunit.xml.dist" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957672" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/doctrine/instantiator/phpunit.xml.dist" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957672" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/_files/configuration.custom-printer.xml" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957672" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/symfony/http-kernel/phpunit.xml.dist" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957672" ignored="false" />
@@ -140,7 +182,6 @@
     <file path="$PROJECT_DIR$/vendor/symfony/routing/Tests/Fixtures/missing_path.xml" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957673" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/symfony/console/Tests/Fixtures/input_definition_4.xml" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957673" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/symfony/process/phpunit.xml.dist" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957673" ignored="false" />
-    <file path="$PROJECT_DIR$/vendor/symfony/http-foundation/phpunit.xml.dist" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957673" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/symfony/console/Tests/Fixtures/input_argument_2.xml" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957673" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/symfony/console/Tests/Fixtures/command_2.xml" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957674" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/Regression/GitHub/1330/phpunit1330.xml" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957674" ignored="false" />
@@ -185,28 +226,28 @@
     <file path="$PROJECT_DIR$/vendor/symfony/yaml/phpunit.xml.dist" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957675" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/_files/structureIsSameButDataIsNot.xml" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957675" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/symfony/console/phpunit.xml.dist" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446498957675" ignored="false" />
-    <file path="/HomeController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446499495934" ignored="false" />
-    <file path="/.env" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1454442677272" ignored="false" />
+    <file path="/HomeController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462879501176" ignored="false" />
+    <file path="/.env" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462742238245" ignored="false" />
     <file path="/2015_11_03_122500_create_journeys_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1448021765239" ignored="false" />
     <file path="/2015_11_03_123303_create_parcels_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446675075798" ignored="false" />
     <file path="/Journey.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1453206926958" ignored="false" />
     <file path="/Parcel.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1452960521103" ignored="false" />
     <file path="/JourneyController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447850464044" ignored="false" />
-    <file path="/index.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462397232962" ignored="false" />
+    <file path="/index.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471381666911" ignored="false" />
     <file path="/ParcelsController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1453153677848" ignored="false" />
-    <file path="/create.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460374850623" ignored="false" />
+    <file path="/create.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471347662860" ignored="false" />
     <file path="/app.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1448541911630" ignored="false" />
-    <file path="/app.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447245874193" ignored="false" />
-    <file path="/show.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460927722950" ignored="false" />
+    <file path="/app.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1470311125946" ignored="false" />
+    <file path="/show.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471379351706" ignored="false" />
     <file path="/CreateParcel.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446670796820" ignored="false" />
     <file path="/parcelform.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447797461878" ignored="false" />
     <file path="/a.dummy" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1458596928524" ignored="false" />
-    <file path="/User.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461064428810" ignored="false" />
-    <file path="/PagesController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446762257346" ignored="false" />
-    <file path="/nav.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1456316957570" ignored="false" />
+    <file path="/User.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471380354141" ignored="false" />
+    <file path="/PagesController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1470247102507" ignored="false" />
+    <file path="/nav.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1469130194536" ignored="false" />
     <file path="/CreateJourney.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1446758861489" ignored="false" />
     <file path="/journeyform.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447677545846" ignored="false" />
-    <file path="/composer.json" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447102766784" ignored="false" />
+    <file path="/composer.json" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462633132152" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Relations/HasMany.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447102994022" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Relations/HasOneOrMany.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447102994023" ignored="false" />
     <file path="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/Access/AuthorizesRequests.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447102994023" ignored="false" />
@@ -214,8 +255,8 @@
     <file path="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Bus/DispatchesJobs.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447102994023" ignored="false" />
     <file path="/MapController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447105636950" ignored="false" />
     <file path="/test.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447275434611" ignored="false" />
-    <file path="/gulpfile.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1455216007510" ignored="false" />
-    <file path="/app.css" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461237804111" ignored="false" />
+    <file path="/gulpfile.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1466026226260" ignored="false" />
+    <file path="/app.css" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471377247753" ignored="false" />
     <file path="/mapfunctions.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1453984275653" ignored="false" />
     <file path="$PROJECT_DIR$/storage/framework/views/dbfcc2fa0bf89cd6d8ca21ba6df8218c" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1447359704130" ignored="false" />
     <file path="/2015_11_03_123304_create_parcels_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1448281902961" ignored="false" />
@@ -227,14 +268,14 @@
     <file path="$PROJECT_DIR$/../AFU/resources/assets/css/app.css" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1448230265301" ignored="false" />
     <file path="$PROJECT_DIR$/../AFU/resources/views/layout.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1448230846068" ignored="false" />
     <file path="$PROJECT_DIR$/../AFU/resources/views/home.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1448230889334" ignored="false" />
-    <file path="/match.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460928239006" ignored="false" />
+    <file path="/match.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1467718176451" ignored="false" />
     <file path="/MatchController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1448393681938" ignored="false" />
     <file path="/AppHelpers.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1448541787612" ignored="false" />
-    <file path="/Dummy.txt" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460664558603" ignored="false" />
+    <file path="/Dummy.txt" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471378525161" ignored="false" />
     <file path="/matchbar.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1452204147263" ignored="false" />
     <file path="/results.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1452861028010" ignored="false" />
     <file path="/UserController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1456263742036" ignored="false" />
-    <file path="/dashboard.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461273958168" ignored="false" />
+    <file path="/dashboard.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471292789968" ignored="false" />
     <file path="/Participant.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1453464995969" ignored="false" />
     <file path="/Message.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1453985392770" ignored="false" />
     <file path="/Thread.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1454005250389" ignored="false" />
@@ -244,35 +285,35 @@
     <file path="/2016_01_21_211658_create_threads_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1453984806166" ignored="false" />
     <file path="/Agreement.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1453985602571" ignored="false" />
     <file path="/2016_01_28_125400_create_agreements_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1453985967542" ignored="false" />
-    <file path="/Saleitem.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461844463167" ignored="false" />
+    <file path="/Saleitem.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1468437440273" ignored="false" />
     <file path="/Buyrequest.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1454445240859" ignored="false" />
     <file path="/2016_02_02_203511_Create_Saleitems_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1455108987198" ignored="false" />
     <file path="/BuyrequestsController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1454532479590" ignored="false" />
-    <file path="/SaleitemsController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461671712331" ignored="false" />
+    <file path="/SaleitemsController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1468437178331" ignored="false" />
     <file path="/BuyorderRequest.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1454532294956" ignored="false" />
     <file path="/2016_02_02_203536_Create_Buyorders_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1454532711338" ignored="false" />
-    <file path="/SaleItemForm.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460929999248" ignored="false" />
+    <file path="/SaleItemForm.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1470945884172" ignored="false" />
     <file path="/SaleitemRequest.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1454711570595" ignored="false" />
-    <file path="/register.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1456178004678" ignored="false" />
-    <file path="/BuyOrderForm.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460205760673" ignored="false" />
+    <file path="/register.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1467978192387" ignored="false" />
+    <file path="/BuyOrderForm.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1465559415777" ignored="false" />
     <file path="/BuyordersController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460632355262" ignored="false" />
     <file path="/Buyorder.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460114593126" ignored="false" />
-    <file path="/tits.txt" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462393865313" ignored="false" />
+    <file path="/tits.txt" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471348820285" ignored="false" />
     <file path="/BuyOrderMatch.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460671836339" ignored="false" />
-    <file path="/Transaction.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462362384518" ignored="false" />
+    <file path="/Transaction.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1465385436282" ignored="false" />
     <file path="/2016_02_11_224355_create_transactions_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1455826257262" ignored="false" />
-    <file path="/TransactionsController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462395920103" ignored="false" />
+    <file path="/TransactionsController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1465508318781" ignored="false" />
     <file path="/TransactionRequest.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1455643639730" ignored="false" />
     <file path="/transaction_hidden_form.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461856987265" ignored="false" />
     <file path="/.gitignore" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1455643996382" ignored="false" />
     <file path="/paypal.txt" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1455644010273" ignored="false" />
-    <file path="/2016_02_18_210056_create_transactions_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1457475108349" ignored="false" />
+    <file path="/2016_02_18_210056_create_transactions_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1464781311046" ignored="false" />
     <file path="/2016_02_02_203511_create_saleitems_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1458594859653" ignored="false" />
     <file path="/2016_02_08_205515_create_buyorders_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1455833758598" ignored="false" />
     <file path="/saleitems.sql" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1457989586557" ignored="false" />
     <file path="/paypaladaptive.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1455997248336" ignored="false" />
     <file path="/2014_10_12_000000_create_users_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1458304747704" ignored="false" />
-    <file path="/TransactionsIndex.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462361337494" ignored="false" />
+    <file path="/TransactionsIndex.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1470682181702" ignored="false" />
     <file path="/TransactionsItem.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1458330954480" ignored="false" />
     <file path="/VerifyCsrfToken.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1457440285514" ignored="false" />
     <file path="/SaleItemEdit.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460930245742" ignored="false" />
@@ -282,20 +323,59 @@
     <file path="/CurrenciesController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1459943144508" ignored="false" />
     <file path="/2016_04_04_113551_Create_Currencies_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1459856940622" ignored="false" />
     <file path="/Currencies.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460209626731" ignored="false" />
-    <file path="/Kernel.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460207866906" ignored="false" />
+    <file path="/Kernel.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471380243404" ignored="false" />
     <file path="/TimeController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460461297896" ignored="false" />
     <file path="/TimeZone.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1460460792305" ignored="false" />
-    <file path="/UserDashboard.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461791266701" ignored="false" />
-    <file path="/Notification.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461622428149" ignored="false" />
+    <file path="/UserDashboard.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1469461396396" ignored="false" />
+    <file path="/Notification.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1464780135523" ignored="false" />
     <file path="/2016_04_18_212658_create_notifications_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461238251910" ignored="false" />
-    <file path="/NotificationsController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461790986039" ignored="false" />
-    <file path="/framework.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461787641651" ignored="false" />
-    <file path="/bought-type.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461325001527" ignored="false" />
+    <file path="/NotificationsController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1464868459018" ignored="false" />
+    <file path="/framework.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1469445950236" ignored="false" />
+    <file path="/bought-type.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1469462389903" ignored="false" />
     <file path="/dispatched-type.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461323551108" ignored="false" />
     <file path="/sold-type.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461323493207" ignored="false" />
     <file path="/received-type.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461323692367" ignored="false" />
     <file path="/rated-type.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461323609395" ignored="false" />
     <file path="/TempCurrencyController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1461859589321" ignored="false" />
+    <file path="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462447595643" ignored="false" />
+    <file path="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462447595643" ignored="false" />
+    <file path="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462447595643" ignored="false" />
+    <file path="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462447595643" ignored="false" />
+    <file path="/TempMailController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462792793520" ignored="false" />
+    <file path="/welcome.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462813264495" ignored="false" />
+    <file path="/AuthController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1464298440005" ignored="false" />
+    <file path="/bought.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462794102883" ignored="false" />
+    <file path="/sold.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462794217239" ignored="false" />
+    <file path="/NotificationCheck.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1462917198621" ignored="false" />
+    <file path="/2016_05_12_112629_create_supportticket_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1464693702504" ignored="false" />
+    <file path="/createpostage.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471296552108" ignored="false" />
+    <file path="/createproblem.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1466510384688" ignored="false" />
+    <file path="/SupportTicketController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471348457118" ignored="false" />
+    <file path="/SupportTicket.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471348265669" ignored="false" />
+    <file path="/complaints.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1463332349567" ignored="false" />
+    <file path="/SupportShow.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1464125849046" ignored="false" />
+    <file path="/SupportEvidenceRequest.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1464122764040" ignored="false" />
+    <file path="/SupportTicketUserCheck.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1464177462171" ignored="false" />
+    <file path="/TransactionUserCheck.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1464261537462" ignored="false" />
+    <file path="/ticket-type.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1464781825609" ignored="false" />
+    <file path="/rules.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1470914514685" ignored="false" />
+    <file path="/how.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1470742608783" ignored="false" />
+    <file path="/faq.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1469649802280" ignored="false" />
+    <file path="/Homepage.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1468496007911" ignored="false" />
+    <file path="/component.css" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1466078044606" ignored="false" />
+    <file path="/login.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1467977022245" ignored="false" />
+    <file path="/LoginPages.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1467926247272" ignored="false" />
+    <file path="/selling_now_banner.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1469132801088" ignored="false" />
+    <file path="/footer.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1470251474061" ignored="false" />
+    <file path="/How.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1469706626338" ignored="false" />
+    <file path="/tips.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1470249335005" ignored="false" />
+    <file path="/open_graph_tags.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1470311064774" ignored="false" />
+    <file path="/facebook.js" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1470657314742" ignored="false" />
+    <file path="/SupportTicketRequest.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471296086363" ignored="false" />
+    <file path="/evidence-type.blade.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471348552495" ignored="false" />
+    <file path="/2000_10_12_000000_create_users_table.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471379549819" ignored="false" />
+    <file path="/AdminCheck.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471380772885" ignored="false" />
+    <file path="/AdminController.php" changelist="fd1b48ac-58c5-44dc-bfc2-449cb199f10c" time="1471381149280" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -315,50 +395,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TransactionsController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TransactionsController.php">
+      <file leaf-file-name="User.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="26" selection-start="1725" selection-end="1725" vertical-scroll-proportion="15.346154">
-              <folding>
-                <element signature="e#40#60#0" expanded="true" />
-              </folding>
+            <state line="89" column="9" selection-start="2278" selection-end="2278" vertical-scroll-proportion="-8.5">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Transaction.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Transaction.php">
+      <file leaf-file-name="routes.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="291" column="40" selection-start="9115" selection-end="9115" vertical-scroll-proportion="-27.294117">
-              <folding>
-                <element signature="e#23#62#0" expanded="true" />
-              </folding>
+            <state line="117" column="59" selection-start="4142" selection-end="4142" vertical-scroll-proportion="0.8473968">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="20" selection-start="810" selection-end="833" vertical-scroll-proportion="-9.653846">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/transactions/index.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="0" selection-start="1260" selection-end="1260" vertical-scroll-proportion="-8.5">
+            <state line="7" column="3" selection-start="112" selection-end="321" vertical-scroll-proportion="-4.576923">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tits.txt" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.blade.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/support/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="16" selection-start="331" selection-end="409" vertical-scroll-proportion="-0.6666667">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tits.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tits.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="20" selection-start="361" selection-end="361" vertical-scroll-proportion="0.82258064">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TransactionsIndex.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/assets/js/TransactionsIndex.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="16" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
+            <state line="23" column="0" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -382,22 +467,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SaleitemsController.php" />
-        <option value="$PROJECT_DIR$/resources/views/notifications/framework.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/NotificationsController.php" />
-        <option value="$PROJECT_DIR$/resources/assets/js/UserDashboard.js" />
-        <option value="$PROJECT_DIR$/database/migrations/2016_04_18_212658_create_notifications_table.php" />
-        <option value="$PROJECT_DIR$/app/Saleitem.php" />
-        <option value="$PROJECT_DIR$/resources/views/partials/transaction_hidden_form.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/TransactionRequest.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2016_02_18_210056_create_transactions_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/TempCurrencyController.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/assets/js/TransactionsIndex.js" />
-        <option value="$PROJECT_DIR$/app/Transaction.php" />
-        <option value="$PROJECT_DIR$/resources/views/transactions/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/TransactionsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/support/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/support/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/SupportTicket.php" />
+        <option value="$PROJECT_DIR$/resources/views/notifications/evidence-type.blade.php" />
         <option value="$PROJECT_DIR$/tits.txt" />
+        <option value="$PROJECT_DIR$/resources/assets/css/app.css" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SupportTicketController.php" />
+        <option value="$PROJECT_DIR$/resources/views/transactions/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/support/show.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2000_10_12_000000_create_users_table.php" />
+        <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
+        <option value="$PROJECT_DIR$/app/User.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/AdminCheck.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
       </list>
     </option>
   </component>
@@ -537,7 +622,51 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="saleitems" />
+              <option name="myItemId" value="support" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="randbay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="randbay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="buyorders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="randbay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="randbay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -637,7 +766,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
+              <option name="myItemId" value="Requests" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -655,7 +784,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Console" />
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Middleware" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="randbay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="randbay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -678,30 +833,31 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="162" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="836" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="829" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="836" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="154" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="153" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\randbay\resources\views\notifications" />
+      <recent name="C:\wamp\www\randbay\resources\assets\js\libs" />
+      <recent name="C:\wamp\www\randbay\resources\assets\css\libs" />
       <recent name="C:\wamp\www\randbay\public\img" />
-      <recent name="C:\wamp\www\randbay\public\fonts" />
-      <recent name="C:\wamp\www\randbay" />
-      <recent name="C:\wamp\www\randbay\resources\assets\js" />
-      <recent name="C:\wamp\www\randbay\app\Http\Controllers" />
+      <recent name="C:\wamp\www\randbay\storage\items" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\randbay\public\css" />
+      <recent name="C:\wamp\www\randbay\public\img" />
+      <recent name="C:\wamp\www\randbay\storage\items" />
       <recent name="C:\wamp\www\randbay\public\img\items\1" />
       <recent name="C:\wamp\www\randbay\public\img\items" />
-      <recent name="C:\wamp\www\quicko\app\Messenger" />
-      <recent name="C:\wamp\www\quicko\resources\assets" />
     </key>
   </component>
   <component name="RunManager">
@@ -765,10 +921,10 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32764506" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2931818" sideWeight="0.6712329" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24377745" sideWeight="0.67235494" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2260274" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -842,124 +998,128 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/transaction_hidden_form.blade.php">
+    <entry file="file://$PROJECT_DIR$/tits.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="462" selection-end="462" vertical-scroll-proportion="-5.8846154">
+        <state line="23" column="0" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/users.sql">
+    <entry file="file://$PROJECT_DIR$/resources/views/notifications/evidence-type.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="945" vertical-scroll-proportion="0.0">
+        <state line="10" column="26" selection-start="647" selection-end="647" vertical-scroll-proportion="0.3250478">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/support/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="154" column="24" selection-start="7587" selection-end="7587" vertical-scroll-proportion="0.75915223">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2000_10_12_000000_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.297456">
+        <state line="26" column="53" selection-start="767" selection-end="767" vertical-scroll-proportion="0.6409336">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/TransactionUserCheck.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="14" selection-start="2785" selection-end="2785" vertical-scroll-proportion="0.83170253">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TempCurrencyController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="44" selection-start="425" selection-end="425" vertical-scroll-proportion="-13.076923">
-          <folding>
-            <element signature="e#40#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/TransactionRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="5" selection-start="1063" selection-end="1063" vertical-scroll-proportion="-14.576923">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Currencies.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="20" selection-start="2879" selection-end="2879" vertical-scroll-proportion="-29.307692">
+        <state line="6" column="0" selection-start="73" selection-end="109" vertical-scroll-proportion="0.15260324">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/transactions/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="39" selection-start="103" selection-end="103" vertical-scroll-proportion="-3.4672306">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/saleitems/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="194" column="24" selection-start="6273" selection-end="6273" vertical-scroll-proportion="0.81983805">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/saleitems/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="34" selection-start="543" selection-end="543" vertical-scroll-proportion="0.37550202">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TransactionsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="26" selection-start="1725" selection-end="1725" vertical-scroll-proportion="15.346154">
+        <state line="101" column="22" selection-start="3732" selection-end="3732" vertical-scroll-proportion="0.35943776">
           <folding>
-            <element signature="e#40#60#0" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#2;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/TransactionsIndex.js">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SupportTicketController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="16" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Transaction.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="291" column="40" selection-start="9115" selection-end="9115" vertical-scroll-proportion="-27.294117">
+        <state line="28" column="38" selection-start="634" selection-end="634" vertical-scroll-proportion="0.3414179">
           <folding>
-            <element signature="e#23#62#0" expanded="true" />
+            <element signature="e#40#68#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/transactions/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BuyordersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1260" selection-end="1260" vertical-scroll-proportion="-8.5">
+        <state line="37" column="28" selection-start="904" selection-end="945" vertical-scroll-proportion="0.41231343">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tits.txt">
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="20" selection-start="361" selection-end="361" vertical-scroll-proportion="0.82258064">
+        <state line="33" column="9" selection-start="1146" selection-end="1157" vertical-scroll-proportion="0.70197487">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/AdminCheck.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="0" selection-start="618" selection-end="618" vertical-scroll-proportion="0.61041296">
+          <folding>
+            <element signature="e#39#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="9" selection-start="2278" selection-end="2278" vertical-scroll-proportion="-8.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/buyorders/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="24" selection-start="144" selection-end="147" vertical-scroll-proportion="0.33333334">
+          <folding>
+            <element signature="n#style#0;n#fieldset#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/support/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="16" selection-start="331" selection-end="409" vertical-scroll-proportion="-0.6666667">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="3" selection-start="112" selection-end="321" vertical-scroll-proportion="-4.576923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="20" selection-start="810" selection-end="833" vertical-scroll-proportion="-9.653846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="117" column="59" selection-start="4142" selection-end="4142" vertical-scroll-proportion="0.8473968">
           <folding />
         </state>
       </provider>

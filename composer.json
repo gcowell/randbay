@@ -11,7 +11,9 @@
         "illuminate/html": "^5.0",
         "laracasts/utilities": "~2.0",
         "paypal/rest-api-sdk-php": "*",
-        "paypal/adaptivepayments-sdk-php":"v3.9.1"
+        "paypal/adaptivepayments-sdk-php":"v3.9.1",
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "aws/aws-sdk-php": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

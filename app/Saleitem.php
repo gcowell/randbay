@@ -184,6 +184,31 @@ class Saleitem extends Model
         return true;
     }
 
+//**********************************************************************************************************************
+
+//FIND RANDOM SALE ITEMS TO POPULATE HOMEPAGE
+    public function getRandomItems()
+    {
+        $current_time = Carbon::now();
+
+        $random_saleitems = DB::Table('saleitems')
+            ->select('id', 'description', 'image_type')
+            ->where('engaged_until', '<', $current_time)
+            ->where('matched', '=', 'false')
+            ->orderBy(DB::raw('RAND()'))
+            ->take(10)
+            ->get();
+
+
+        return $random_saleitems;
+
+    }
+
+
+
+
+
+
 }
 
 //**********************************************************************************************************************

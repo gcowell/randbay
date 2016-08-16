@@ -23,6 +23,7 @@ elixir(function(mix) {
             'libs/jquery-ui.structure.css',
             'libs/jquery-ui.theme.css',
             'libs/bootstrap.min.css',
+            'libs/jquery.fancybox.css',
             'app.css'
 
         ]);
@@ -37,6 +38,9 @@ elixir(function(mix) {
             'libs/respond.min.js',
             'libs/jquery.wait.js',
             'libs/jquery.cookie.js',
+            'libs/jquery.fancybox.js',
+            'libs/jquery.fancybox.pack.js',
+            'libs/facebook.js',
             'SaleItemForm.js',
             'SaleItemEdit.js',
             'SaleItemIndex.js',
@@ -45,10 +49,11 @@ elixir(function(mix) {
             'BuyOrderMatch.js',
             'TransactionsIndex.js',
             'TransactionsItem.js',
-            'TimeZone.js',
-            'UserDashboard.js'
-
-
+            'UserDashboard.js',
+            'NotificationCheck.js',
+            'SupportShow.js',
+            'Homepage.js',
+            'How.js'
 
         ]);
 

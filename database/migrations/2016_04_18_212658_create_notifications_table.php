@@ -26,6 +26,8 @@ class CreateNotificationsTable extends Migration
             $table->text('item_img_path')->nullable();
             $table->text('item_rating')->nullable();
             $table->text('item_country_of_origin')->nullable();
+            $table->text('item_support_ticket_id')->nullable();
+
 
 
 

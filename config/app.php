@@ -145,7 +145,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Bestmomo\Scafold\ScafoldServiceProvider::class,
+        App\Providers\ScafoldServiceProvider::class,
+//        Bestmomo\Scafold\ScafoldServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
 
     ],

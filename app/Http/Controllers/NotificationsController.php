@@ -7,13 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\User;
 use App\Notification;
-use PayPal\Api\Transaction;
 
 class NotificationsController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+/***********************************************************/
     public function index(Request $request)
     {
         if(!$request->ajax())
@@ -21,11 +26,14 @@ class NotificationsController extends Controller
             return redirect('/');
             exit;
         }
-        $notifications = Auth::User()->notifications;
+        $notifications = Auth::User()->notifications()->orderBy('created_at', 'desc')->take(20)->get();
         $returnHTML = view('notifications.framework')->with('notifications', $notifications)->render();
 
         return response()->json(['success' => true, 'html'=>$returnHTML]);
     }
+
+
+/***********************************************************/
 
     public function markAsRead(Request $request, $id)
     {
@@ -40,6 +48,8 @@ class NotificationsController extends Controller
         return response()->json(['success' => true]);
     }
 
+
+/***********************************************************/
     public function checkForNew(Request $request)
     {
         if(!$request->ajax())
@@ -48,15 +58,15 @@ class NotificationsController extends Controller
             exit;
         }
 
-        $notifications = Auth::User()->notifications->where('notifications.unread', "true");
+        $notifications = Auth::User()->notifications->where('unread', 'true');
 
-        if($notifications)
+        if(!$notifications->isEmpty())
         {
-            return ('img');
+            return ['success' => 'true', 'img' => '/img/notify-yes.png'];
         }
         else
         {
-            return ('other_img');
+            return ['success' => 'true', 'img' => '/img/notify-no.png'];
         }
     }
 

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\URL;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 //**********************************************************************************************************************
 //THESE IMPORTS ARE PAYPAL 'CLASSIC' REST API
@@ -58,6 +59,8 @@ class Transaction extends Model
             'saleitem_id',
             'buyer_id',
             'seller_id',
+            'has_support_ticket',
+            'postage_cost'
         ];
 
     protected $dates = ['created_at', 'updated_at', 'payment_date', 'shipped_date', 'received_date'];
@@ -86,24 +89,19 @@ class Transaction extends Model
         return $this->hasOne('App\User', 'id', 'seller_id');
     }
 
+    public function ticket()
+    {
+        return $this->hasOne('App\SupportTicket', 'id', 'support_ticket_id' );
+    }
+
 //**********************************************************************************************************************
 
     //MARK THE TRANSACTION AS SHIPPED
 
     public function markAsShipped($shipped)
     {
-        //TODO update this method to be one way
-        if($shipped == 'true')
-        {
-            $this->item_shipped = 'true';
-            $this->shipped_date = new Carbon();
-        }
-        elseif($shipped == 'false')
-        {
-            $this->item_shipped = 'false';
-            $this->shipped_date = null;
-        }
-
+        $this->item_shipped = 'true';
+        $this->shipped_date = new Carbon();
         return true;
     }
 
@@ -128,6 +126,18 @@ class Transaction extends Model
 
         return true;
     }
+
+
+
+    public function addTicket($id)
+    {
+        $this->has_support_ticket = 'true';
+        $this->support_ticket_id = $id;
+        $this->save();
+
+        return true;
+    }
+
 
 //**********************************************************************************************************************
 
@@ -159,7 +169,8 @@ class Transaction extends Model
         $paypalTransaction = new PaypalTransaction();
         $paypalTransaction->setAmount($amount)
             ->setItemList($item_list)
-            ->setDescription('A random purchase from Randbay');
+            ->setDescription('A random purchase from Randbay')
+            ->setInvoiceNumber(uniqid('RANDBAY'));
 
         $redirect_urls = new RedirectUrls();
         $redirect_urls->setReturnUrl(URL::route('payment.status'))
@@ -189,6 +200,7 @@ class Transaction extends Model
 
         // add payment ID to session
         Session::put('paypal_payment_id', $payment->getId());
+
         Session::put('transaction_id', $transaction_id);
 
         if(isset($approval_url))
@@ -300,6 +312,26 @@ class Transaction extends Model
                 $buyer_notification->generate($this->buyer->id, $this->id, 'bought-type');
                 $buyer_notification->setDetails($notification_details);
 
+
+//                Mail::send('mail.bought', $buyer_notification, function ($message) use ($buyer_notification)
+//                {
+//                    $message->from('no-reply@randbay.com', 'Randbay');
+//                    $message->subject('A Random Item with Your Name on it!');
+//
+//                    //TODO - CHANGE THIS EMAIL WHEN DEPLOYED
+//                    $message->to($buyer_notification->recipient->email);
+//                });
+//
+//
+//                Mail::send('mail.sold', $seller_notification, function ($message) use ($seller_notification)
+//                {
+//                    $message->from('no-reply@randbay.com', 'Randbay');
+//                    $message->subject('You got a sale! Taste that sweet victory...');
+//
+//                    //TODO - CHANGE THIS EMAIL WHEN DEPLOYED
+//                    $message->to($seller_notification->recipient->email);
+//                });
+
                 //REDIRECT TO COMPLETE
                 return redirect('transactions')->with(['buyer_alert' => $notification_details]);
             }
@@ -331,7 +363,7 @@ class Transaction extends Model
         $payout = new Payout();
 
         $senderBatchHeader = new PayoutSenderBatchHeader();
-        $senderBatchHeader->setSenderBatchId(uniqid())
+        $senderBatchHeader->setSenderBatchId(uniqid('RANDPAY'))
             ->setEmailSubject("You have a Payout!");
 
         $randbay_rate = 0.9;

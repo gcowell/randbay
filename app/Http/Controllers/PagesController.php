@@ -19,9 +19,23 @@ class PagesController extends Controller
 
 
 
-    public function howItWorks()
+    public function how()
     {
-        return view('pages.howitworks');
+        return view('pages.how');
     }
 
+    public function FAQ()
+    {
+        return view('pages.faq');
+    }
+
+
+    public function rules()
+    {
+        return view('pages.rules');
+    }
+    public function tips()
+    {
+        return view('pages.tips');
+    }
 }

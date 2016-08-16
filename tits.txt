@@ -1,53 +1,89 @@
-FEATURES
-
-
-
--emails
-
--sort out middleware
-
--general pages
-
--new notifications icon on taskbar
+BUGS
 
 -Do all TODOES
 
--remove mark as unshipped and I have not received (make i have not received a separate link to file a support request)
-
--support tickets
-
-
-
-
-BUGS
-
--images disappearing on saleitem index ??
+-there is a big problem with logging out everytime transactions is accessed (maybe to do with has tabs)
 
 -cURL issue with 0 millisecond timeout
 
--fix payment details
+-links in notifications to deleted saleitems - fixed by on delete cascade?
 
+-add support ticket option for items which break the rules
+
+-check if user is logged in before allowing ajax call for notifications
+
+-after new user registration, if I click dashboard, the site asks me to log in again, even though I am already logged in
+
+-check what maximum paypal payments are in eur / dollar and gbp
+
+///////////////////////////////////////////////////
+
+Admin panel – screens all saleitems somehow
+
+Dont want to permit all manually, but some form of check would be nice
+
+Add “clear” to saleitems
+
+Add “strikes” to users
+
+what about if a user deletes a saleitem with a ticket on it
 
 
 AESTHETICS
 
--Autocomplete on numerical fields
+-fancybox evidence images
 
--Auto decimals on numerical fields
+-fancy box scrolls to top on click - can be fixed by updating supposedly
 
--title of saleitem on transaction show page
+-need to make toolbar notification image transparent
 
--general page onload stuff
+-when notifications are marked as read, they are not updated to the correct colour (also add hover alt text to mark as read)
 
--buyorder needs currency in bar
-
--currencies on transaction and edit item pages
-
--pictures of items on transaction page
+-fix line separator image
 
 -stop jumping transaction page around when hash tabbing
 
--decimals need to be 50,XX on buyorder success page, not 50.X,
+-custom 404 page
+
+-saleitem create - destroy world postage tooltip when 'no' is clicked
+
+-padding on various pages
+
+-have a look at different screen sizes
+
+-testimonials
+
+(buying random objects helps to drown out the crippling pain of existence)
+Ted, Hampshire
+
+selling the entrails of my enemies randmly online really allows me to instil fear into the general populace.
+Gaarg the Unmerciful, Bloodthrone
+
+
+
+
+DEPLOYMENT
+
+-Comment out registration html
+
+-Set page controller to require login
+
+-Need to do emails
+
+-Need to do social media sharing
+
+-paypal enlivement
+
+-cron tasks
+
+-temp currency controller
+
+-email queuing
+
+
+
+
+
 
 
 

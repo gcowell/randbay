@@ -17,5 +17,16 @@ if(window.location.pathname == '/saleitems')
 
         });
 
+
+        $("#fancy-img").fancybox({
+            openEffect	: 'elastic',
+            closeEffect	: 'elastic',
+            helpers: {
+                title : {
+                    type : 'float'
+                }
+            }
+        });
+
     })();
 }

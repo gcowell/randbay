@@ -22,7 +22,7 @@
             <hr/>
             <div class="form-group" id="go-back-group">
                 <div class="col-md-12">
-                    <button type="button" id="go-back" class="btn btn-primary form-control" >Go Back</button>
+                    <a class="btn btn-sm animated-button thar-four" href="#" id="go-back">Go Back</a>
                 </div>
             </div>
         </fieldset>
@@ -32,19 +32,19 @@
             <p>We have found you a random item for:</p>
             <h3><span id="currency-symbol"></span> <span id="total-cost-confirm">{{ ceil($saleitem->total_cost*100)/100 }}</span> </h3>
             <hr/>
-            <div class="form-group" id="proceed-group">
-                <div class="col-md-12">
-                    <button type="button" id="redo" class="btn btn-primary form-control" >Get a Different Random Item</button>
+
+            <div class="row">
+                <div class="form-group" id="proceed-group">
+                    <div class="col-md-6">
+                        <a class="btn btn-sm animated-button victoria-two" href="#" id="redo">Get a Different Random Item</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-sm animated-button victoria-one" href="#" id="proceed">Pay Securely with PayPal</a>
+                    </div>
                 </div>
             </div>
-            <br>
-            <div class="form-group" id="proceed-group">
-                <div class="col-md-12">
-                    <button type="button" id="proceed" class="btn btn-primary form-control" >Pay Securely with PayPal</button>
-                </div>
-            </div>
-            <br>
-            <div>
+            <hr>
+            <div class="row" style="text-align: center">
                 <p><a href="{{ url('/buyorders/create') }}">Start over</a></p>
             </div>
             @include('partials.transaction_hidden_form')

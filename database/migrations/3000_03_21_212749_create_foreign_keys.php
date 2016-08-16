@@ -33,6 +33,13 @@ class CreateForeignKeys extends Migration
             $table->foreign('recipient_id')->references('id')->on('users');
             $table->foreign('transaction_id')->references('id')->on('transactions');
         });
+
+        Schema::table('support_tickets', function($table) {
+            $table->foreign('complainer_id')->references('id')->on('users');
+            $table->foreign('complainee_id')->references('id')->on('users');
+            $table->foreign('transaction_id')->references('id')->on('transactions');
+
+        });
     }
 
     /**

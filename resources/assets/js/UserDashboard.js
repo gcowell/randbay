@@ -6,16 +6,17 @@ if(window.location.href.indexOf('/users/dashboard') > -1)
         $(document).ready(function()
         {
 
+            $("#fancy-img").fancybox({
+                openEffect	: 'elastic',
+                closeEffect	: 'elastic',
+                helpers: {
+                    title : {
+                        type : 'float'
+                    }
+                }
+            });
 
-//            var tits = $("");
-//            console.log(tits);
-//                .click(function()
-//            {
-//                var parent = $(this).parents();
-//                console.log(parent);
-//                //set colour to normal
-//            });
-
+            $("#notifications-loading").show();
 
             $.ajax(
                 {
@@ -30,15 +31,18 @@ if(window.location.href.indexOf('/users/dashboard') > -1)
 
             function handleData (data)
             {
-//                if(data.html == "")
-//                {
-//                    data.html = "<span>You have no notifications!</span>";
-//                }
+                $("#notifications-loading").hide();
+
+                if(data.html == "")
+                {
+                    data.html = "<img src=\x22/img/sad-robot.png\x22>";
+                }
 
 
                 $('#notifications-body').hide();
                 $('#notifications-body').html(data.html);
-                $('#notifications-body').show("fast");
+                $('#notifications-body').show('slow');
+
 
             }
 

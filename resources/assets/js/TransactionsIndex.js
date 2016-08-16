@@ -8,7 +8,46 @@ if(window.location.pathname == '/transactions')
 
         $(document).ready(function()
         {
+            //SCROLL TO TOP TO AVOID HASHTAB ISSUES
+            $(window).scrollTop(0);
 
+            //FACEBOOK SHARE STUFF
+            $('.fb-share').click(function() {
+                    if(fbIsLoaded) {
+                        console.log('UI triggered');
+                        FB.ui(
+                            {
+                                //TODO this needs to be fixed when live
+                                method: 'share',
+//                                name: 'Facebook Dialogs',
+                                href: 'http://www.randbay.com',
+//                                picture: 'http://fbrell.com/f8.jpg',
+                                caption: 'Reference Documentation',
+                                description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
+                            },
+                            function(response) {
+                                if (response && response.post_id) {
+                                    alert('Post was published.');
+                                } else {
+                                    alert('Post was not published.');
+                                }
+                            }
+                        );
+                    }
+            });
+
+            //ENABLE FANCY IMAGE EXPANSION ON PICTURE
+            $("#fancy-img").fancybox({
+                openEffect	: 'elastic',
+                closeEffect	: 'elastic',
+                helpers: {
+                    title : {
+                        type : 'float'
+                    }
+                }
+            });
+
+            //CHECK IF THE ALERT MODAL IS REQUIRED (NEW PURCHASE)
             if ($('#alertModal'))
             {
                 $('#alertModal').modal('show');
@@ -48,10 +87,13 @@ if(window.location.pathname == '/transactions')
 
             /////////////////////////////////////////////////////////////
 
-            $(document.body).on("click", "a[data-toggle]", function(event) {
+            $(document.body).on("click", "a[data-toggle=tab]", function(event) {
                 $(".tab-pane").removeClass('tab-pane active').addClass('tab-pane');
-                location.hash = this.getAttribute("href");
+                var hash = this.getAttribute("href");
+                location.hash = hash;
+                $(hash).removeClass('tab-pane').addClass('tab-pane active');
             });
+
 
             $(window).on('popstate', function() {
                 var anchor = location.hash || $("a[data-toggle=tab]").first().attr("href");
@@ -69,20 +111,7 @@ if(window.location.pathname == '/transactions')
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            //POPULATE SHIPPING ADDRESSES IN CORRECT FORMAT.
             $(".shipping-address").each(function(i, element)
             {
                 //TODO pass in jquery context so that we can use html() - more stable

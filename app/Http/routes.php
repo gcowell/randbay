@@ -3,6 +3,12 @@
 //Home routes...
 Route::get('/', 'PagesController@index');
 Route::get('/home', 'HomeController@index');
+Route::get('/how', 'PagesController@how');
+Route::get('/faq', 'PagesController@FAQ');
+Route::get('/rules', 'PagesController@rules');
+Route::get('/tips', 'PagesController@tips');
+
+
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -33,8 +39,11 @@ Route::post('saleitems', 'SaleitemsController@store');
 
 Route::get('saleitems/transaction/{id}', 'SaleitemsController@showSaleItemTransaction');
 Route::get('saleitems/create', 'SaleitemsController@create');
+Route::get('saleitems/rand', 'SaleitemsController@returnRandomItems');
 Route::get('saleitems/{id}', 'SaleitemsController@show');
 Route::get('saleitems', 'SaleitemsController@index');
+
+
 
 Route::delete('saleitems/{id}', 'SaleitemsController@destroy');
 
@@ -43,7 +52,6 @@ Route::delete('saleitems/{id}', 'SaleitemsController@destroy');
 Route::get('buyorders', 'BuyOrdersController@index');
 Route::get('buyorders/create', 'BuyOrdersController@create');
 Route::get('buyorders/redo/{id}', 'BuyOrdersController@redo');
-
 Route::post('buyorders', 'BuyOrdersController@find');
 
 //Transactions routes
@@ -51,6 +59,8 @@ Route::get('transactions', 'TransactionsController@index');
 Route::post('transactions', 'TransactionsController@create');
 Route::get('transactions/{id}', 'TransactionsController@show');
 Route::put('transactions/{id}', 'TransactionsController@update');
+Route::get('transactions/support/{id}', 'TransactionsController@showTransactionTicket');
+
 
 
 // this is after make the payment, PayPal redirect back to your site
@@ -71,17 +81,50 @@ Route::get('images/{filename}', function ($filename)
     return $response;
 });
 
-//TIME ROUTE - Not currently used
-//Route::post('time', 'TimeController@setTimeDiff');
+
+
+//Evidence routes
+Route::get('evidence/{dir}/{file}', function ($dir, $file)
+{
+    $path = storage_path() . '\\tickets\\' . $dir . '\\' . $file;
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
+
 
 //Notification Routes
 Route::get('notifications', 'NotificationsController@index');
 Route::get('notifications/read/{id}', 'NotificationsController@markAsRead');
+Route::get('notifications/check', 'NotificationsController@checkForNew');
+
+//Support routes
+Route::get('support', 'SupportTicketController@index');
+Route::get('support/complaints', 'SupportTicketController@complaints');
+Route::get('support/create/{id}', 'SupportTicketController@createTicket');
+Route::get('support/{id}', 'SupportTicketController@show');
+
+Route::post('support', 'SupportTicketController@store');
+Route::post('support/evidence/{id}', 'SupportTicketController@addEvidence');
+
+
+//Administrative Routes
+Route::get('johnpupperman', 'AdminController@index');
+Route::get('johnpupperman/saleitems', 'AdminController@saleitemsMonitoring');
+Route::get('johnpupperman/tickets', 'AdminController@supportTicketMonitoring');
+Route::get('johnpupperman/users', 'AdminController@userList');
+
 
 //TODO REMOVE!
+/////////////////////////////////////////////////////////////////////////////
 //TEMPORARY Currency Routes
 Route::get('currencies', 'TempCurrencyController@getRate');
 
+//TEMPORARY Mail Routes
+Route::get('mail', 'TempMailController@sendMail');
 
 
 

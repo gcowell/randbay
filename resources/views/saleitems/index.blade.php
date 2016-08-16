@@ -2,8 +2,9 @@
 
 @section('content')
 
-<div class="col-md-12">
+<div class="col-md-10 col-md-offset-1">
     <h1>My Saleitems</h1>
+    <hr>
 
     @if (Session::has('deleted'))
     <div class="alert alert-info" id="deleted-item">{{ Session::get('deleted') }}
@@ -13,7 +14,9 @@
     @foreach ($saleitems as $saleitem)
         <div class="row" id="sale-item-entry">
             <div class="col-md-3" id="image-list">
-                {!! Html::image('images/' . $saleitem->id . '.' . $saleitem->image_type, null, [ 'id' => 'previewing' ]) !!}
+                <a id="fancy-img" href="{{ 'images/' . $saleitem->id . '.' . $saleitem->image_type }}">
+                    {!! Html::image('images/' . $saleitem->id . '.' . $saleitem->image_type, null, [ 'id' => 'previewing' ]) !!}
+                </a>
             </div>
             <div class="col-md-6">
                 <h3><a href="{{ url('/saleitems/'. $saleitem->id) }}">{!! $saleitem->description  !!}</a></h3>

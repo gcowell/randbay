@@ -31,6 +31,9 @@ class TransactionsController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth');
+        $this->middleware('transaction.check', ['only' => 'show']);
+
         //THIS SETS UP THE API CONFIG FOR THE CLASSIC REST PAYPAL API
         $paypal_conf = Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
@@ -48,7 +51,7 @@ class TransactionsController extends Controller
     public function index()
     {
 
-///////////////for debugging/////////////////////////////////////
+/////////////for debugging/////////////////////////////////////
 //        $notification_details =
 //            [
 //                'item_description' => 'a name',
@@ -57,8 +60,7 @@ class TransactionsController extends Controller
 //            ];
 //
 //        Session::flash('buyer_alert', $notification_details);
-
-/////////////for debugging/////////////////////////////////////////////////////////////
+///////////for debugging///////////////////////////////////////
 
         $sale_transactions = Auth::user()->sale_transactions()
                                          ->where('transactions.payment_complete', "true")
@@ -119,6 +121,7 @@ class TransactionsController extends Controller
 
         $transaction = new Transaction($request->all());
         $transaction->payment_complete = 'false';
+        $transaction->has_support_ticket = 'false';
         $transaction->remuneration_complete = 'false';
         $transaction->save();
 
@@ -159,8 +162,14 @@ class TransactionsController extends Controller
     {
 
         $transaction = Transaction::findOrFail($id);
+        $saleitem = $transaction->saleitem;
 
-        return view('transactions.show')->with(['transaction' => $transaction]);
+        return view('transactions.show')->with(
+            [
+                'transaction' => $transaction,
+                'saleitem' => $saleitem
+            ]
+        );
 
     }
 
@@ -230,13 +239,15 @@ class TransactionsController extends Controller
 //**********************************************************************************************************************
 
 
-    public function destroy($id)
+    public function showTransactionTicket($id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+        $ticket = $transaction->ticket;
+
+        $ticket_id = $ticket->id;
+
+        return redirect('/support/'. $ticket_id);
     }
-
-
-
 
 
 

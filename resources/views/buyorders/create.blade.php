@@ -2,9 +2,10 @@
 
 @section('content')
 
+
 <div class="col-md-6 col-md-offset-3">
 
-    <h1>Create a Buy Order</h1>
+    <h1>Buy a Random Item</h1>
 
     <hr/>
 
@@ -23,7 +24,10 @@
             </div>
             <div class="row">
                 <div class="col-md-10">
-                    {!! Form::text('price', null, ['class' => 'form-control']) !!}
+                    <div class="input-symbol">
+                        <span>&pound;</span>
+                        {!! Form::input('number', 'price', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
+                    </div>
                 </div>
                 <div class="col-md-2">
                     {!! Form::select('requested_currency', ['USD' => 'USD', 'GBP' => 'GBP', 'EUR' => 'EUR'], 'GBP', ['id' => 'requested_currency']) !!}
@@ -31,10 +35,15 @@
             </div>
             <hr/>
             <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info" id="tip-three-1"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;&nbsp;Tip: Most items on Randbay sell at around £10-20 GBP. Try naming a price similar to this.</div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                 </div>
                 <div class="col-md-6">
-                    <input class="btn btn-large btn-block" id="next-btn1"  type="button" value="Next">
+                    <a class="btn btn-sm animated-button thar-three" href="#" id="next-btn1">Next</a>
                 </div>
             </div>
         </div>
@@ -56,10 +65,10 @@
         <div class="form-group" id="submission-group">
             <div class="row">
                 <div class="col-md-6">
-                    <input class="btn btn-large btn-block" id="prev-btn2"  type="button" value="Back">
+                    <a class="btn btn-sm animated-button thar-four" href="#" id="prev-btn2">Back</a>
                 </div>
                 <div class="col-md-6">
-                    <button type="button" id="form-submit" class="btn btn-primary form-control" >Find a Random Item!</button>
+                    <a class="btn btn-sm animated-button victoria-one" href="#" id="form-submit">Find a Random Item!</a>
                 </div>
             </div>
         </div>

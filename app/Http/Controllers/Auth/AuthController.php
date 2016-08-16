@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\EmailManager;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -42,10 +44,11 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
             'country' => 'required|max:255',
+            'paypal_email' => 'required|email|max:255|unique:users',
 
         ]);
     }
@@ -58,12 +61,26 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'country' => $data['country'],
-            'seller_rating' => 3
+            'seller_rating' => 3.00,
+            'paypal_email' => $data['paypal_email']
         ]);
+
+
+
+        //TODO wrap in try catch
+//        Mail::queue('mail.welcome', $data, function ($message) use ($user)
+//        {
+//            $message->from('no-reply@randbay.com', 'Randbay');
+//            $message->subject('Word on the street is that you signed up for Randbay...');
+//            //TODO - CHANGE THIS EMAIL WHEN DEPLOYED
+//            $message->to($user['email']);
+//        });
+
+        return $user;
     }
 }
