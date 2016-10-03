@@ -8,6 +8,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
@@ -43,14 +44,35 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255|unique:users',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-            'country' => 'required|max:255',
-            'paypal_email' => 'required|email|max:255|unique:users',
 
-        ]);
+        Validator::extend('in_list', function($attribute, $value, $parameters)
+        {
+            $list = Config::get('countries.list');
+
+            foreach ($list as $list_item)
+            {
+
+                if ($list_item === $value) return true;
+            }
+            return;
+        });
+
+
+        $rules =
+            [
+            'name' => 'required|max:60|alpha_dash|unique:users',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6|max:255',
+            'country' => 'required|max:255|in_list',
+            'paypal_email' => 'required|email|max:255|unique:users',
+            ];
+
+        $messages = array(
+            'in_list' => 'Please select the :attribute from the dropdown',
+        );
+
+        return Validator::make($data, $rules, $messages);
+
     }
 
     /**
@@ -67,17 +89,17 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
             'country' => $data['country'],
             'seller_rating' => 3.00,
-            'paypal_email' => $data['paypal_email']
+            'paypal_email' => $data['paypal_email'],
         ]);
 
 
 
-        //TODO wrap in try catch
+        //TODO DEPLOYED wrap in try catch
 //        Mail::queue('mail.welcome', $data, function ($message) use ($user)
 //        {
 //            $message->from('no-reply@randbay.com', 'Randbay');
 //            $message->subject('Word on the street is that you signed up for Randbay...');
-//            //TODO - CHANGE THIS EMAIL WHEN DEPLOYED
+//            //TODO DEPLOYED - CHANGE THIS EMAIL WHEN DEPLOYED
 //            $message->to($user['email']);
 //        });
 

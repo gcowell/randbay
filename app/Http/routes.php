@@ -1,6 +1,6 @@
 <?php
 
-//Home routes...
+//Page routes...
 Route::get('/', 'PagesController@index');
 Route::get('/home', 'HomeController@index');
 Route::get('/how', 'PagesController@how');
@@ -8,6 +8,9 @@ Route::get('/faq', 'PagesController@FAQ');
 Route::get('/rules', 'PagesController@rules');
 Route::get('/tips', 'PagesController@tips');
 
+//Contact routes...
+Route::get('/contact', 'ContactController@create');
+Route::post('/contact', 'ContactController@send');
 
 
 // Authentication routes...
@@ -30,6 +33,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 //User routes
 Route::get('users/dashboard', 'UserController@index');
 Route::get('users/{id}', 'UserController@show');
+Route::post('users/{id}', 'UserController@update');
 
 
 //Sale Item routes
@@ -114,11 +118,18 @@ Route::post('support/evidence/{id}', 'SupportTicketController@addEvidence');
 //Administrative Routes
 Route::get('johnpupperman', 'AdminController@index');
 Route::get('johnpupperman/saleitems', 'AdminController@saleitemsMonitoring');
+Route::post('johnpupperman/saleitems', 'AdminController@markAsChecked');
+Route::get('johnpupperman/saleitems/delete/{id}', 'AdminController@adminDelete');
+
 Route::get('johnpupperman/tickets', 'AdminController@supportTicketMonitoring');
+Route::post('johnpupperman/tickets/{id}', 'AdminController@resolveSupportTicket');
+
 Route::get('johnpupperman/users', 'AdminController@userList');
+Route::get('johnpupperman/users/ban/{id}', 'AdminController@banUser');
 
 
-//TODO REMOVE!
+
+//TODO DEPLOY - REMOVE!
 /////////////////////////////////////////////////////////////////////////////
 //TEMPORARY Currency Routes
 Route::get('currencies', 'TempCurrencyController@getRate');

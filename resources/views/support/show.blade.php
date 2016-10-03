@@ -142,7 +142,9 @@
                         @foreach ($evidence_files as $evidence_file)
                         <div class="row">
                             <div class="col-md-12">
-                                {!! Html::image('evidence/' . $ticket->id . '/' . $evidence_file, null, ['id' => 'evidence-img']) !!}
+                                <a id="fancy-img" href="{{ url('evidence/' . $ticket->id . '/' . $evidence_file) }}">
+                                    {!! Html::image('evidence/' . $ticket->id . '/' . $evidence_file, null, ['id' => 'evidence-img']) !!}
+                                </a>
                             </div>
                         </div>
                         <div class="row">

@@ -18,15 +18,6 @@
             <p>Don't make things up in your description, and don't use a misleading picture.</p>
     </div>
 </div>
-<div id="big-spacer">
-    &nbsp;
-</div>
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <div class="alert alert-warning" id="legal_warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;&nbsp;Please note that the seller assumes all legal responsibility for items that are found to be dangerous, misleading or illegal. </div>
-    </div>
-</div>
-
 
 
 <div class="row" id="jumbo-spacer">

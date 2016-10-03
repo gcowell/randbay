@@ -25,7 +25,7 @@
         </ul>
 
         <p>Randbay will investigate transactions which fall into the above categories.</p>
-        <p>Please note however that refunds must be processed through PayPal refund policy.</p>
+        <p>Please note however that refunds must be processed through the PayPal refund policy.</p>
 
         <hr>
 
@@ -42,7 +42,7 @@
 
         <div class="row">
             <div class="span4 collapse-group">
-                <button class="btn btn-large" data-toggle="collapse" data-target="#viewform">Open a Support Ticket for "{{ $saleitem->description }}" &raquo;</button>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#viewform">Open a Support Ticket for "{{ $saleitem->description }}" &raquo;</button>
                 <div class="collapse" id="viewform">
                     {!! Form::open(['url' => 'support', 'id' => 'support-form'])!!}
 
@@ -52,7 +52,9 @@
 
 
                     <h3>I have a problem with the item: "{{ $saleitem->description }}"</h3>
-
+                    <div class="row" id="big-spacer">
+                        &nbsp;
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             {!! Form::label('type', 'Please select the type of problem: ') !!}
@@ -95,7 +97,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            {!! Form::label('details', 'Give some additional details: ') !!}
+                            {!! Form::label('details', 'Please give some additional details: ') !!}
                         </div>
                     </div>
                     <div class="row">
@@ -119,9 +121,5 @@
 <div id="jumbo-spacer">
     &nbsp;
 </div>
-
-
-
-
 
 @stop

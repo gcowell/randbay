@@ -33,6 +33,11 @@ class AdminCheck
     {
         $user = $request->user();
 
+        if (!$user)
+        {
+            return redirect('home');
+        }
+
         if (!$user->checkAdminPrivilege())
         {
             return redirect('home');

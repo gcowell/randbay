@@ -44,7 +44,6 @@ elixir(function(mix) {
             'SaleItemForm.js',
             'SaleItemEdit.js',
             'SaleItemIndex.js',
-            'CountryAutocomplete.js',
             'BuyOrderForm.js',
             'BuyOrderMatch.js',
             'TransactionsIndex.js',
@@ -53,7 +52,8 @@ elixir(function(mix) {
             'NotificationCheck.js',
             'SupportShow.js',
             'Homepage.js',
-            'How.js'
+            'How.js',
+            'AdminSaleitems.js'
 
         ]);
 

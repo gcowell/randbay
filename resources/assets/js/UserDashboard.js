@@ -12,6 +12,9 @@ if(window.location.href.indexOf('/users/dashboard') > -1)
                 helpers: {
                     title : {
                         type : 'float'
+                    },
+                    overlay: {
+                        locked: false
                     }
                 }
             });
@@ -56,7 +59,7 @@ if(window.location.href.indexOf('/users/dashboard') > -1)
             $('#notifications-container').on('click', '#mark-as-read', function(){
 
                 var notification = $(this).parents(".notification-item");
-                notification.css("background-color", "#cccccc" );
+                notification.css("background-color", "#d9e1ec" );
 
                 var id = notification.attr('data-notification-id');
 
@@ -70,12 +73,27 @@ if(window.location.href.indexOf('/users/dashboard') > -1)
                         {
                             '_token': $('meta[name="csrf-token"]').attr('content')
                         },
-                        success: updateNotification
+                        success: checkNotifications
                     });
 
-                function updateNotification()
+                function checkNotifications()
                 {
+                    $.ajax({
+                        type: 'GET',
+                        url: "/notifications/check",
+                        data:
+                        {
+                            '_token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: notifyUser
+                    });
 
+                    function notifyUser (data)
+                    {
+                        var img_src = data.img;
+
+                        $('#notification-icon').attr("src", img_src);
+                    }
                 }
 
 

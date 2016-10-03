@@ -36,7 +36,6 @@ class SupportTicketUserCheck
         $requested_id = str_replace("/support/", "", $path);
 
         $ticket = SupportTicket::findOrFail($requested_id);
-        //TODO if there is no id of this
 
         if (!($ticket->complainer_id == $this->auth->id() || $ticket->complainee_id == $this->auth->id()))
         {

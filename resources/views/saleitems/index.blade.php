@@ -11,6 +11,17 @@
     </div>
     @endif
 
+    @if (!count($saleitems))
+    <div class="row">
+        <h3 style="text-align: center;">You have not offered any items for sale yet.</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <a class="btn btn-sm animated-button victoria-two" href="{{ url('/saleitems/create') }}">START HERE</a>
+        </div>
+    </div>
+    @endif
+
     @foreach ($saleitems as $saleitem)
         <div class="row" id="sale-item-entry">
             <div class="col-md-3" id="image-list">
@@ -40,7 +51,9 @@
             </div>
 
         </div>
-    <hr>
+        <div id="spacer">
+            &nbsp;
+        </div>
     @endforeach
 
     <div id="paginator>"

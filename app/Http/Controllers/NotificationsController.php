@@ -15,6 +15,8 @@ class NotificationsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('banned.check');
+
     }
 
 
@@ -24,7 +26,6 @@ class NotificationsController extends Controller
         if(!$request->ajax())
         {
             return redirect('/');
-            exit;
         }
         $notifications = Auth::User()->notifications()->orderBy('created_at', 'desc')->take(20)->get();
         $returnHTML = view('notifications.framework')->with('notifications', $notifications)->render();
@@ -40,7 +41,6 @@ class NotificationsController extends Controller
         if(!$request->ajax())
         {
             return redirect('/');
-            exit;
         }
         $notification = Notification::findOrFail($id);
         $notification->markAsRead();
@@ -55,7 +55,6 @@ class NotificationsController extends Controller
         if(!$request->ajax())
         {
             return redirect('/');
-            exit;
         }
 
         $notifications = Auth::User()->notifications->where('unread', 'true');

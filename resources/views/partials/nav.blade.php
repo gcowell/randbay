@@ -21,11 +21,11 @@
                 @if(auth()->guest())
 
                 @if(!Request::is('auth/login'))
-                <li><a href="{{ url('/auth/login') }}">Login</a></li>
+                <li><a id="login-link" href="{{ url('/auth/login') }}">Login</a></li>
                 @endif
 
                 @if(!Request::is('auth/register'))
-                <li><a href="{{ url('/auth/register') }}">Register</a></li>
+                <li><a id="register-link" href="{{ url('/auth/register') }}">Register</a></li>
                 @endif
 
                 @else

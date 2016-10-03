@@ -2,69 +2,34 @@ BUGS
 
 -Do all TODOES
 
--there is a big problem with logging out everytime transactions is accessed (maybe to do with has tabs)
-
--cURL issue with 0 millisecond timeout
-
--links in notifications to deleted saleitems - fixed by on delete cascade?
-
--add support ticket option for items which break the rules
-
--check if user is logged in before allowing ajax call for notifications
-
--after new user registration, if I click dashboard, the site asks me to log in again, even though I am already logged in
-
 -check what maximum paypal payments are in eur / dollar and gbp
 
 ///////////////////////////////////////////////////
 
-Admin panel – screens all saleitems somehow
-
-Dont want to permit all manually, but some form of check would be nice
-
-Add “clear” to saleitems
-
-Add “strikes” to users
-
-what about if a user deletes a saleitem with a ticket on it
 
 
 AESTHETICS
 
--fancybox evidence images
-
--fancy box scrolls to top on click - can be fixed by updating supposedly
-
--need to make toolbar notification image transparent
-
--when notifications are marked as read, they are not updated to the correct colour (also add hover alt text to mark as read)
-
--fix line separator image
-
--stop jumping transaction page around when hash tabbing
+-https://www.paypal-community.com/t5/My-account-settings-Archive/Add-Company-Logo-To-Checkout-Page/td-p/326682
 
 -custom 404 page
 
--saleitem create - destroy world postage tooltip when 'no' is clicked
+-background on password reset
 
--padding on various pages
 
--have a look at different screen sizes
-
--testimonials
-
-(buying random objects helps to drown out the crippling pain of existence)
-Ted, Hampshire
-
-selling the entrails of my enemies randmly online really allows me to instil fear into the general populace.
-Gaarg the Unmerciful, Bloodthrone
 
 
 
 
 DEPLOYMENT
 
--Comment out registration html
+-have a look at different screen sizes
+
+-Environment settings for maintenance mode
+
+-test password reset
+
+-php artisan config:cache
 
 -Set page controller to require login
 

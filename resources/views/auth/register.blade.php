@@ -53,7 +53,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Country</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="country" id="country-select">
+                                @include('partials.countries')
                             </div>
                         </div>
 

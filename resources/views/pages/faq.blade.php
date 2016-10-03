@@ -71,13 +71,17 @@
         </div>
     </div>
 
+    <div class="row" id="jumbo-spacer">
+        &nbsp;
+    </div>
 
 </div>
 
 
 
-@include('partials.footer')
 
+
+@include('partials.footer')
 
 
 @stop

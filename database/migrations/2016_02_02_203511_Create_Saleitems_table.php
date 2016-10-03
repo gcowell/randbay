@@ -27,6 +27,7 @@ class CreateSaleitemsTable extends Migration
             $table->string('matched');
             $table->string('country_of_origin');
             $table->string('image_type');
+            $table->string('checked')->nullable();
             $table->decimal('currency_rate', 10, 5);
             $table->smallInteger('rating')->nullable();
             $table->decimal('seller_rating')->unsigned();

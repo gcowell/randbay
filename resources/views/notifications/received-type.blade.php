@@ -18,7 +18,7 @@
 </div>
 <div class="col-md-1">
     @if($notification->unread == 'true')
-    <span class="glyphicon glyphicon-eye-open" id="mark-as-read" style="cursor:pointer;" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-eye-open" title="Mark as read" id="mark-as-read" style="cursor:pointer;" aria-hidden="true"></span>
     @else
     @endif
 </div>

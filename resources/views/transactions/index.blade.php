@@ -77,6 +77,8 @@
     <div class="tab-content">
         <div class="tab-pane" id="items-sold">
 
+            <hr>
+
             <h3>Items Sold</h3>
             @if ($sold)
             @foreach ($sold as $sold_entry)
@@ -126,6 +128,8 @@
 
     <div class="tab-content">
         <div class="tab-pane" id="items-bought">
+
+            <hr>
 
             <h3>Items Bought</h3>
 

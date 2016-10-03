@@ -36,7 +36,6 @@ class TransactionUserCheck
         $requested_id = str_replace("/transactions/", "", $path);
 
         $transaction = Transaction::findOrFail($requested_id);
-        //TODO if there is no id of this
 
         if (!($transaction->buyer_id == $this->auth->id() || $transaction->seller_id == $this->auth->id()))
         {

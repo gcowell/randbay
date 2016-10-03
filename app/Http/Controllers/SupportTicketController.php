@@ -22,6 +22,8 @@ class SupportTicketController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('banned.check');
+
         $this->middleware('supportticket.check', ['only' => 'show']);
     }
 
@@ -109,9 +111,7 @@ class SupportTicketController extends Controller
         $seller_notification->generate($supportticket->complainee_id, $supportticket->transaction_id, 'ticket-type');
         $seller_notification->setDetails($notification_details);
 
-
         return redirect('support');
-
 
     }
 

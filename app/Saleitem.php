@@ -9,7 +9,6 @@ use Carbon\Carbon;
 
 use App\Buyorder;
 use App\Currencies;
-use stdClass;
 
 class Saleitem extends Model
 {
@@ -21,8 +20,7 @@ class Saleitem extends Model
             'domestic_postage_cost',
             'world_postage_cost',
             'description'
-
-        ];
+       ];
 
     protected $dates = ['created_at', 'updated_at', 'engaged_until'];
 
@@ -50,7 +48,7 @@ class Saleitem extends Model
     {
 
         //SEARCH PARAMETERS
-        $target_price = $buyorder->price; //TODO - may need to change to price * rate if I decide on that
+        $target_price = $buyorder->price;
         $target_seller_rating = 5;
         $target_country = $buyorder->country;
         $current_time = Carbon::now();
@@ -171,9 +169,9 @@ class Saleitem extends Model
 
         $current_time = Carbon::now();
         $currencies = new Currencies();
-        $saleitems = $this->all()->where('matched', '=', 'false');
-        //        ->where('engaged_until', '<', $current_time)
-        //TODO - FIGURE OUT WHY THIS DOESNT WORK
+        $saleitems = $this->where('matched', '=', 'false')
+            ->where('engaged_until', '<', $current_time)
+            ->get();
 
         foreach($saleitems as $saleitem)
         {
@@ -204,8 +202,35 @@ class Saleitem extends Model
 
     }
 
+//**********************************************************************************************************************
+
+//FOR ADMIN CHECKING OF SALEITEMS
+
+    public function getUnchecked()
+    {
+        $unchecked_saleitems = DB::Table('saleitems')
+            ->select('*')
+            ->where('matched', '=', 'false')
+            ->whereNull('checked')
+            ->orderBy("created_at", 'DESC')
+            ->take(20)
+            ->get();
+
+        return $unchecked_saleitems;
+    }
 
 
+//**********************************************************************************************************************
+
+
+//FOR ADMIN CHECKING OF SALEITEMS
+
+    public function setCheckedTrue()
+    {
+        $this->checked = 'true';
+
+        return true;
+    }
 
 
 

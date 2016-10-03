@@ -8,6 +8,13 @@
     <h1>Buy a Random Item</h1>
 
     <hr/>
+    @if ($errors->any())
+    <ul class="alert alert-danger" id="error-list">
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+    @endif
 
 
     {!! Form::open(['url' => 'buyorders', 'id' => 'buyorder-form'])!!}
@@ -73,15 +80,12 @@
             </div>
         </div>
     </fieldset>
-    @if ($errors->any())
-    <ul class="alert alert-danger">
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-    @endif
     {!! Form::close() !!}
+    <div class="row" id="jumbo-spacer">
+        &nbsp;
+    </div>
 
 </div>
+
 
 @stop

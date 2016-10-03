@@ -30,7 +30,7 @@ class CreateSupportticketTable extends Migration
 
             $table->text('resolved');
             $table->text('result')->nullable();
-            $table->text('has_support_ticket');
+//            $table->text('has_support_ticket');
 
             $table->timestamps();
         });

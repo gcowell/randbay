@@ -2832,8 +2832,6 @@ if(window.location.href.indexOf('saleitems/create')>-1)
 }
 if(window.location.href.indexOf('/saleitems/')>-1  && window.location.href.indexOf('create') == -1)
 {
-    console.log('i am on');
-
     $("label[for='image']").html('<span class="glyphicon glyphicon-cloud-upload"></span> Change Picture');
 
     var currencies = {USD : '$', GBP: '£', EUR : '€'};
@@ -3113,231 +3111,15 @@ if(window.location.pathname == '/saleitems')
             helpers: {
                 title : {
                     type : 'float'
+                },
+                overlay: {
+                    locked: false
                 }
             }
         });
 
     })();
 }
-
-
-var availableTags =
-    [
-        "Afghanistan",
-        "Albania",
-        "Algeria",
-        "Andorra",
-        "Angola",
-        "Antigua and Barbuda",
-        "Argentina",
-        "Armenia",
-        "Aruba",
-        "Australia",
-        "Austria",
-        "Azerbaijan",
-        "Bahamas, The",
-        "Bahrain",
-        "Bangladesh",
-        "Barbados",
-        "Belarus",
-        "Belgium",
-        "Belize",
-        "Benin",
-        "Bhutan",
-        "Bolivia",
-        "Bosnia and Herzegovina",
-        "Botswana",
-        "Brazil",
-        "Brunei",
-        "Bulgaria",
-        "Burkina Faso",
-        "Burma",
-        "Burundi",
-        "Cambodia",
-        "Cameroon",
-        "Canada",
-        "Cape Verde",
-        "Central African Republic",
-        "Chad",
-        "Chile",
-        "China",
-        "Colombia",
-        "Comoros",
-        "Congo, Democratic Republic of the",
-        "Congo, Republic of the",
-        "Costa Rica",
-        "Cote d'Ivoire",
-        "Croatia",
-        "Cuba",
-        "Curacao",
-        "Cyprus",
-        "Czech Republic",
-        "Denmark",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "Ecuador",
-        "Egypt",
-        "El Salvador",
-        "Equatorial Guinea",
-        "Eritrea",
-        "Estonia",
-        "Ethiopia",
-        "Fiji",
-        "Finland",
-        "France",
-        "Gabon",
-        "Gambia, The",
-        "Georgia",
-        "Germany",
-        "Ghana",
-        "Greece",
-        "Grenada",
-        "Guatemala",
-        "Guinea",
-        "Guinea-Bissau",
-        "Guyana",
-        "Haiti",
-        "Honduras",
-        "Hong Kong",
-        "Hungary",
-        "Iceland",
-        "India",
-        "Indonesia",
-        "Iran",
-        "Iraq",
-        "Ireland",
-        "Israel",
-        "Italy",
-        "Jamaica",
-        "Japan",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "Korea, North",
-        "Korea, South",
-        "Kosovo",
-        "Kuwait",
-        "Kyrgyzstan",
-        "Laos",
-        "Latvia",
-        "Lebanon",
-        "Lesotho",
-        "Liberia",
-        "Libya",
-        "Liechtenstein",
-        "Lithuania",
-        "Luxembourg",
-        "Macau",
-        "Macedonia",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Mali",
-        "Malta",
-        "Marshall Islands",
-        "Mauritania",
-        "Mauritius",
-        "Mexico",
-        "Micronesia",
-        "Moldova",
-        "Monaco",
-        "Mongolia",
-        "Montenegro",
-        "Morocco",
-        "Mozambique",
-        "Namibia",
-        "Nauru",
-        "Nepal",
-        "Netherlands",
-        "Netherlands Antilles",
-        "New Zealand",
-        "Nicaragua",
-        "Niger",
-        "Nigeria",
-        "North Korea",
-        "Norway",
-        "Oman",
-        "Pakistan",
-        "Palau",
-        "Palestinian Territories",
-        "Panama",
-        "Papua New Guinea",
-        "Paraguay",
-        "Peru",
-        "Philippines",
-        "Poland",
-        "Portugal",
-        "Qatar",
-        "Romania",
-        "Russia",
-        "Rwanda",
-        "Saint Kitts and Nevis",
-        "Saint Lucia",
-        "Saint Vincent and the Grenadines",
-        "Samoa",
-        "San Marino",
-        "Sao Tome and Principe",
-        "Saudi Arabia",
-        "Senegal",
-        "Serbia",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Sint Maarten",
-        "Slovakia",
-        "Slovenia",
-        "Solomon Islands",
-        "Somalia",
-        "South Africa",
-        "South Korea",
-        "South Sudan",
-        "Spain",
-        "Sri Lanka",
-        "Sudan",
-        "Suriname",
-        "Swaziland",
-        "Sweden",
-        "Switzerland",
-        "Syria",
-        "Taiwan",
-        "Tajikistan",
-        "Tanzania",
-        "Thailand",
-        "Timor-Leste",
-        "Togo",
-        "Tonga",
-        "Trinidad and Tobago",
-        "Tunisia",
-        "Turkey",
-        "Turkmenistan",
-        "Tuvalu",
-        "Uganda",
-        "Ukraine",
-        "United Arab Emirates",
-        "United Kingdom",
-        "United States of America",
-        "Uruguay",
-        "Uzbekistan",
-        "Vanuatu",
-        "Venezuela",
-        "Vietnam",
-        "Yemen",
-        "Zambia",
-        "Zimbabwe"
-
-    ];
-
-
-
-$( "#country-select" ).autocomplete({
-    source: availableTags,
-    minLength: 3,
-    delay: 50
-    //TODO NEED TO ENSURE INPUTS ARE ONLY ALLOWED IN THIS FORMAT
-});
 if(window.location.href.indexOf('buyorders/create')>-1)
 {
 
@@ -3355,6 +3137,8 @@ if(window.location.href.indexOf('buyorders/create')>-1)
             var selected_currency = $("#requested_currency :selected").text();
             var currency_symbol = currencies[selected_currency];
             $('.input-symbol span').html(currency_symbol);
+
+            $("#error-list").delay(4000).hide("slow");
 
 
 
@@ -3380,7 +3164,7 @@ if(window.location.href.indexOf('buyorders/create')>-1)
                 var buy_price_check = $("#price").val();
                 var currency = $("#requested_currency").val();
 
-                if(!isNaN(buy_price_check)&& buy_price_check)
+                if(!isNaN(buy_price_check)&& buy_price_check && buy_price_check >= 0.01)
                 {
                     $('#price-group').removeClass().addClass('form-group');
                     $('#price').tooltip('destroy');
@@ -3402,7 +3186,7 @@ if(window.location.href.indexOf('buyorders/create')>-1)
                         {
                             'show': true,
                             'placement': 'left',
-                            'title': "A price is needed..."
+                            'title': "Please enter a valid price..."
                         });
 
                     $('#price').tooltip('show');
@@ -3545,7 +3329,7 @@ if(window.location.pathname == '/transactions')
                         console.log('UI triggered');
                         FB.ui(
                             {
-                                //TODO this needs to be fixed when live
+                                //TODO DEPLOY fix facebook api
                                 method: 'share',
 //                                name: 'Facebook Dialogs',
                                 href: 'http://www.randbay.com',
@@ -3571,6 +3355,9 @@ if(window.location.pathname == '/transactions')
                 helpers: {
                     title : {
                         type : 'float'
+                    },
+                    overlay: {
+                        locked: false
                     }
                 }
             });
@@ -3642,8 +3429,6 @@ if(window.location.pathname == '/transactions')
             //POPULATE SHIPPING ADDRESSES IN CORRECT FORMAT.
             $(".shipping-address").each(function(i, element)
             {
-                //TODO pass in jquery context so that we can use html() - more stable
-
                 var JSON_address = element.innerHTML;
                 if(JSON_address)
                 {
@@ -3705,6 +3490,9 @@ if(window.location.href.indexOf('/users/dashboard') > -1)
                 helpers: {
                     title : {
                         type : 'float'
+                    },
+                    overlay: {
+                        locked: false
                     }
                 }
             });
@@ -3749,7 +3537,7 @@ if(window.location.href.indexOf('/users/dashboard') > -1)
             $('#notifications-container').on('click', '#mark-as-read', function(){
 
                 var notification = $(this).parents(".notification-item");
-                notification.css("background-color", "#cccccc" );
+                notification.css("background-color", "#d9e1ec" );
 
                 var id = notification.attr('data-notification-id');
 
@@ -3763,12 +3551,27 @@ if(window.location.href.indexOf('/users/dashboard') > -1)
                         {
                             '_token': $('meta[name="csrf-token"]').attr('content')
                         },
-                        success: updateNotification
+                        success: checkNotifications
                     });
 
-                function updateNotification()
+                function checkNotifications()
                 {
+                    $.ajax({
+                        type: 'GET',
+                        url: "/notifications/check",
+                        data:
+                        {
+                            '_token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: notifyUser
+                    });
 
+                    function notifyUser (data)
+                    {
+                        var img_src = data.img;
+
+                        $('#notification-icon').attr("src", img_src);
+                    }
                 }
 
 
@@ -3781,21 +3584,28 @@ if(window.location.href.indexOf('/users/dashboard') > -1)
 $(document).ready(function()
 {
 
-    $.ajax({
-        type: 'GET',
-        url: "/notifications/check",
-        data:
-        {
-            '_token': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: notifyUser
-    });
+    //PERFORM CHECK ON NAV BAR LINKS TO CHECK IF USER IS LOGGED IN
+    var login = $('#login-link').length;
+    var register = $('#register-link').length;
 
-    function notifyUser (data)
+    if(login == 0 && register == 0)
     {
-        var img_src = data.img;
+        $.ajax({
+            type: 'GET',
+            url: "/notifications/check",
+            data:
+            {
+                '_token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: notifyUser
+        });
 
-        $('#notification-icon').attr("src", img_src);
+        function notifyUser (data)
+        {
+            var img_src = data.img;
+
+            $('#notification-icon').attr("src", img_src);
+        }
     }
 
 });
@@ -3805,6 +3615,22 @@ if(window.location.href.indexOf('/support/')>-1)
         $(document).ready(function()
         {
 
+
+            //ENABLE FANCY IMAGE EXPANSION ON PICTURE
+            $("#fancy-img").fancybox({
+                openEffect	: 'elastic',
+                closeEffect	: 'elastic',
+                helpers: {
+                    title : {
+                        type : 'float'
+                    },
+                    overlay: {
+                        locked: false
+                    }
+                }
+            });
+
+            //CLEVER FILE UPLOADER
             $("[id^=evidence-image]").change(function(e)
             {
                 $("#message").empty(); // To remove the previous error message
@@ -4015,6 +3841,33 @@ if(window.location.pathname == '/how')
         });
 
 
+    })();
+}
+if(window.location.pathname == '/johnpupperman/saleitems')
+{
+
+    (function ()
+    {
+
+        $(document).ready(function()
+        {
+            $('#select-all').change(function()
+            {
+                $('.checkbox').each(function()
+                {
+                    var box = $(this);
+                    if (box.is(":checked"))
+                    {
+                      box.prop('checked', false);
+                    }
+                    else
+                    {
+                      box.prop('checked', true);
+                    }
+                });
+            });
+
+        });
     })();
 }
 //# sourceMappingURL=all.js.map

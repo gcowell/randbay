@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 
+
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
@@ -27,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
             'password',
             'country',
             'paypal_email',
-            'seller_rating'
+            'seller_rating',
         ];
 
     protected $hidden =
@@ -36,7 +37,9 @@ class User extends Model implements AuthenticatableContract,
             'password',
             'remember_token',
             'paypal_email',
-            'privileges'
+            'privileges',
+            'strikes',
+            'banned'
         ];
 
 
@@ -92,6 +95,56 @@ class User extends Model implements AuthenticatableContract,
         {
             return false;
         }
+
+    }
+
+//**********************************************************************************************************************
+
+    //CHECK IF THE USER IS BANNED
+    public function checkIfBanned()
+    {
+        if($this->banned == 'true')
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+
+//**********************************************************************************************************************
+
+    //ADD STRIKE TO USER ACCOUNT
+    public function addStrike()
+    {
+        $strikes = $this->strikes;
+        if ($strikes == null)
+        {
+            $strikes = 0;
+        }
+
+        $strikes++;
+        $this->strikes = $strikes;
+        $this->save();
+
+        return true;
+
+    }
+
+
+
+//**********************************************************************************************************************
+
+    //CHECK IF THE USER IS BANNED
+    public function banUser()
+    {
+        $this->banned = 'true';
+        $this->save();
+
+        return true;
 
     }
 

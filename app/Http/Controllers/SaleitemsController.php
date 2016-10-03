@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Config;
 
 
 class SaleitemsController extends Controller
@@ -24,7 +25,9 @@ class SaleitemsController extends Controller
     public function __construct()
     {
         $this->middleware('auth',['except' => 'returnRandomItems' ]);
-        $this->moveDestinationPath = storage_path() . '\\items\\';
+        $this->middleware('banned.check',['except' => 'returnRandomItems' ]);
+
+        $this->moveDestinationPath = Config::get('saleitems.filepath');
     }
 
 

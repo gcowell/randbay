@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="col-md-12">
+<div class="col-md-10 col-md-offset-1">
 
     <div class="row">
         <div class="col-md-12">
@@ -32,6 +32,7 @@
             <div  id="sidebar-container">
 
                 <ul>
+                    <li><a href="/users/{{ $user->id }}">My Details</a></li>
                     <li><a href="/transactions/">My Transactions</a></li>
                     <li><a href="/saleitems/">My Saleitems</a></li>
                     <li><a href="/support/">My Support Tickets</a></li>

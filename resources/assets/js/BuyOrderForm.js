@@ -16,6 +16,8 @@ if(window.location.href.indexOf('buyorders/create')>-1)
             var currency_symbol = currencies[selected_currency];
             $('.input-symbol span').html(currency_symbol);
 
+            $("#error-list").delay(4000).hide("slow");
+
 
 
 
@@ -40,7 +42,7 @@ if(window.location.href.indexOf('buyorders/create')>-1)
                 var buy_price_check = $("#price").val();
                 var currency = $("#requested_currency").val();
 
-                if(!isNaN(buy_price_check)&& buy_price_check)
+                if(!isNaN(buy_price_check)&& buy_price_check && buy_price_check >= 0.01)
                 {
                     $('#price-group').removeClass().addClass('form-group');
                     $('#price').tooltip('destroy');
@@ -62,7 +64,7 @@ if(window.location.href.indexOf('buyorders/create')>-1)
                         {
                             'show': true,
                             'placement': 'left',
-                            'title': "A price is needed..."
+                            'title': "Please enter a valid price..."
                         });
 
                     $('#price').tooltip('show');

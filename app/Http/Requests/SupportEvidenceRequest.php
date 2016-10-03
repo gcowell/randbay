@@ -25,11 +25,10 @@ class SupportEvidenceRequest extends Request
     {
         return
             [
-                //TODO size constraints
-                'evidence-image1'  => 'required_without_all:evidence-image2,evidence-image3,evidence-image4|mimes:jpeg,jpg,bmp,png',
-                'evidence-image2'  => 'required_without_all:evidence-image1,evidence-image3,evidence-image4|mimes:jpeg,jpg,bmp,png',
-                'evidence-image3'  => 'required_without_all:evidence-image2,evidence-image1,evidence-image4|mimes:jpeg,jpg,bmp,png',
-                'evidence-image4'  => 'required_without_all:evidence-image2,evidence-image3,evidence-image1|mimes:jpeg,jpg,bmp,png',
+                'evidence-image1'  => 'required_without_all:evidence-image2,evidence-image3,evidence-image4|mimes:jpeg,jpg,bmp,png|max:2048',
+                'evidence-image2'  => 'required_without_all:evidence-image1,evidence-image3,evidence-image4|mimes:jpeg,jpg,bmp,png|max:2048',
+                'evidence-image3'  => 'required_without_all:evidence-image2,evidence-image1,evidence-image4|mimes:jpeg,jpg,bmp,png|max:2048',
+                'evidence-image4'  => 'required_without_all:evidence-image2,evidence-image3,evidence-image1|mimes:jpeg,jpg,bmp,png|max:2048',
             ];
     }
 }

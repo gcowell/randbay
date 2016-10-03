@@ -1,21 +1,28 @@
 $(document).ready(function()
 {
 
-    $.ajax({
-        type: 'GET',
-        url: "/notifications/check",
-        data:
-        {
-            '_token': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: notifyUser
-    });
+    //PERFORM CHECK ON NAV BAR LINKS TO CHECK IF USER IS LOGGED IN
+    var login = $('#login-link').length;
+    var register = $('#register-link').length;
 
-    function notifyUser (data)
+    if(login == 0 && register == 0)
     {
-        var img_src = data.img;
+        $.ajax({
+            type: 'GET',
+            url: "/notifications/check",
+            data:
+            {
+                '_token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: notifyUser
+        });
 
-        $('#notification-icon').attr("src", img_src);
+        function notifyUser (data)
+        {
+            var img_src = data.img;
+
+            $('#notification-icon').attr("src", img_src);
+        }
     }
 
 });

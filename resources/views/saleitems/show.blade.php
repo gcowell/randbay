@@ -141,7 +141,10 @@
         <div class="row">
             <div class="col-md-12">
                 {!! Form::label('domestic_postage_cost', 'Domestic Post') !!}
+                <div class="input-symbol">
+                    <span>{{ $saleitem->native_currency }}</span>
                 {!! Form::text('domestic_postage_cost', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
+                </div>
             </div>
         </div>
     </div>
@@ -150,7 +153,10 @@
         <div class="row">
             <div class="col-md-12">
                 {!! Form::label('world_postage_cost', 'International Post') !!}
+                <div class="input-symbol">
+                    <span>{{ $saleitem->native_currency }}</span>
                 {!! Form::text('world_postage_cost', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
+                </div>
             </div>
         </div>
     </div>

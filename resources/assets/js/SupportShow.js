@@ -4,6 +4,22 @@ if(window.location.href.indexOf('/support/')>-1)
         $(document).ready(function()
         {
 
+
+            //ENABLE FANCY IMAGE EXPANSION ON PICTURE
+            $("#fancy-img").fancybox({
+                openEffect	: 'elastic',
+                closeEffect	: 'elastic',
+                helpers: {
+                    title : {
+                        type : 'float'
+                    },
+                    overlay: {
+                        locked: false
+                    }
+                }
+            });
+
+            //CLEVER FILE UPLOADER
             $("[id^=evidence-image]").change(function(e)
             {
                 $("#message").empty(); // To remove the previous error message

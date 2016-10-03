@@ -17,8 +17,6 @@ class PagesController extends Controller
     }
 
 
-
-
     public function how()
     {
         return view('pages.how');
@@ -34,8 +32,11 @@ class PagesController extends Controller
     {
         return view('pages.rules');
     }
+
     public function tips()
     {
         return view('pages.tips');
     }
+
+
 }

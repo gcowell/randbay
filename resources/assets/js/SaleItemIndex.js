@@ -24,6 +24,9 @@ if(window.location.pathname == '/saleitems')
             helpers: {
                 title : {
                     type : 'float'
+                },
+                overlay: {
+                    locked: false
                 }
             }
         });

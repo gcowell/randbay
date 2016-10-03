@@ -32,6 +32,8 @@ class TransactionsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('banned.check');
+
         $this->middleware('transaction.check', ['only' => 'show']);
 
         //THIS SETS UP THE API CONFIG FOR THE CLASSIC REST PAYPAL API

@@ -12,6 +12,7 @@ use App\Buyorder;
 use App\Currencies;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Session;
 
 class BuyordersController extends Controller
 {
@@ -19,6 +20,8 @@ class BuyordersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('banned.check');
+
     }
 
 
@@ -27,7 +30,10 @@ class BuyordersController extends Controller
     //NO NEED FOR THIS METHOD, SO JUST REDIRECT TO CREATE
     public function index()
     {
-        return redirect('buyorders/create');
+        $errors = Session::get('errors');
+
+        return redirect('buyorders/create')->with(['errors' => $errors ]);
+
     }
 
 //**********************************************************************************************************************
@@ -47,8 +53,6 @@ class BuyordersController extends Controller
         //ALL PRICES IN DB ARE IN GBP!
         $currencies = new Currencies();
         $requested_currency = $request->requested_currency;
-
-        //TODO - MAYBE ADD RATE TO BUYORDER ALSO???
 
         $buyorder = new Buyorder();
         $buyorder->requested_currency = $requested_currency;

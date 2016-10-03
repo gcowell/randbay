@@ -188,12 +188,10 @@ class Transaction extends Model
         }
         catch (PayPalConnectionException $ex)
         {
+            Log::warning("Transaction Error" . print_r($ex->getMessage(), json_decode($ex->getData(), true)));
 
-            echo "Exception: " . $ex->getMessage() . PHP_EOL;
-            $err_data = json_decode($ex->getData(), true);
-            var_dump($err_data);
-            exit;
-
+            return redirect('transactions')
+                ->withErrors('An error occured in processing the Paypal payment');
         }
 
         $approval_url = $payment->getApprovalLink();
@@ -237,11 +235,16 @@ class Transaction extends Model
 
         //LOOKUP RELATED SALEITEM
         $target_saleitem = Saleitem::findOrFail($this->saleitem_id);
+        if(!$target_saleitem)
+        {
+            return redirect('transactions')
+                ->withErrors('Payment Cancelled: The random item has been removed by the seller');
+        }
 
         //CHECK IF THE PAYMENT HAS BEEN GENERATED SUCCESSFULLY
         if (empty(Input::get('PayerID')) || empty(Input::get('token')))
         {
-            //THE PAYMENT HAS FAILED - UNENGAGE SALEITEMM
+            //THE PAYMENT HAS FAILED - UNENGAGE SALEITEM
             $failed_saleitem = $target_saleitem;
             $failed_saleitem->markAsAvailable();
 
@@ -273,7 +276,6 @@ class Transaction extends Model
                 Session::flash('tab', "#bought-items");
 
                 //SET SHIPPING ADDRESS
-                //TODO TIDY ALL THIS SHIT UP TO SANITISE FOR SQL INJECTION
                 $shipping_address = $result->getPayer()->getPayerInfo()->getShippingAddress()->toJSON();
                 $this->shipping_address = $shipping_address;
 
@@ -313,7 +315,7 @@ class Transaction extends Model
                 $buyer_notification->setDetails($notification_details);
 
 
-//                Mail::send('mail.bought', $buyer_notification, function ($message) use ($buyer_notification)
+//                Mail::send('email.bought', $buyer_notification, function ($message) use ($buyer_notification)
 //                {
 //                    $message->from('no-reply@randbay.com', 'Randbay');
 //                    $message->subject('A Random Item with Your Name on it!');
@@ -323,7 +325,7 @@ class Transaction extends Model
 //                });
 //
 //
-//                Mail::send('mail.sold', $seller_notification, function ($message) use ($seller_notification)
+//                Mail::send('email.sold', $seller_notification, function ($message) use ($seller_notification)
 //                {
 //                    $message->from('no-reply@randbay.com', 'Randbay');
 //                    $message->subject('You got a sale! Taste that sweet victory...');
@@ -336,7 +338,6 @@ class Transaction extends Model
                 return redirect('transactions')->with(['buyer_alert' => $notification_details]);
             }
 
-            //TODO 10000 MILISECOND TIMEOUT ISSUE
 
             //THE PAYMENT HAS FAILED - UNENGAGE SALEITEM
             $failed_saleitem = $target_saleitem;
@@ -407,8 +408,6 @@ class Transaction extends Model
         }
 
     }
-
-
 
 //**********************************************************************************************************************
 

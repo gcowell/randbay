@@ -18,7 +18,7 @@ class CreateNotificationsTable extends Migration
 
             $table->increments('id');
             $table->integer('recipient_id')->unsigned();
-            $table->integer('transaction_id')->unsigned();
+            $table->integer('transaction_id')->unsigned()->nullable();
             $table->text('type');
             $table->text('unread');
             //Additional Info
@@ -27,8 +27,6 @@ class CreateNotificationsTable extends Migration
             $table->text('item_rating')->nullable();
             $table->text('item_country_of_origin')->nullable();
             $table->text('item_support_ticket_id')->nullable();
-
-
 
 
             $table->timestamps();

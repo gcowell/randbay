@@ -1,7 +1,5 @@
 if(window.location.href.indexOf('/saleitems/')>-1  && window.location.href.indexOf('create') == -1)
 {
-    console.log('i am on');
-
     $("label[for='image']").html('<span class="glyphicon glyphicon-cloud-upload"></span> Change Picture');
 
     var currencies = {USD : '$', GBP: '£', EUR : '€'};

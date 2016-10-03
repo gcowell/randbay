@@ -12,6 +12,7 @@
 
             <div class="col-md-6">
                 <h2>Tips for Buyers</h2>
+                <hr>
                 <h3>1) Be Curious - Embrace the Random</h3>
                 <p>This is the whole point of Randbay - If you get some music, listen to it. If you get a book, read it. New experiences are great!</p>
                 <h3>2) Be Shrewd - Play the Game</h3>
@@ -25,6 +26,7 @@
             </div>
             <div class="col-md-6">
                 <h2>Tips for Sellers</h2>
+                <hr>
                 <h3>1) Be Random - Sell in the Spirit of Randbay</h3>
                 <p>Don't just sell junk trying to catch people out. Our sneaky algorithms will quickly find you! Sell things that will make the buyer laugh, or interesting things that they otherwise might not come across.</p>
                 <h3>2) Be Creative - Advertise you Skills</h3>
@@ -38,10 +40,13 @@
             </div>
         </div>
     </div>
+    <div class="row" id="jumbo-spacer">
+        &nbsp;
+    </div>
 
-    @include('partials.footer')
+
 </div>
 
 
-
+@include('partials.footer')
 @stop

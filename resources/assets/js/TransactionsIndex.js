@@ -17,7 +17,7 @@ if(window.location.pathname == '/transactions')
                         console.log('UI triggered');
                         FB.ui(
                             {
-                                //TODO this needs to be fixed when live
+                                //TODO DEPLOY fix facebook api
                                 method: 'share',
 //                                name: 'Facebook Dialogs',
                                 href: 'http://www.randbay.com',
@@ -43,6 +43,9 @@ if(window.location.pathname == '/transactions')
                 helpers: {
                     title : {
                         type : 'float'
+                    },
+                    overlay: {
+                        locked: false
                     }
                 }
             });
@@ -114,8 +117,6 @@ if(window.location.pathname == '/transactions')
             //POPULATE SHIPPING ADDRESSES IN CORRECT FORMAT.
             $(".shipping-address").each(function(i, element)
             {
-                //TODO pass in jquery context so that we can use html() - more stable
-
                 var JSON_address = element.innerHTML;
                 if(JSON_address)
                 {

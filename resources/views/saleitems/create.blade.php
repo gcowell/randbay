@@ -213,8 +213,6 @@
         </fieldset>
 
 
-
-
     @if ($errors->any())
     <ul class="alert alert-danger">
         @foreach ($errors->all() as $error)
@@ -223,8 +221,12 @@
     </ul>
     @endif
     {!! Form::close() !!}
+    <div class="row" id="jumbo-spacer">
+        &nbsp;
+    </div>
 
 </div>
+
 
 
 

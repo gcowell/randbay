@@ -29,7 +29,7 @@
                     <img src="/img/tick1.jpg" class="status-img" alt="Tick" height="42" width="42">
                 </div>
                 <div class="row">
-                    <p style="text-align:center">Payment Received</p>
+                    <p style="text-align:center">Payment Complete</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -117,6 +117,7 @@
                         </div>
                     </div>
 
+
                     @if($transaction->item_shipped == 'true')
                     <div class="row">
                         <div class="col-md-6">
@@ -132,7 +133,15 @@
                         <div class="col-md-12">
                             {!! Form::open(array('url' => '/transactions/'.$transaction->id, 'method' => 'PUT')) !!}
                             @if($transaction->item_shipped !== 'true')
-                            {!! Form::hidden('item_shipped', 'true')   !!}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;&nbsp;When shipping this item be sure that you keep proof of postage in order to avoid disputes.</div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                {!! Form::hidden('item_shipped', 'true')   !!}
+                            </div>
                             {!! Form::submit('Mark as Shipped', ['class' => 'btn btn-primary btn-block'] ) !!}
                             @endif
                             {!! Form::close() !!}
@@ -154,7 +163,7 @@
                         <img src="/img/tick1.jpg" class="status-img" alt="Tick" height="42" width="42">
                     </div>
                     <div class="row">
-                        <p style="text-align:center">Payment Received</p>
+                        <p style="text-align:center">Payment Complete</p>
                     </div>
                 </div>
                 <div class="col-md-4">

@@ -24,7 +24,7 @@ class Currencies extends Model
     public function getLatestCurrencyRates()
     {
 
-        $XMLContent=file("http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml");
+        $XMLContent = file("http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml");
         //the file is updated daily between 2.15 p.m. and 3.00 p.m. CET
 
         foreach($XMLContent as $line){

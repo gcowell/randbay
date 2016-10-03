@@ -66,7 +66,7 @@ class Kernel extends ConsoleKernel
                 }
             );
 
-            //TODO - ADD DAILY WHEN DEPLOYED!!!
+            //TODO DEPLOYED - ADD DAILY WHEN DEPLOYED!!!
 //        ->daily()
     }
 }

@@ -24,15 +24,14 @@ class SaleitemUpdateRequest extends Request
     public function rules()
     {
 
-        return
+       return
             [
-                'description' => 'required',
-                'price' => ['required', 'numeric', 'min:1'],
-//                'currency' => 'required',
-                'international' => 'required',
-                'domestic_postage_cost' => ['required', 'numeric', 'min:1'],
-                'world_postage_cost' => ['required_if:international,true', 'numeric'],
-                'image'  => 'sometimes|required|mimes:jpeg,jpg,bmp,png'
+                'description' => 'required|max:255',
+                'price' => ['required', 'numeric', 'min:1', 'max:99999'],
+                'international' => 'required|max:255',
+                'domestic_postage_cost' => ['required', 'numeric', 'min:1', 'max:99999'],
+                'world_postage_cost' => ['required_if:international,true', 'numeric', 'min:1', 'max:99999'],
+                'image'  => 'sometimes|required|mimes:jpeg,jpg,bmp,png|max:2048'
 
             ];
 
