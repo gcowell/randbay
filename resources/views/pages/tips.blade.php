@@ -17,8 +17,8 @@
                 <p>This is the whole point of Randbay - If you get some music, listen to it. If you get a book, read it. New experiences are great!</p>
                 <h3>2) Be Shrewd - Play the Game</h3>
                 <p>Frequently you might buy something at a bargain price. If you think you can, why not sell it on at a higher price? Hustle.</p>
-                <h3>3) Be Honest - Review your Buys</h3>
-                <p>Rate every item you buy. Don't just give bad ratings for things that don't happen to be to your taste - give ratings based upon how random or quirky the item was, and save bad ratings for naughty sellers.</p>
+                <h3>3) Be Relaxed - Don't take it personally</h3>
+                <p>Don't be too dissatisfied if you end up with something that is not to your taste. Its all in the luck of the draw!</p>
                 <h3>4) Be Restrained - Don't Gamble</h3>
                 <p>There are always a handful of highly valuable items being sold on Randbay, but don't gamble your money away trying to find them - randomness always wins!  </p>
                 <h3>5) Be Social - Share your Purchases</h3>

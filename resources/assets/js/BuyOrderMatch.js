@@ -56,7 +56,7 @@ if(window.location.pathname == '/buyorders')
                         $('input[name=seller_id]').val(data.user_id);
                         $('input[name=price]').val(data.total_cost);
 
-                        $('#total-cost-confirm').text(cost.toFixed(2));
+                        $('#total-cost-confirm').text((Math.round(cost*100)/100).toFixed(2));
 
                         $("#match-loading").delay(200).hide("slow");
                         $("#match-statement").delay(250).show("slow");

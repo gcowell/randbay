@@ -31,23 +31,23 @@ return [
 
     'connections' => [
 
-        'sync' => [
-            'driver' => 'sync',
-        ],
-
-        'database' => [
-            'driver' => 'database',
-            'table'  => 'jobs',
-            'queue'  => 'default',
-            'expire' => 60,
-        ],
-
-        'beanstalkd' => [
-            'driver' => 'beanstalkd',
-            'host'   => 'localhost',
-            'queue'  => 'default',
-            'ttr'    => 60,
-        ],
+//        'sync' => [
+//            'driver' => 'sync',
+//        ],
+//
+//        'database' => [
+//            'driver' => 'database',
+//            'table'  => 'jobs',
+//            'queue'  => 'default',
+//            'expire' => 60,
+//        ],
+//
+//        'beanstalkd' => [
+//            'driver' => 'beanstalkd',
+//            'host'   => 'localhost',
+//            'queue'  => 'default',
+//            'ttr'    => 60,
+//        ],
 
         'sqs' => [
             'driver' => 'sqs',
@@ -55,23 +55,26 @@ return [
             'secret' => 'r4O4Q24nMhXGD6viBD3Vrk8YtjMOKFRx89f9bxab',
             'queue'  => 'https://sqs.eu-west-1.amazonaws.com/777229698195/test',
             'region' => 'eu-west-1',
+            'http'    => [
+                'verify' => 'C:\wamp\bin\apache\apache2.4.17\bin\cacert.pem'
+            ]
         ],
-
-        'iron' => [
-            'driver'  => 'iron',
-            'host'    => 'mq-aws-us-east-1.iron.io',
-            'token'   => 'your-token',
-            'project' => 'your-project-id',
-            'queue'   => 'your-queue-name',
-            'encrypt' => true,
-        ],
-
-        'redis' => [
-            'driver'     => 'redis',
-            'connection' => 'default',
-            'queue'      => 'default',
-            'expire'     => 60,
-        ],
+//
+//        'iron' => [
+//            'driver'  => 'iron',
+//            'host'    => 'mq-aws-us-east-1.iron.io',
+//            'token'   => 'your-token',
+//            'project' => 'your-project-id',
+//            'queue'   => 'your-queue-name',
+//            'encrypt' => true,
+//        ],
+//
+//        'redis' => [
+//            'driver'     => 'redis',
+//            'connection' => 'default',
+//            'queue'      => 'default',
+//            'expire'     => 60,
+//        ],
 
     ],
 

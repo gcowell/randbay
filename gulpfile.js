@@ -42,18 +42,12 @@ elixir(function(mix) {
             'libs/jquery.fancybox.pack.js',
             'libs/facebook.js',
             'SaleItemForm.js',
-            'SaleItemEdit.js',
-            'SaleItemIndex.js',
             'BuyOrderForm.js',
             'BuyOrderMatch.js',
-            'TransactionsIndex.js',
-            'TransactionsItem.js',
-            'UserDashboard.js',
-            'NotificationCheck.js',
-            'SupportShow.js',
             'Homepage.js',
             'How.js',
-            'AdminSaleitems.js'
+            'AdminSaleitems.js',
+            'MailingList.js'
 
         ]);
 

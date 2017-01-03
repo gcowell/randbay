@@ -4,14 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Config;
 
 use App\Buyorder;
 use App\Currencies;
+use App\Jobs\SendMail;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class Saleitem extends Model
 {
+    use DispatchesJobs;
+
     protected $fillable =
         [
             'price',
@@ -19,7 +23,9 @@ class Saleitem extends Model
             'international',
             'domestic_postage_cost',
             'world_postage_cost',
-            'description'
+            'description',
+            'country',
+            'seller_paypal_email'
        ];
 
     protected $dates = ['created_at', 'updated_at', 'engaged_until'];
@@ -49,23 +55,22 @@ class Saleitem extends Model
 
         //SEARCH PARAMETERS
         $target_price = $buyorder->price;
-        $target_seller_rating = 5;
         $target_country = $buyorder->country;
         $current_time = Carbon::now();
-        $request_user_id = Auth::id();
+        $request_user_email = $buyorder->buyer_email;
 
         //QUERY STRINGS
-        $international_query = '*, ((saleitems.price+saleitems.world_postage_cost)*saleitems.currency_rate) AS total_cost, (((saleitems.seller_rating)/(?))*(((saleitems.price+saleitems.world_postage_cost)*saleitems.currency_rate)/(?))) AS weighted_score';
-        $domestic_query = '*, ((saleitems.price+saleitems.domestic_postage_cost)*saleitems.currency_rate) AS total_cost, (((saleitems.seller_rating)/(?))*(((saleitems.price+saleitems.domestic_postage_cost)*saleitems.currency_rate)/(?))) AS weighted_score';
+        $international_query = '*, ((saleitems.price+saleitems.world_postage_cost)*saleitems.currency_rate) AS total_cost, (((saleitems.price+saleitems.world_postage_cost)*saleitems.currency_rate)/(?)) AS weighted_score';
+        $domestic_query = '*, ((saleitems.price+saleitems.domestic_postage_cost)*saleitems.currency_rate) AS total_cost, (((saleitems.price+saleitems.domestic_postage_cost)*saleitems.currency_rate)/(?)) AS weighted_score';
 
         //INTERNATIONAL QUERY
         $international_saleitems = DB::Table('saleitems')
-            ->selectRaw($international_query, array($target_seller_rating, $target_price))
+            ->selectRaw($international_query, array($target_price))
             ->where('engaged_until', '<', $current_time)
-            ->where('user_id', '!=', $request_user_id)
+            ->where('seller_paypal_email', '!=', $request_user_email)
             ->where('international', '=', "true")
             ->where('matched', '=', 'false')
-            ->where('country_of_origin', '!=', $target_country)
+            ->where('country', '!=', $target_country)
             ->having("total_cost", "<", $target_price)
             ->orderBy("weighted_score", 'DESC')
             ->take(3)
@@ -73,13 +78,13 @@ class Saleitem extends Model
 
         //DOMESTIC QUERY
         $domestic_saleitems = DB::Table('saleitems')
-            ->selectRaw($domestic_query, array($target_seller_rating, $target_price))
+            ->selectRaw($domestic_query, array($target_price))
             ->where('engaged_until', '<', $current_time)
-            ->where('user_id', '!=', $request_user_id)
+            ->where('seller_paypal_email', '!=', $request_user_email)
             ->where('matched', '=', 'false')
-            ->where('country_of_origin', '=', $target_country)
+            ->where('country', '=', $target_country)
             ->having("total_cost", "<", $target_price)
-            ->orderBy("total_cost", 'DESC')
+            ->orderBy("weighted_score", 'DESC')
             ->take(3)
             ->get();
 
@@ -115,15 +120,6 @@ class Saleitem extends Model
 
         return $result;
 
-    }
-//**********************************************************************************************************************
-
-    //ADDS A RATING TO THE SALEITEM
-    public function addRating($rating)
-    {
-        $this->rating = $rating;
-
-        return true;
     }
 
 
@@ -221,8 +217,6 @@ class Saleitem extends Model
 
 
 //**********************************************************************************************************************
-
-
 //FOR ADMIN CHECKING OF SALEITEMS
 
     public function setCheckedTrue()
@@ -232,6 +226,47 @@ class Saleitem extends Model
         return true;
     }
 
+
+//**********************************************************************************************************************
+//FOR ADMIN CHECKING OF SALEITEMS
+
+    public function removeExpiredSaleitems()
+    {
+
+        $current_time = Carbon::now();
+        $expiry_date = $current_time->subDays(10);
+
+        $expired_saleitems = DB::Table('saleitems')
+            ->select('*')
+            ->where('matched', '=', 'false')
+            ->where('created_at', '<', $expiry_date);
+
+        $saleitems_to_email = $expired_saleitems->get();
+
+        foreach ($saleitems_to_email as $expired_saleitem)
+        {
+
+            //SEND EMAIL TO WARN SELLER
+            $emailAddress = $expired_saleitem->seller_paypal_email;
+            $data =
+                [
+                    'id'                => $expired_saleitem->id,
+                    'description'       => $expired_saleitem->description,
+                    'image_type'        => $expired_saleitem->image_type,
+                    'image_path'        => Config::get('saleitems.filepath'),
+
+                ];
+
+            $job = (new SendMail($emailAddress, 'expired', $data));
+            $this->dispatch($job);
+        }
+
+        $expired_saleitems->delete();
+
+        return true;
+
+
+    }
 
 
 }

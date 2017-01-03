@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Validator;
+use Illuminate\Support\Facades\Config;
 
 class BuyorderRequest extends Request
 {
@@ -31,11 +32,24 @@ class BuyorderRequest extends Request
                 return false;
             });
 
+        Validator::extend('in_list', function($attribute, $value, $parameters)
+        {
+            $list = Config::get('countries.list');
+
+            foreach ($list as $list_item)
+            {
+
+                if ($list_item === $value) return true;
+            }
+            return;
+        });
+
         return
             [
                 'price' => ['required', 'numeric', 'min:0.01', 'max:99999'],
                 'requested_currency' => ['required', 'correct_currency'],
-
+                'country' => ['required', 'in_list'],
+                'buyer_email' => 'required|email|max:255',
             ];
 
 

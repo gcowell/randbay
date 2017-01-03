@@ -12,10 +12,9 @@ use App\Http\Requests\SaleitemUpdateRequest;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Jobs\SendMail;
+use App\Jobs\AddMailingAddress;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Config;
 
 
@@ -24,25 +23,9 @@ class SaleitemsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth',['except' => 'returnRandomItems' ]);
-        $this->middleware('banned.check',['except' => 'returnRandomItems' ]);
-
         $this->moveDestinationPath = Config::get('saleitems.filepath');
     }
 
-
-
-//**********************************************************************************************************************
-
-    //SHOW ALL USER'S SALEITEMS
-    public function index()
-    {
-        $saleitems = Auth::user()->saleitems()
-                                 ->orderBy('created_at', 'desc')
-                                 ->simplePaginate(5);
-
-        return view('saleitems.index')->with(['saleitems' => $saleitems]);
-    }
 
 //**********************************************************************************************************************
 
@@ -64,17 +47,14 @@ class SaleitemsController extends Controller
         $currencies = new Currencies();
         $saleitem->currency_rate = $currencies->getApplicableRate($request->native_currency);
 
-        $saleitem->country_of_origin = Auth::user()->getCountry();
+        //ITEM IS NOT MATCHED WITH BUYORDER
         $saleitem->matched = 'false';
 
         //MAKE SURE ITEM IS NOT ENGAGED
         $saleitem->engaged_until = Carbon::now()->subMinutes(1);
 
-        //INITIALISE SELLER RATING FROM USER
-        $saleitem->seller_rating = Auth::user()->seller_rating;
-
         //SAVE IN ORDER TO GENERATE ID FOR FILE NAMING
-        Auth::user()->saleitems()->save($saleitem);
+        $saleitem->save();
 
         //FILE RELATED STUFF
         $file = $request->file('image');
@@ -86,19 +66,32 @@ class SaleitemsController extends Controller
         $saleitem->image_type = $extension;
 
         //SAVE
-        Auth::user()->saleitems()->save($saleitem);
+        $saleitem->save();
 
-        return redirect ('saleitems');
-    }
+        //SEND CONFIRMATION EMAIL
+        $emailAddress = $saleitem->seller_paypal_email;
+        $data =
+            [
+                'id'                => $saleitem->id,
+                'description'       => $saleitem->description,
+                'image_type'        => $saleitem->image_type,
+                'native_currency'   => $currencies->getSymbol($saleitem->native_currency),
+                'price'             => $saleitem->price,
+                'image_path'        => $this->moveDestinationPath
 
-//**********************************************************************************************************************
+            ];
 
-    //SHOW SELECTED SALEITEM
-    public function show($id)
-    {
-        $saleitem = Saleitem::findOrFail($id);
+        $job = (new SendMail($emailAddress, 'forsale', $data));
+        $this->dispatch($job);
 
-        return view('saleitems.show')->with(['saleitem' => $saleitem]);
+        //ADD TO MAILING LIST
+        $job = (new AddMailingAddress($emailAddress));
+        $this->dispatch($job);
+
+        //FLASH NOTIFICATION
+        Session::flash('item_for_sale', $saleitem);
+
+        return redirect ('/');
     }
 
 //**********************************************************************************************************************
@@ -113,48 +106,6 @@ class SaleitemsController extends Controller
 
     }
 
-
-//**********************************************************************************************************************
-
-    public function update(SaleitemUpdateRequest $request, $id)
-    {
-        $saleitem = Auth::user()->saleitems()->findOrFail($id);
-
-        $saleitem->description = $request->description;
-        $saleitem->price = $request->price;
-        $saleitem->domestic_postage_cost = $request->domestic_postage_cost;
-        $saleitem->international = $request->international;
-
-        if($request->world_postage_cost)
-        {
-            $saleitem->world_postage_cost = $request->world_postage_cost;
-        }
-
-        Auth::user()->saleitems()->save($saleitem);
-
-        $file = $request->file('image');
-
-        if($file)
-        {
-            $extension = $file->getClientOriginalExtension(); // getting image extension
-            $fileName = $saleitem->id.'.'.$extension; // renaming image
-
-            if(file_exists($this->moveDestinationPath . $fileName))
-            {
-                unlink($this->moveDestinationPath . $fileName); //remove the file
-            }
-
-            $file->move($this->moveDestinationPath, $fileName);
-            $saleitem->image_type = $extension;
-
-            Auth::user()->saleitems()->save($saleitem);
-        }
-
-        Session::flash('updated' ,'Item updated successfully');
-
-        return view('saleitems.show')->with(['saleitem' => $saleitem]);
-
-    }
 
 //**********************************************************************************************************************
 
@@ -178,51 +129,6 @@ class SaleitemsController extends Controller
 
 //**********************************************************************************************************************
 
-    public function rate($id)
-    {
-
-        $rating = Input::get('rating');
-
-        if ($rating == null)
-        {
-            return Redirect::back()->withErrors(['Please leave a rating between 1 and 5 stars']);
-        }
-
-
-        $saleitem = Saleitem::findOrFail($id);
-        $saleitem->addRating($rating);
-        $saleitem->save();
-
-        $seller = $saleitem->seller;
-        $new_seller_rating = $seller->updateSellerRating();
-        $seller->cascadeSellerRating($new_seller_rating);
-
-        $transaction = $saleitem->getAssociatedTransaction();
-
-        $transaction->addRating($rating);
-        $transaction->save();
-
-
-        $notification = new Notification();
-        $notification_type = 'rated-type';
-        $notification->generate($seller->id, $transaction->id, $notification_type );
-
-        $notification_details =
-        [
-            'item_description' => $saleitem->description,
-            'item_img_path' => $saleitem->id . '.' . $saleitem->image_type,
-            'item_rating' => $saleitem->rating
-        ];
-
-        $notification->setDetails($notification_details);
-
-
-
-        return redirect('/transactions/'. $transaction->id);
-
-    }
-
-
     public function returnRandomItems(Request $request)
     {
         if(!$request->ajax())
@@ -240,9 +146,5 @@ class SaleitemsController extends Controller
 
 
     }
-
-
-
-
 
 }

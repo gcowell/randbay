@@ -2369,6 +2369,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
             $("#third").hide();
             $("#fourth").hide();
             $("#fifth").hide();
+            $("#sixth").hide();
+
 
 
 
@@ -2394,6 +2396,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                    $("#fourth").hide();
                    $("#tip-two-1").show();
                    $("#fifth").hide();
+                   $("#sixth").hide();
+
 
                }
                else
@@ -2483,6 +2487,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                 $("#fourth").hide();
                 $("#third").hide();
                 $("#fifth").hide();
+                $("#sixth").hide();
+
 
             });
 
@@ -2505,6 +2511,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                     $("#fourth").hide();
                     $("#tip-three-1").show();
                     $("#fifth").hide();
+                    $("#sixth").hide();
+
 
                 }
                 else
@@ -2547,6 +2555,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                 $("#fourth").hide();
                 $("#first").hide();
                 $("#fifth").hide();
+                $("#sixth").hide();
+
 
             });
 
@@ -2568,6 +2578,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                     $("#first").hide();
                     $("#second").hide();
                     $("#fifth").hide();
+                    $("#sixth").hide();
+
 
 
                 }
@@ -2621,6 +2633,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                 $("#first").hide();
                 $("#second").hide();
                 $("#fifth").hide();
+                $("#sixth").hide();
+
 
 
             });
@@ -2695,6 +2709,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                                     $("#first").hide();
                                     $("#second").hide();
                                     $("#third").hide();
+                                    $("#sixth").hide();
+
                                 }
                                 else
                                 {
@@ -2763,6 +2779,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                                 $("#first").hide();
                                 $("#second").hide();
                                 $("#third").hide();
+                                $("#sixth").hide();
+
                             }
                             else
                             {
@@ -2782,8 +2800,62 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                 }
             });
 
+
+
 //    ******************************************************************************************************************************
-//    STEP FIVE - CONFIRMATION
+//    STEP FIVE - ABOUT YOU
+//    ******************************************************************************************************************************
+
+
+            $("#next-btn5").click(function()
+            {
+
+                var email = $("#seller_paypal_email").val();
+                var email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                if(email_regex.test(email))
+                {
+                    $('#email-group').tooltip('destroy');
+
+                    $("#fifth").hide("slow").delay(200);
+                    $("#sixth").show("slow").delay(200);
+
+                    //Just in case
+                    $("#first").hide();
+                    $("#second").hide();
+                    $("#third").hide();
+                    $("#fourth").hide();
+                }
+                else
+                {
+                    $('#email-group').tooltip(
+                        {
+                            'show': true,
+                            'placement': 'left',
+                            'title': "Please provide a valid email address"
+                        });
+
+                    $('#email-group').tooltip('show');
+                }
+
+
+            });
+
+            $("#prev-btn5").click(function()
+            {
+                $("#fifth").hide("slow").delay(200);
+                $("#fourth").show("slow").delay(200);
+
+                //Just in case
+                $("#first").hide();
+                $("#second").hide();
+                $("#third").hide();
+                $("#sixth").hide();
+
+            });
+
+//    ******************************************************************************************************************************
+//    STEP SIX - CONFIRMATION
 //    ******************************************************************************************************************************
 
 
@@ -2812,15 +2884,16 @@ if(window.location.href.indexOf('saleitems/create')>-1)
 
             });
 
-            $("#prev-btn5").click(function()
+            $("#prev-btn6").click(function()
             {
-                $("#fifth").hide("slow").delay(200);
-                $("#fourth").show("slow").delay(200);
+                $("#sixth").hide("slow").delay(200);
+                $("#fifth").show("slow").delay(200);
 
                 //Just in case
                 $("#first").hide();
                 $("#second").hide();
                 $("#third").hide();
+                $("#fourth").hide();
 
             });
 
@@ -2829,296 +2902,6 @@ if(window.location.href.indexOf('saleitems/create')>-1)
 
     })();
 
-}
-if(window.location.href.indexOf('/saleitems/')>-1  && window.location.href.indexOf('create') == -1)
-{
-    $("label[for='image']").html('<span class="glyphicon glyphicon-cloud-upload"></span> Change Picture');
-
-    var currencies = {USD : '$', GBP: '£', EUR : '€'};
-    var selected_currency = $(".input-symbol span").first().text();
-    var currency_symbol = currencies[selected_currency];
-    $('.input-symbol span').html(currency_symbol);
-
-    $("#updated-item").delay(2000).hide('slow');
-
-    $("#postoption1").click(function()
-    {
-        $("#domestic-post").show("fast").delay(200);
-        $("#world-post").show("fast").delay(200);
-    });
-
-    $("#postoption2").click(function()
-    {
-        $("#domestic-post").show("fast").delay(200);
-        $("#world-post").hide("fast").delay(200);
-        $("#world_postage_cost").val('');
-        $('#world-post').tooltip('destroy');
-        $('#world-post').removeClass().addClass('form-group');
-    });
-
-
-    $(function()
-    {
-        $("#image").change(function()
-        {
-
-            $("#message").empty(); // To remove the previous error message
-            var file = this.files[0];
-            var imagefile = file.type;
-
-            var match=
-                [
-                    "image/jpeg",
-                    "image/png",
-                    "image/jpg",
-                    "image/bmp"
-                ];
-//
-            if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]) || (imagefile==match[3])))
-            {
-                $('#previewing').attr('src','/img/loader_small.gif').wait(1000).attr('src','/img/noimage.png');
-                $("#message").wait(1000).html('<div class="alert alert-danger">Please Select A valid Image File</div>');
-                return false;
-            }
-            else
-            {
-                var reader = new FileReader();
-                reader.onload = imageIsLoaded;
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
-    });
-
-    function imageIsLoaded(e)
-    {
-        $("#image").css("color","green");
-        $('#image_preview').css("display", "block");
-        $('#previewing').attr('src','/img/loader_small.gif').wait(1000).attr('src', e.target.result).css("maxWidth", "100%");
-
-        $("label[for='image']").wait(1000).html('<span class="glyphicon glyphicon-cloud-upload"></span> Change Picture');
-    };
-
-    //**************************************************************************
-
-    //ON CHANGE
-
-    $('input').each(function()
-    {
-        var val = this.value;
-        $(this).blur(function()
-        {
-            var desc_check = $("#description").val();
-
-            if(desc_check)
-            {
-                $('#description-group').removeClass().addClass('form-group');
-                $('#description').tooltip('destroy');
-
-            }
-            else
-            {
-                $('#description-group').removeClass().addClass('form-group has-error');
-                $('#description').tooltip(
-                    {
-                        'show': true,
-                        'placement': 'left',
-                        'title': "A description is needed..."
-                    });
-
-                $('#description').tooltip('show');
-            }
-
-            var price_check = $("#price").val();
-
-            if(!isNaN(price_check)&& price_check && price_check >= 1)
-            {
-
-                $('#price-group').removeClass().addClass('form-group');
-                $('#price').tooltip('destroy');
-
-                $("#third").hide("slow").delay(200);
-                $("#fourth").show("slow").delay(200);
-
-                //Just in case
-                $("#first").hide();
-                $("#second").hide();
-
-            }
-            else
-            {
-
-                $('#price-group').removeClass().addClass('form-group has-error');
-
-                $('#price').tooltip(
-                    {
-                        'show': true,
-                        'placement': 'left',
-                        'title': "Please enter a valid price, greater than " + currencies[selected_currency] + "1.00"
-                    });
-
-                $('#price').tooltip('show');
-            }
-
-
-
-
-            //**BIG POST MESS
-
-            $('#world-post').removeClass().addClass('form-group');
-            $('#domestic-post').removeClass().addClass('form-group');
-
-            var international_yes_check = $("#postoption1").hasClass("btn btn-default active");
-            var international_no_check = $("#postoption2").hasClass("btn btn-default active");
-
-            var domestic_postage_check = $("#domestic_postage_cost").val();
-            var world_postage_check = $("#world_postage_cost").val();
-
-            if(international_yes_check == false && international_no_check == false)
-            {
-
-                $('#postage-toggle').tooltip(
-                    {
-                        'show': true,
-                        'placement': 'left',
-                        'title': "Please select a postage option"
-                    });
-
-                $('#postage-toggle').tooltip('show');
-            }
-            else
-            {
-                $('#postage-toggle').tooltip('destroy');
-
-                if(international_yes_check == true)
-                {
-
-                    if(!isNaN(domestic_postage_check) && domestic_postage_check)
-                    {
-                        $('#domestic-post').tooltip('destroy');
-
-                        if(!isNaN(world_postage_check) && world_postage_check)
-                        {
-                            //S'ALL GOOD NIGGA
-                            $('#world-post').tooltip('destroy');
-                        }
-                        else
-                        {
-                            $('#world-post').removeClass().addClass('form-group has-error');
-
-                            $('#world-post').tooltip(
-                                {
-                                    'show': true,
-                                    'placement': 'left',
-                                    'title': "Please enter a world postage cost"
-                                });
-
-                            $('#world-post').tooltip('show');
-                        }
-                    }
-                    else
-                    {
-                        $('#domestic-post').removeClass().addClass('form-group has-error');
-
-                        $('#domestic-post').tooltip(
-                            {
-                                'show': true,
-                                'placement': 'left',
-                                'title': "Please enter a standard postage cost"
-                            });
-
-                        $('#domestic-post').tooltip('show');
-
-                        if(!isNaN(world_postage_check) && world_postage_check)
-                        {
-                            $('#world-post').tooltip('destroy');
-                        }
-                        else
-                        {
-                            $('#world-post').removeClass().addClass('form-group has-error');
-
-                            $('#world-post').tooltip(
-                                {
-                                    'show': true,
-                                    'placement': 'left',
-                                    'title': "Please enter a world postage cost"
-                                });
-
-                            $('#world-post').tooltip('show');
-                        }
-                    }
-
-                }
-                else
-                {
-
-                    $("#world_postage_cost").val('');
-                    $('#world-post').tooltip('destroy');
-
-
-                    if(!isNaN(domestic_postage_check) && domestic_postage_check)
-                    {
-                        //S'ALL GOOD NIGGA
-                        $('#domestic-post').tooltip('destroy');
-
-
-                    }
-                    else
-                    {
-                        $('#domestic-post').removeClass().addClass('form-group has-error');
-
-                        $('#domestic-post').tooltip(
-                            {
-                                'show': true,
-                                'placement': 'left',
-                                'title': "Please enter a standard postage cost"
-                            });
-
-                        $('#domestic-post').tooltip('show');
-                    }
-                }
-            }
-
-        })
-
-    });
-
-
-}
-
-if(window.location.pathname == '/saleitems')
-{
-    (function ()
-    {
-
-        $(document).ready(function()
-        {
-            var currencies = {USD : '$', GBP: '£', EUR : '€'};
-            $('.currency-symbol').each(
-                (function()
-                {
-                    var symbol = currencies[$( this ).text()];
-                    $( this ).html(symbol);
-                }));
-
-            $("#deleted-item").delay(2000).hide('slow');
-
-        });
-
-
-        $("#fancy-img").fancybox({
-            openEffect	: 'elastic',
-            closeEffect	: 'elastic',
-            helpers: {
-                title : {
-                    type : 'float'
-                },
-                overlay: {
-                    locked: false
-                }
-            }
-        });
-
-    })();
 }
 if(window.location.href.indexOf('buyorders/create')>-1)
 {
@@ -3195,15 +2978,66 @@ if(window.location.href.indexOf('buyorders/create')>-1)
             });
 
 
+
 //    ********************************************************************************************************************************
-//    STEP TWO - AGREEMENT
+//    STEP TWO - ABOUT YOU
 //    ********************************************************************************************************************************
 
             $("#prev-btn2").click(function()
             {
 
+                //Just in case
+                $("#third").hide();
+
                 $("#second").hide("slow").delay(200);
                 $("#first").show("slow").delay(200);
+
+            });
+
+
+            $("#next-btn2").click(function()
+            {
+
+                var email = $("#buyer_email").val();
+                var email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                if(email_regex.test(email))
+                {
+                    $('#email-group').tooltip('destroy');
+
+                    //Just in case
+                    $("#first").hide();
+
+                    $("#second").hide("slow").delay(200);
+                    $("#third").show("slow").delay(200);
+                }
+                else
+                {
+                    $('#email-group').tooltip(
+                        {
+                            'show': true,
+                            'placement': 'left',
+                            'title': "Please provide a valid email address"
+                        });
+
+                    $('#email-group').tooltip('show');
+                }
+
+            });
+
+
+
+//    ********************************************************************************************************************************
+//    STEP THREE - AGREEMENT
+//    ********************************************************************************************************************************
+
+            $("#prev-btn3").click(function()
+            {
+                //JUST IN CASE
+                $("#first").hide();
+
+                $("#third").hide("slow").delay(200);
+                $("#second").show("slow").delay(200);
 
             });
 
@@ -3295,7 +3129,7 @@ if(window.location.pathname == '/buyorders')
                         $('input[name=seller_id]').val(data.user_id);
                         $('input[name=price]').val(data.total_cost);
 
-                        $('#total-cost-confirm').text(cost.toFixed(2));
+                        $('#total-cost-confirm').text((Math.round(cost*100)/100).toFixed(2));
 
                         $("#match-loading").delay(200).hide("slow");
                         $("#match-statement").delay(250).show("slow");
@@ -3310,421 +3144,6 @@ if(window.location.pathname == '/buyorders')
         });
     })();
 }
-if(window.location.pathname == '/transactions')
-{
-
-
-
-    (function ()
-    {
-
-        $(document).ready(function()
-        {
-            //SCROLL TO TOP TO AVOID HASHTAB ISSUES
-            $(window).scrollTop(0);
-
-            //FACEBOOK SHARE STUFF
-            $('.fb-share').click(function() {
-                    if(fbIsLoaded) {
-                        console.log('UI triggered');
-                        FB.ui(
-                            {
-                                //TODO DEPLOY fix facebook api
-                                method: 'share',
-//                                name: 'Facebook Dialogs',
-                                href: 'http://www.randbay.com',
-//                                picture: 'http://fbrell.com/f8.jpg',
-                                caption: 'Reference Documentation',
-                                description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
-                            },
-                            function(response) {
-                                if (response && response.post_id) {
-                                    alert('Post was published.');
-                                } else {
-                                    alert('Post was not published.');
-                                }
-                            }
-                        );
-                    }
-            });
-
-            //ENABLE FANCY IMAGE EXPANSION ON PICTURE
-            $("#fancy-img").fancybox({
-                openEffect	: 'elastic',
-                closeEffect	: 'elastic',
-                helpers: {
-                    title : {
-                        type : 'float'
-                    },
-                    overlay: {
-                        locked: false
-                    }
-                }
-            });
-
-            //CHECK IF THE ALERT MODAL IS REQUIRED (NEW PURCHASE)
-            if ($('#alertModal'))
-            {
-                $('#alertModal').modal('show');
-            }
-
-            if(location.hash)
-            {
-                $(".tab-pane").removeClass('tab-pane active').addClass('tab-pane');
-                $('a[href=' + location.hash + ']').tab('show');
-                var id_string = location.hash.substring(1);
-                $(location.hash).removeClass('tab-pane').addClass('tab-pane active');
-
-            }
-            else
-            {
-                var preSelectedTab = localStorage.getItem('selectedTab');
-
-                if (preSelectedTab)
-                {
-                    $(".tab-pane").removeClass('tab-pane active').addClass('tab-pane');
-                    $('a[href=' + preSelectedTab + ']').tab('show');
-                    $(preSelectedTab).removeClass('tab-pane').addClass('tab-pane active');
-                    location.hash = preSelectedTab;
-
-                }
-                else
-                {
-                    $(".tab-pane").removeClass('tab-pane active').addClass('tab-pane');
-                    var default_tab_href = '#items-bought';
-                    location.hash = default_tab_href;
-                    $('a[href=' + location.hash + ']').tab('show');
-                    $('#items-bought').removeClass('tab-pane').addClass('tab-pane active');
-                }
-            }
-
-            localStorage.setItem('selectedTab', location.hash);
-
-            /////////////////////////////////////////////////////////////
-
-            $(document.body).on("click", "a[data-toggle=tab]", function(event) {
-                $(".tab-pane").removeClass('tab-pane active').addClass('tab-pane');
-                var hash = this.getAttribute("href");
-                location.hash = hash;
-                $(hash).removeClass('tab-pane').addClass('tab-pane active');
-            });
-
-
-            $(window).on('popstate', function() {
-                var anchor = location.hash || $("a[data-toggle=tab]").first().attr("href");
-                $(".tab-pane").removeClass('tab-pane active').addClass('tab-pane');
-                $('a[href=' + anchor + ']').tab('show');
-            });
-
-
-            //for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e)
-            {
-                //save the latest tab; use cookies if you like 'em better:
-                localStorage.setItem('selectedTab', $(e.target).attr('href'));
-            });
-
-
-
-            //POPULATE SHIPPING ADDRESSES IN CORRECT FORMAT.
-            $(".shipping-address").each(function(i, element)
-            {
-                var JSON_address = element.innerHTML;
-                if(JSON_address)
-                {
-                    var address = $.parseJSON(JSON_address);
-                    var human_address = address.recipient_name + '<br>' + address.line1 + '<br>' +  address.city + '<br>' + address.state + '<br>' + address.postal_code + '<br>' + address.country_code;
-
-                    element.innerHTML = human_address;
-
-                }
-
-            });
-
-            $("#payment-success").delay(4000).hide("slow");
-
-
-        });
-    })();
-}
-if(window.location.href.indexOf('/transactions/')>-1)
-{
-
-    (function ()
-    {
-
-        $(document).ready(function()
-        {
-            var rating = $("#transaction-rating").html();
-            var checked_id = '#rated-star' + rating;
-            var checked_radio = $(checked_id);
-
-            checked_radio.prop("disabled", false);
-            checked_radio.prop("checked", true);
-
-            var element = $(".shipping-address");
-            var JSON_address = element.html();
-
-            if(JSON_address)
-            {
-                var address = $.parseJSON(JSON_address);
-                var human_address = address.recipient_name + '<br>' + address.line1 + '<br>' +  address.city + '<br>' + address.state + '<br>' + address.postal_code + '<br>' + address.country_code;
-
-                element.html(human_address);
-            }
-
-        });
-    })();
-}
-if(window.location.href.indexOf('/users/dashboard') > -1)
-{
-    (function ()
-    {
-
-        $(document).ready(function()
-        {
-
-            $("#fancy-img").fancybox({
-                openEffect	: 'elastic',
-                closeEffect	: 'elastic',
-                helpers: {
-                    title : {
-                        type : 'float'
-                    },
-                    overlay: {
-                        locked: false
-                    }
-                }
-            });
-
-            $("#notifications-loading").show();
-
-            $.ajax(
-                {
-                    type: 'GET',
-                    url: "/notifications",
-                    data:
-                    {
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: handleData
-            });
-
-            function handleData (data)
-            {
-                $("#notifications-loading").hide();
-
-                if(data.html == "")
-                {
-                    data.html = "<img src=\x22/img/sad-robot.png\x22>";
-                }
-
-
-                $('#notifications-body').hide();
-                $('#notifications-body').html(data.html);
-                $('#notifications-body').show('slow');
-
-
-            }
-
-            var rating = $("#transaction-rating").html();
-            var checked_id = '#rated-star' + rating;
-            var checked_radio = $(checked_id);
-
-            checked_radio.prop("disabled", false);
-            checked_radio.prop("checked", true);
-
-            $('#notifications-container').on('click', '#mark-as-read', function(){
-
-                var notification = $(this).parents(".notification-item");
-                notification.css("background-color", "#d9e1ec" );
-
-                var id = notification.attr('data-notification-id');
-
-                $(this).hide();
-
-                $.ajax(
-                    {
-                        type: 'GET',
-                        url: "/notifications/read/"+id ,
-                        data:
-                        {
-                            '_token': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        success: checkNotifications
-                    });
-
-                function checkNotifications()
-                {
-                    $.ajax({
-                        type: 'GET',
-                        url: "/notifications/check",
-                        data:
-                        {
-                            '_token': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        success: notifyUser
-                    });
-
-                    function notifyUser (data)
-                    {
-                        var img_src = data.img;
-
-                        $('#notification-icon').attr("src", img_src);
-                    }
-                }
-
-
-            });
-
-
-        });
-    })();
-}
-$(document).ready(function()
-{
-
-    //PERFORM CHECK ON NAV BAR LINKS TO CHECK IF USER IS LOGGED IN
-    var login = $('#login-link').length;
-    var register = $('#register-link').length;
-
-    if(login == 0 && register == 0)
-    {
-        $.ajax({
-            type: 'GET',
-            url: "/notifications/check",
-            data:
-            {
-                '_token': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: notifyUser
-        });
-
-        function notifyUser (data)
-        {
-            var img_src = data.img;
-
-            $('#notification-icon').attr("src", img_src);
-        }
-    }
-
-});
-if(window.location.href.indexOf('/support/')>-1)
-{
-
-        $(document).ready(function()
-        {
-
-
-            //ENABLE FANCY IMAGE EXPANSION ON PICTURE
-            $("#fancy-img").fancybox({
-                openEffect	: 'elastic',
-                closeEffect	: 'elastic',
-                helpers: {
-                    title : {
-                        type : 'float'
-                    },
-                    overlay: {
-                        locked: false
-                    }
-                }
-            });
-
-            //CLEVER FILE UPLOADER
-            $("[id^=evidence-image]").change(function(e)
-            {
-                $("#message").empty(); // To remove the previous error message
-                var file = this.files[0];
-                var imagefile = file.type;
-
-                var match=
-                    [
-                        "image/jpeg",
-                        "image/png",
-                        "image/jpg",
-                        "image/bmp"
-                    ];
-                //
-                if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]) || (imagefile==match[3])))
-                {
-                    $("#message").wait(1000).html('<div class="alert alert-danger">Please Select A valid Image File</div>');
-                    return false;
-                }
-                else
-                {
-
-                    var input_element = $(this);
-                    var reader = new FileReader();
-                    reader.readAsDataURL(this.files[0]);
-
-                    reader.onload = (function ()
-                    {
-                        return function (e)
-                        {
-
-                            var img_item = input_element.parents('.evidence-img');
-                            img_item.hover(
-                                function(){ $(this).children('.delete-button').css('display', 'block') },
-                                function(){ $(this).children('.delete-button').css('display', 'none') }
-                            )
-
-                            img_item.css('background-image', 'url(' + e.target.result + ')');
-
-                            input_element.siblings('.label-container').children().text('Change');
-                            input_element.siblings('.delete-button').hover(
-                                function(){ $(this).css('background-color', 'rgba(0,0,0,1)') },
-                                function(){ $(this).css('background-color', 'rgba(0,0,0,0.5)') }
-
-                            )
-
-                        }
-
-                    })(input_element);
-
-                }
-            });
-
-            $('.delete-button').click(
-                function(e)
-                {
-                    var img_item = $(e.target).parents('.evidence-img');
-
-                    img_item.css('background-image', 'url(http://randbay/img/noimage.png)');
-
-                    $(e.target).siblings('.label-container').children().text('Add');
-                    $(e.target).hide();
-
-                    var input = $(e.target).siblings('input[type=file]');
-
-                    input.wrap('<form>').closest('form').get(0).reset();
-                    input.unwrap();
-
-                }
-            );
-
-            $('#form-submit').click(
-                function()
-                {
-                    $('#alertModal').modal('show');
-                }
-            );
-
-            $('#form-submit-final').click(
-                function()
-                {
-                    $("#evidence-form").submit();
-                }
-            );
-
-
-
-
-        });
-
-
-}
-
-
 if(window.location.pathname == '/')
 {
     $(window).on('beforeunload', function() {
@@ -3748,6 +3167,8 @@ if(window.location.pathname == '/')
 
 
 
+
+
     $( document ).ready(function() {
         $.ajax({
             type: 'GET',
@@ -3766,6 +3187,26 @@ if(window.location.pathname == '/')
             $('#random-img-container').html(html);
 
         }
+
+        //CHECK IF THE ALERT MODAL IS REQUIRED (NEW PURCHASE OR SALE)
+        if ($('#alertModal'))
+        {
+            $('#alertModal').modal('show');
+        }
+
+        //ENABLE FANCY IMAGE EXPANSION ON PICTURE
+        $("#fancy-img").fancybox({
+            openEffect	: 'elastic',
+            closeEffect	: 'elastic',
+            helpers: {
+                title : {
+                    type : 'float'
+                },
+                overlay: {
+                    locked: false
+                }
+            }
+        });
 
 
     /*Interactivity to determine when an animated element in in view. In view elements trigger our animation*/
@@ -3826,15 +3267,14 @@ if(window.location.pathname == '/how')
         {
             $('#buy-btn').click(function()
             {
-                $('#sell-details').hide();
-                $('#buy-details').show('slow');
+                $('#sell-details').scroll();
+
 
             });
 
             $('#sell-btn').click(function()
             {
-                $('#buy-details').hide();
-                $('#sell-details').show('slow');
+                $('#buy-details').scroll();
 
             });
 
@@ -3868,6 +3308,33 @@ if(window.location.pathname == '/johnpupperman/saleitems')
             });
 
         });
+    })();
+}
+if(window.location.pathname.indexOf('/mailinglist/')>-1)
+{
+
+    (function ()
+    {
+        $(document).ready(function()
+        {
+
+            var url_string = window.location.pathname;
+
+            var divided = url_string.split("/");
+            var id = divided[2];
+
+            $('#id_input').val(id);
+
+
+            $("#confirm").click(function()
+            {
+                $("#unsubscribe_form").submit();
+            });
+
+        });
+
+
+
     })();
 }
 //# sourceMappingURL=all.js.map

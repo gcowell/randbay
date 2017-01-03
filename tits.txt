@@ -4,19 +4,19 @@ BUGS
 
 -check what maximum paypal payments are in eur / dollar and gbp
 
+-improve looks of sold modal (CENTRE DIV WITH LEFT ALIGNED BULLETS)
+
+-email html compatibility
+
+-foreign keys?
+
+-stupid image of willem dafoe + unfunny wording
+
+-unsub email route
+
+-create mailing list automatically
+
 ///////////////////////////////////////////////////
-
-
-
-AESTHETICS
-
--https://www.paypal-community.com/t5/My-account-settings-Archive/Add-Company-Logo-To-Checkout-Page/td-p/326682
-
--custom 404 page
-
--background on password reset
-
-
 
 
 
@@ -27,23 +27,19 @@ DEPLOYMENT
 
 -Environment settings for maintenance mode
 
--test password reset
-
 -php artisan config:cache
 
--Set page controller to require login
-
--Need to do emails
-
--Need to do social media sharing
+-Need to do social media sharing system
 
 -paypal enlivement
 
 -cron tasks
 
--temp currency controller
+-clear temp controllers
 
--email queuing
+-email links
+
+
 
 
 

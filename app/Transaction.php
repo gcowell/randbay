@@ -9,9 +9,12 @@ use App\Buyorder;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Config;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendMail;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use App\Currencies;
 
 //**********************************************************************************************************************
 //THESE IMPORTS ARE PAYPAL 'CLASSIC' REST API
@@ -30,26 +33,13 @@ use PayPal\Api\PaymentExecution;
 use PayPal\Exception\PayPalConnectionException;
 use PayPal\Api\Transaction as PaypalTransaction;
 use PayPal\Api\Payout;
+use PayPal\Api\Links;
 use App\Notification;
-
-//**********************************************************************************************************************
-//THESE IMPORTS ARE PAYPAL 'ADAPTIVE' SOAP API
-//use PayPal\Types\AP\PayRequest;
-//use PayPal\Types\AP\Receiver;
-//use PayPal\Types\AP\ReceiverList;
-//use PayPal\Types\Common\RequestEnvelope;
-//use PayPal\Service\AdaptivePaymentsService;
-//use PayPal\Types\AP\SetPaymentOptionsRequest;
-//use PayPal\Types\AP\PaymentDetailsRequest;
-//use PayPal\Types\AP\DisplayOptions;
-//use PayPal\Types\AP\SenderOptions;
-//use PayPal\Types\AP\ReceiverOptions;
-//use PayPal\Types\AP\InvoiceData;
-//use PayPal\Types\AP\InvoiceItem;
 
 
 class Transaction extends Model
 {
+    use DispatchesJobs;
 
     protected $fillable =
         [
@@ -57,13 +47,12 @@ class Transaction extends Model
             'currency',
             'buyorder_id',
             'saleitem_id',
-            'buyer_id',
-            'seller_id',
-            'has_support_ticket',
+            'buyer_email',
+            'seller_email',
             'postage_cost'
         ];
 
-    protected $dates = ['created_at', 'updated_at', 'payment_date', 'shipped_date', 'received_date'];
+    protected $dates = ['created_at', 'updated_at', 'payment_date'];
 
 
 //**********************************************************************************************************************
@@ -79,65 +68,6 @@ class Transaction extends Model
         return $this->hasOne('App\Saleitem', 'id', 'saleitem_id');
     }
 
-    public function buyer()
-    {
-        return $this->hasOne('App\User', 'id',  'buyer_id');
-    }
-
-    public function seller()
-    {
-        return $this->hasOne('App\User', 'id', 'seller_id');
-    }
-
-    public function ticket()
-    {
-        return $this->hasOne('App\SupportTicket', 'id', 'support_ticket_id' );
-    }
-
-//**********************************************************************************************************************
-
-    //MARK THE TRANSACTION AS SHIPPED
-
-    public function markAsShipped($shipped)
-    {
-        $this->item_shipped = 'true';
-        $this->shipped_date = new Carbon();
-        return true;
-    }
-
-
-//**********************************************************************************************************************
-
-    //MARK THE TRANSACTION AS RECEIVED
-
-    public function markAsReceived($received)
-    {
-
-        if($received == 'true')
-        {
-            $this->item_received = 'true';
-            $this->received_date = new Carbon();
-        }
-        elseif($received == 'false')
-        {
-            $this->item_received = 'false';
-            $this->received_date = null;
-        }
-
-        return true;
-    }
-
-
-
-    public function addTicket($id)
-    {
-        $this->has_support_ticket = 'true';
-        $this->support_ticket_id = $id;
-        $this->save();
-
-        return true;
-    }
-
 
 //**********************************************************************************************************************
 
@@ -151,6 +81,7 @@ class Transaction extends Model
 
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
+
 
         $item = new Item();
         $item->setName('A Random Item') // item name
@@ -188,9 +119,9 @@ class Transaction extends Model
         }
         catch (PayPalConnectionException $ex)
         {
-            Log::warning("Transaction Error" . print_r($ex->getMessage(), json_decode($ex->getData(), true)));
+            Log::warning("Transaction Error" . ($ex->getMessage()) . json_decode($ex->getData(), true));
 
-            return redirect('transactions')
+            return redirect('/')
                 ->withErrors('An error occured in processing the Paypal payment');
         }
 
@@ -206,21 +137,10 @@ class Transaction extends Model
             return redirect()->away($approval_url);
         }
 
-        return redirect('transactions')
-            ->withErrors('Unknown error occurred');
+        return redirect('/')
+            ->withErrors('Unknown payment error occurred');
 
     }
-
-//**********************************************************************************************************************
-
-    //ADDS A RATING TO THE SALEITEM
-    public function addRating($rating)
-    {
-        $this->rating = $rating;
-
-        return true;
-    }
-
 
 //**********************************************************************************************************************
 
@@ -237,7 +157,7 @@ class Transaction extends Model
         $target_saleitem = Saleitem::findOrFail($this->saleitem_id);
         if(!$target_saleitem)
         {
-            return redirect('transactions')
+            return redirect('/')
                 ->withErrors('Payment Cancelled: The random item has been removed by the seller');
         }
 
@@ -249,8 +169,8 @@ class Transaction extends Model
             $failed_saleitem->markAsAvailable();
 
             //REDIRECT WITH ERRORS
-            return redirect('transactions')
-                ->withErrors(['error', 'Payment failed!']);
+            return redirect('/')
+                ->withErrors( 'Payment failed!');
         }
 
         //CHECK IF THE SALEITEM HAS EXPIRED
@@ -264,19 +184,32 @@ class Transaction extends Model
             //EXECUTE THE PAYMENT
             $execution = new PaymentExecution();
             $execution->setPayerId(Input::get('PayerID'));
-            $result = $payment->execute($execution, $_api_context);
+
+            try
+            {
+                $result = $payment->execute($execution, $_api_context);
+            }
+            catch (PayPalConnectionException $ex)
+            {
+                Log::warning("Transaction Error" . ($ex->getMessage()) . json_decode($ex->getData(), true));
+
+                return redirect('/')
+                    ->withErrors('An error occured in processing the Paypal payment');
+            }
+
+
 
             //CHECK THE PAYMENT HAS BEEN APPROVED
             if ($result->getState() == 'approved')
             {
-                //STORE SUCCESS MESSAGE
-                Session::flash('success', "Payment successful!");
-
-                //STORE TAB TO PASS TO VIEW
-                Session::flash('tab', "#bought-items");
+                //FIND OUT WHAT THE FEE WAS
+                $paypal_fee = $result->getTransactions()[0]->getRelatedResources()[0]->getSale()->getTransactionFee()->getValue();
+                $this->paypal_fee = floatval($paypal_fee);
 
                 //SET SHIPPING ADDRESS
-                $shipping_address = $result->getPayer()->getPayerInfo()->getShippingAddress()->toJSON();
+                $shipping_address_object = $result->getPayer()->getPayerInfo()->getShippingAddress();
+
+                $shipping_address = $shipping_address_object->toJSON();
                 $this->shipping_address = $shipping_address;
 
                 //RECORD PAYMENT DATA
@@ -295,61 +228,79 @@ class Transaction extends Model
                 $fulfilled_buyorder->matched = 'true';
                 $fulfilled_buyorder->save();
 
-                //CREATE PAYOUT FOR SELLER
-                $this->createSellerPayout($sold_item, $_api_context);
 
-                //CREATE NOTIFICATIONS FOR SALE
-                $notification_details =
+                //CONVERT FEE AND POSTAGE FOR SELLER
+                $currencies = new Currencies();
+                $GDP_fee = $currencies->convertToBaseGDP($this->currency, $this->paypal_fee);
+                $converted_fee = $currencies->convertBackToNative($sold_item->native_currency, $GDP_fee);
+                $GDP_postage = $currencies->convertToBaseGDP($this->currency,$this->postage_cost);
+                $converted_postage = $currencies->convertBackToNative($sold_item->native_currency, $GDP_postage);
+
+               //CREATE PAYOUT FOR SELLER
+                $this->createSellerPayout($sold_item, $converted_fee, $_api_context);
+
+                //SEND CONFIRMATION EMAIL TO BUYER
+                $emailAddress = $fulfilled_buyorder->buyer_email;
+                $data =
                     [
-                        'item_description' => $sold_item->description,
-                        'item_img_path' => $sold_item->id . '.' . $sold_item->image_type,
-                        'item_country_of_origin' => $sold_item->country_of_origin
+                        'id'                => $sold_item->id,
+                        'description'       => $sold_item->description,
+                        'image_type'        => $sold_item->image_type,
+                        'native_currency'   => $currencies->getSymbol($this->currency),
+                        'price'             => $this->price,
+                        'image_path'        => Config::get('saleitems.filepath')
                     ];
 
-                $seller_notification = new Notification();
-                $seller_notification->generate($this->seller->id, $this->id, 'sold-type');
-                $seller_notification->setDetails($notification_details);
-
-                $buyer_notification = new Notification();
-                $buyer_notification->generate($this->buyer->id, $this->id, 'bought-type');
-                $buyer_notification->setDetails($notification_details);
+                $job = (new SendMail($emailAddress, 'bought', $data));
+                $this->dispatch($job);
 
 
-//                Mail::send('email.bought', $buyer_notification, function ($message) use ($buyer_notification)
-//                {
-//                    $message->from('no-reply@randbay.com', 'Randbay');
-//                    $message->subject('A Random Item with Your Name on it!');
-//
-//                    //TODO - CHANGE THIS EMAIL WHEN DEPLOYED
-//                    $message->to($buyer_notification->recipient->email);
-//                });
-//
-//
-//                Mail::send('email.sold', $seller_notification, function ($message) use ($seller_notification)
-//                {
-//                    $message->from('no-reply@randbay.com', 'Randbay');
-//                    $message->subject('You got a sale! Taste that sweet victory...');
-//
-//                    //TODO - CHANGE THIS EMAIL WHEN DEPLOYED
-//                    $message->to($seller_notification->recipient->email);
-//                });
+
+                //SEND CONFIRMATION EMAIL TO SELLER
+                $emailAddress = $sold_item->seller_paypal_email;
+
+                //PREPARE ADDRESS FOR HUMANS
+                $iso_list = Config::get('countries.iso_list');
+
+                $emailable_shipping_address = $shipping_address_object->toArray();
+                $emailable_shipping_address['country_code'] = $iso_list[$emailable_shipping_address['country_code']];
+
+                $data =
+                    [
+                        'id'                => $sold_item->id,
+                        'description'       => $sold_item->description,
+                        'image_type'        => $sold_item->image_type,
+                        'native_currency'   => $currencies->getSymbol($sold_item->native_currency),
+                        'price'             => $sold_item->price,
+                        'image_path'        => Config::get('saleitems.filepath'),
+                        'shipping_address'  => $emailable_shipping_address,
+                        'randbay_fee'       => number_format($sold_item->price * (1-Config::get('saleitems.rate')), 2, '.', ''),
+                        'paypal_fee'        => number_format($converted_fee, 2, '.', ''),
+                        'postage_cost'      => number_format($converted_postage, 2, '.', '')
+
+                    ];
+
+                $job = (new SendMail($emailAddress, 'sold', $data));
+                $this->dispatch($job);
+
+                //FLASH ALERT
+                Session::flash('item_bought', $sold_item);
 
                 //REDIRECT TO COMPLETE
-                return redirect('transactions')->with(['buyer_alert' => $notification_details]);
+                return redirect('/');
             }
-
 
             //THE PAYMENT HAS FAILED - UNENGAGE SALEITEM
             $failed_saleitem = $target_saleitem;
             $failed_saleitem->markAsAvailable();
 
             //REDIRECT WITH ERRORS
-            return redirect('transactions')
+            return redirect('/')
                 ->withErrors('Payment failed!');
         }
 
         //PAYMENT HAS TIMEDOUT AND SALEITEM IS NO LONGER ENGAGED
-        return redirect('transactions')
+        return redirect('/')
             ->withErrors('You have taken too long to complete the Paypal Payment');
     }
 
@@ -357,27 +308,35 @@ class Transaction extends Model
 //**********************************************************************************************************************
 
     //SET UP PAYOUT FROM RANDBAY TO SELLER
-    public function createSellerPayout($sold_item, $_api_context)
+    public function createSellerPayout($sold_item, $fee, $_api_context)
     {
         //GET SELLER ID
-        $receiver_email = User::findOrFail($sold_item->user_id)->paypal_email;
+        $receiver_email = $sold_item->seller_paypal_email;
         $payout = new Payout();
 
         $senderBatchHeader = new PayoutSenderBatchHeader();
         $senderBatchHeader->setSenderBatchId(uniqid('RANDPAY'))
-            ->setEmailSubject("You have a Payout!");
+            ->setEmailSubject("You sold your item on Randbay!");
 
-        $randbay_rate = 0.9;
+
+        //TODO set customer service url (hello world currently)
+
+        $randbay_rate = Config::get('saleitems.rate');
         $total_payout_amount_buyer = (($this->price - $this->postage_cost) * $randbay_rate) + $this->postage_cost;
 
         $currencies = new Currencies();
 
+        //CONVERSION IS REQUIRED HERE AS THE PRICE MUST COME FROM THE TRANSACTION IN ORDER TO UNDERSTAND POSTAGE COST OPTION
         $total_payout_amount_GDP = $currencies->convertToBaseGDP($this->currency, $total_payout_amount_buyer);
         $total_payout_amount_seller = $currencies->convertBackToNative($sold_item->native_currency, $total_payout_amount_GDP);
 
+        //NOTE THAT THE FEE HAS ALREADY BEEN CONVERTED
+        $final_payout_amount = $total_payout_amount_seller - $fee;
+
+
         $currency = new Currency();
         $currency->setCurrency($sold_item->native_currency)
-                ->setValue(round($total_payout_amount_seller, 2));
+                ->setValue(round($final_payout_amount, 2));
 
         $senderItem = new PayoutItem();
         $senderItem->setRecipientType('Email')
@@ -385,6 +344,7 @@ class Transaction extends Model
             ->setReceiver($receiver_email)
             ->setSenderItemId($sold_item->id)
             ->setAmount($currency);
+
         $payout->setSenderBatchHeader($senderBatchHeader)
             ->addItem($senderItem);
 
@@ -403,138 +363,9 @@ class Transaction extends Model
         }
         else
         {
-            Log::warning("Payout failed" . print_r($response));
+            Log::warning("Payout failed" . ($response));
             return false;
         }
-
-    }
-
-//**********************************************************************************************************************
-
-    //TODO - THE FOLLOWING FUNCTIONS ARE ADAPTIVE PAYMENT METHODS WHICH ARE NOT USED IN THIS APP
-    public function chainedPayment($_paypal_adaptive_conf)
-    {
-//
-//        $transaction_id = $this->id;
-//        $price = $this->price;
-//        $currency = $this->currency;
-//
-//        $payRequest = new PayRequest();
-//
-//        $receiver = array();
-//        $receiver[0] = new Receiver();
-//        $receiver[0]->amount = $price;
-//        $receiver[0]->email = $_paypal_adaptive_conf['administrator_paypal_account'];
-//        $receiver[0]->primary = "true";
-//
-//        $receiver[1] = new Receiver();
-//        $receiver[1]->amount = $price * 0.9;
-//        $receiver[1]->email = "earthen_shrine-buyer-1@mail.com"; //TODO MAKE THIS DYNAMIC FROM USER'S PAYPAL EMAIL
-//
-//        $receiverList = new ReceiverList($receiver);
-//        $payRequest->receiverList = $receiverList;
-//
-//        $requestEnvelope = new RequestEnvelope("en_US");
-//        $payRequest->requestEnvelope = $requestEnvelope;
-//        $payRequest->actionType = "CREATE"; //
-//        $payRequest->cancelUrl = URL::route('payment.status');
-//        $payRequest->returnUrl = URL::route('payment.status');
-//        $payRequest->currencyCode = $currency;
-//        $payRequest->ipnNotificationUrl = "http://replaceIpnUrl.com";
-//        $payRequest->feesPayer = 'EACHRECEIVER';
-//
-//        $sdkConfig = $_paypal_adaptive_conf['settings'];
-//        $approval_url = $_paypal_adaptive_conf['approval_url'];
-//
-//        $adaptivePaymentsService = new AdaptivePaymentsService($sdkConfig);
-//
-//        $payResponse = $adaptivePaymentsService->Pay($payRequest);
-//        $payKey = $payResponse->payKey;
-//
-//        $displayOptions = new DisplayOptions();
-//        $displayOptions->businessName = 'Randbay';
-//
-//        $senderOptions = new SenderOptions();
-//        $senderOptions->requireShippingAddressSelection = true;
-//
-//        $item = new InvoiceItem();
-//        $item->name = 'A Random Item';
-//        $item->identifier = '1';
-//        $item->itemCount = 1;
-//        $item->itemPrice = $price * 0.9;
-//        $item->price = $price * 0.9;
-//
-//        $invoiceData = new InvoiceData();
-//        $invoiceData->item = $item;
-//
-//        $receiverOptions = new ReceiverOptions();
-//        $receiverOptions->invoiceData = $invoiceData;
-//        $receiverOptions->receiver = $receiver[1];
-//
-//        $paymentOptions = new SetPaymentOptionsRequest();
-//        $paymentOptions->senderOptions = $senderOptions;
-//        $paymentOptions->receiverOptions = $receiverOptions;
-//        $paymentOptions->displayOptions = $displayOptions;
-//        $paymentOptions->requestEnvelope = $requestEnvelope;
-//        $paymentOptions->payKey = $payKey;
-//
-//        $adaptivePaymentsService->SetPaymentOptions($paymentOptions);
-//
-//        Session::put('payKey', $payKey);
-//        Session::put('transaction_id', $transaction_id);
-//
-////      $approval_url = 'https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay?paykey=';
-//
-//        return redirect()->away($approval_url . $payKey);
-
-    }
-
-
-//**********************************************************************************************************************
-
-    //TODO - THE FOLLOWING FUNCTIONS ARE ADAPTIVE PAYMENT METHODS WHICH ARE NOT USED IN THIS APP
-    public function checkChainedPaypalPayment($_paypal_adaptive_conf)
-    {
-//        $payKey= Session::get('payKey');
-//        Session::forget('payKey');
-//
-//        $requestEnvelope = new RequestEnvelope("en_US");
-//
-//        $request = new PaymentDetailsRequest();
-//
-//        $request->payKey = $payKey;
-//        $request->requestEnvelope = $requestEnvelope;
-//
-//        $sdkConfig = $_paypal_adaptive_conf['settings'];
-//
-//        $adaptivePaymentsService = new AdaptivePaymentsService($sdkConfig);
-//        $response = $adaptivePaymentsService->PaymentDetails($request);
-//
-//        $payment_id = $response->paymentInfoList->paymentInfo[1]->transactionId;
-//
-//        if ($response->status == 'COMPLETED')
-//        {
-//            Session::flash('success', "Payment successful!");
-//
-//            $this->payment_complete = 'true';
-//            $this->payment_paypal_ref = $payment_id;
-//            $this->save();
-//
-//            $sold_item = Saleitem::findOrFail($this->saleitem_id);
-//            $sold_item->matched = 'true';
-//            $sold_item->save();
-//
-//            $fulfilled_buyorder = Buyorder::findOrFail($this->buyorder_id);
-//            $fulfilled_buyorder->matched = 'true';
-//            $fulfilled_buyorder->save();
-//
-//            return redirect('transactions')->with(['sold_item' => $sold_item]);
-//        }
-//        else
-//        {
-//        return redirect('transactions')
-//            ->withErrors('Payment failed!');
-//        }
 
     }
 

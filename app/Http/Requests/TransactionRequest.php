@@ -34,8 +34,6 @@ class TransactionRequest extends Request
         //Independently check the buyer and sellers ids of these objects
         $saleitem = Saleitem::findOrFail($saleitem_id_input);
         $buyorder = Buyorder::findOrFail($buyorder_id_input);
-        $seller_id_check = $saleitem->seller->id;
-        $buyer_id_check = $buyorder->buyer->id;
 
         if($buyorder->matched =='true')
         {
@@ -62,8 +60,8 @@ class TransactionRequest extends Request
                     'currency' => ['required', 'exists:buyorders,requested_currency,id,' . $buyorder_id_input],
                     'saleitem_id' => ['required', 'numeric'],
                     'buyorder_id' => ['required', 'numeric', 'exists:buyorders,id,matched,false'],
-                    'buyer_id' => ['required', 'numeric', 'exists:users,id,id,' . $buyer_id_check],
-                    'seller_id' => ['required', 'numeric', 'exists:users,id,id,' . $seller_id_check],
+                    'buyer_email' => ['required', 'email', 'exists:buyorders,buyer_email,id,' . $buyorder_id_input],
+                    'seller_email' => ['required', 'email', 'exists:saleitems,seller_paypal_email,id,' . $saleitem_id_input],
 
                 ];
         }

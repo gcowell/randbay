@@ -1,3 +1,2 @@
-INSERT INTO `users` (`id`, `name`, `email`, `paypal_email`, `seller_rating`, `password`, `country`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'SellerUK2', 'SellerUK2@mail.com', 'earthen_shrine-buyer-1@mail.com', '3.00', '$2y$10$PXlWzx5CP7vk4RLA5zH7vO1.1yICOFHDiwGlxWMqkin5zMQrh3zjG', 'United Kingdom', 'IRdJ2wFo5SPsMjUKjx3UhWZSTXiebIAeuvpd9tvRWbbK1BHzFW61eNHDanfg', '2016-06-01 10:36:45', '2016-06-01 10:38:41'),
-(2, 'BuyerUK1', 'BuyerUK1@mail.com', 'earthen_shrine-buyer-2@mail.com', '3.00', '$2y$10$WHp3L9Mqrf7qNrDWh/2llOJTAJjzkQKcvh0HM3v8Nw.CPLSY1nyWS', 'United Kingdom', 'fDIzXtrWd4sV11B22lqQ61cslTTMWsROvYVibl6Ur0UYr5iLEHlq2s0MLcUj', '2016-06-01 10:37:21', '2016-06-01 10:37:51');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `privileges`, `created_at`, `updated_at`) VALUES
+(1, 'Pupperman', 'SellerUK2@mail.com', '$2y$10$PXlWzx5CP7vk4RLA5zH7vO1.1yICOFHDiwGlxWMqkin5zMQrh3zjG', 'IRdJ2wFo5SPsMjUKjx3UhWZSTXiebIAeuvpd9tvRWbbK1BHzFW61eNHDanfg', 'administrator', '2016-06-01 10:36:45', '2016-06-01 10:38:41')

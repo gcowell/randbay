@@ -8,8 +8,8 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 use App\Saleitem;
-use App\Buyorder;
 use App\Currencies;
+use App\MailingList;
 
 class Kernel extends ConsoleKernel
 {
@@ -18,9 +18,10 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [
-        \App\Console\Commands\Inspire::class,
-    ];
+//    protected $commands =
+//        [
+//            \App\Console\Commands\Inspire::class,
+//        ];
 
     /**
      * Define the application's command schedule.
@@ -30,11 +31,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-                 ->hourly();
 
-
-        //UPDATE CURRENCY RATES
+        //GET CURRENCY RATES FROM EXTERNAL SOURCE
         $schedule->call
             (
                 function ()
@@ -43,18 +41,6 @@ class Kernel extends ConsoleKernel
                     $currencies-> getLatestCurrencyRates();
                 }
             );
-
-
-        //DELETE UNUSED BUYORDERS
-        $schedule->call
-            (
-                function ()
-                {
-                    $buyorder = new Buyorder();
-                    $buyorder->clearUnusedOrders();
-                }
-            );
-
 
         //CASCADE CURRENCY RATES TO SALEITEMS
         $schedule->call
@@ -65,6 +51,31 @@ class Kernel extends ConsoleKernel
                     $saleitem->cascadeLatestRates();
                 }
             );
+
+        //REMOVE UNSOLD SALEITEMS MORE THAN 10 DAYS OLD
+        $schedule->call
+            (
+                function ()
+                {
+                    $saleitem = new Saleitem();
+                    $saleitem->removeExpiredSaleitems();
+
+                }
+            );
+
+
+        $schedule->call
+            (
+                function ()
+                {
+                    $mailinglist = new MailingList();
+                    $mailinglist->sendWeeklyMail();
+
+                }
+            );
+//        ->weekly();
+
+
 
             //TODO DEPLOYED - ADD DAILY WHEN DEPLOYED!!!
 //        ->daily()

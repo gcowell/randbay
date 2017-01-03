@@ -1,11 +1,137 @@
 @extends ('app')
 
 @section('content')
-    <div class="bg"></div>
-    <div class="jumbotron" style=" text-align: center;">
-        <img src="/img/logo-big.png" id="logo-big">
-        <p>Utterly pointless.</p>
+
+@if(Session::has('item_for_sale'))
+
+<div id="alertModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Cool Beans! </h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="image-preview">
+                            <a id="fancy-img" href="{{ 'images/' . Session::get('item_for_sale')['id'] . '.' . Session::get('item_for_sale')['image_type'] }}">
+                                {!! Html::image('images/' . Session::get('item_for_sale')['id'] . '.' . Session::get('item_for_sale')['image_type'], null, [ 'id' => 'previewing' ]) !!}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center">
+                        <h3>Your item "{{ Session::get('item_for_sale')->description }}" is now for sale!</h3>
+                    </div>
+                </div>
+                <div class="row" id="divider">
+                    <div class="col-md-12">
+                        <img src="/img/line-separator.png" id="line">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center">
+                        <li>You have been sent an automated confirmation email for this listing.</li>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center">
+                        <li>You will be notified by email when your item sells.</li>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-12" style="text-align: center">
+                        <li>If your item does not sell within 10 days, it will automatically be removed.</li>
+                    </div>
+                </div>
+                <div class="row" id="divider">
+                    <div class="col-md-12">
+                        <img src="/img/line-separator.png" id="line">
+                    </div>
+                </div>
+                <div class="row" id="divider">
+                    <div class="col-md-12" style="text-align: center">
+                        <div class="fb-share" ><a>Share</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
     </div>
+</div>
+@endif
+
+
+@if(Session::has('item_bought'))
+<div id="alertModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Congratulations! </h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="image-preview">
+                            <a id="fancy-img" href="{{ 'images/' . Session::get('item_bought')['id'] . '.' . Session::get('item_bought')['image_type'] }}">
+                                {!! Html::image('images/' . Session::get('item_bought')['id'] . '.' . Session::get('item_bought')['image_type'], null, [ 'id' => 'previewing' ]) !!}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="divider">
+                    <div class="col-md-12">
+                        <img src="/img/line-separator.png" id="line">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center">
+                        <h3>You have just bought: "{{ Session::get('item_bought')['description'] }}"</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center">
+                        <h4>From {{ Session::get('item_bought')['country'] }}</h4>
+                        <div class="fb-share" ><a>Share</a></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+@endif
+
+
+<div class="bg"></div>
+<div class="jumbotron" style=" text-align: center;">
+    <img src="/img/logo-big.png" id="logo-big">
+    <p>Utterly pointless.</p>
+</div>
+
+<div class="row" id="errors-row">
+    <div class="col-md-8 col-md-offset-2">
+        @if ($errors->any())
+            <ul class="alert alert-danger" id="payment-error">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+    </div>
+</div>
 
 <div class="row" id="divider">
     <div class="col-md-8 col-md-offset-2">
@@ -220,6 +346,7 @@
         </div>
     </div>
 </div>
+
 
 
 <div id="jumbo-spacer">

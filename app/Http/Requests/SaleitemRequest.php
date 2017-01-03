@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Config;
 
 class SaleitemRequest extends Request
 {
@@ -36,6 +38,18 @@ class SaleitemRequest extends Request
             return false;
         });
 
+        Validator::extend('in_list', function($attribute, $value, $parameters)
+        {
+            $list = Config::get('countries.list');
+
+            foreach ($list as $list_item)
+            {
+
+                if ($list_item === $value) return true;
+            }
+            return;
+        });
+
         return
             [
 
@@ -45,7 +59,9 @@ class SaleitemRequest extends Request
                 'international' => 'required|max:255',
                 'domestic_postage_cost' => ['required', 'numeric', 'min:1', 'max:99999'],
                 'world_postage_cost' => ['required_if:international,true', 'numeric', 'min:1', 'max:99999'],
-                'image'  => 'required|mimes:jpeg,jpg,bmp,png|max:2048'
+                'image'  => 'required|mimes:jpeg,jpg,bmp,png|max:2048',
+                'seller_paypal_email' => 'required|max:255|email',
+                'country' => ['required', 'in_list']
 
             ];
 

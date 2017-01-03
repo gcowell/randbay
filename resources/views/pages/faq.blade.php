@@ -25,15 +25,7 @@
     <div class="row">
         <div class="col-md-12 collapse-group">
             <p><a  id="faq" class="btn" data-toggle="collapse" data-target="#viewdetails3">What's to stop a user selling a useless item for a massive price?</a></p>
-            <p class="col-md-12 collapse" id="viewdetails3">-Nothing. It's all in the luck of the draw. We have a rating system to reduce the likelihood of this, but randomness still reigns supreme.</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12 collapse-group">
-            <p><a  id="faq" class="btn" data-toggle="collapse" data-target="#viewdetails4">How does the rating system work?</a></p>
-            <p class="col-md-12 collapse" id="viewdetails4">-Every time a user sells an item, the buyer gets to rate it for randomness, value for money, quality etc. Sellers who regularly get poor ratings are less likely to sell their items (due to Randbay's super-clever algorithms). This means sellers who repeatedly sell terrible things gradually sink to the bottom, and the cool, hip sellers float to the top. Democracy!
-            </p>
+            <p class="col-md-12 collapse" id="viewdetails3">-Nothing. It's all in the luck of the draw. We have many clever algorithms to reduce the likelihood of this, but randomness still reigns supreme.</p>
         </div>
     </div>
 

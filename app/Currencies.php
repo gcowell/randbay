@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-use App\Saleitem;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Config;
 
 class Currencies extends Model
 {
@@ -111,6 +111,18 @@ class Currencies extends Model
         }
 
         return $rate;
+    }
+
+//**********************************************************************************************************************
+
+    //RETURN CURRENCY SYMBOLS
+    public function getSymbol($currency)
+    {
+        $symbol_lookup = Config::get('currencies.symbols');
+
+        $symbol = $symbol_lookup[$currency];
+
+        return $symbol;
     }
 
 }

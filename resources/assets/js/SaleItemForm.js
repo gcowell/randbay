@@ -41,6 +41,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
             $("#third").hide();
             $("#fourth").hide();
             $("#fifth").hide();
+            $("#sixth").hide();
+
 
 
 
@@ -66,6 +68,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                    $("#fourth").hide();
                    $("#tip-two-1").show();
                    $("#fifth").hide();
+                   $("#sixth").hide();
+
 
                }
                else
@@ -155,6 +159,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                 $("#fourth").hide();
                 $("#third").hide();
                 $("#fifth").hide();
+                $("#sixth").hide();
+
 
             });
 
@@ -177,6 +183,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                     $("#fourth").hide();
                     $("#tip-three-1").show();
                     $("#fifth").hide();
+                    $("#sixth").hide();
+
 
                 }
                 else
@@ -219,6 +227,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                 $("#fourth").hide();
                 $("#first").hide();
                 $("#fifth").hide();
+                $("#sixth").hide();
+
 
             });
 
@@ -240,6 +250,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                     $("#first").hide();
                     $("#second").hide();
                     $("#fifth").hide();
+                    $("#sixth").hide();
+
 
 
                 }
@@ -293,6 +305,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                 $("#first").hide();
                 $("#second").hide();
                 $("#fifth").hide();
+                $("#sixth").hide();
+
 
 
             });
@@ -367,6 +381,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                                     $("#first").hide();
                                     $("#second").hide();
                                     $("#third").hide();
+                                    $("#sixth").hide();
+
                                 }
                                 else
                                 {
@@ -435,6 +451,8 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                                 $("#first").hide();
                                 $("#second").hide();
                                 $("#third").hide();
+                                $("#sixth").hide();
+
                             }
                             else
                             {
@@ -454,8 +472,62 @@ if(window.location.href.indexOf('saleitems/create')>-1)
                 }
             });
 
+
+
 //    ******************************************************************************************************************************
-//    STEP FIVE - CONFIRMATION
+//    STEP FIVE - ABOUT YOU
+//    ******************************************************************************************************************************
+
+
+            $("#next-btn5").click(function()
+            {
+
+                var email = $("#seller_paypal_email").val();
+                var email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                if(email_regex.test(email))
+                {
+                    $('#email-group').tooltip('destroy');
+
+                    $("#fifth").hide("slow").delay(200);
+                    $("#sixth").show("slow").delay(200);
+
+                    //Just in case
+                    $("#first").hide();
+                    $("#second").hide();
+                    $("#third").hide();
+                    $("#fourth").hide();
+                }
+                else
+                {
+                    $('#email-group').tooltip(
+                        {
+                            'show': true,
+                            'placement': 'left',
+                            'title': "Please provide a valid email address"
+                        });
+
+                    $('#email-group').tooltip('show');
+                }
+
+
+            });
+
+            $("#prev-btn5").click(function()
+            {
+                $("#fifth").hide("slow").delay(200);
+                $("#fourth").show("slow").delay(200);
+
+                //Just in case
+                $("#first").hide();
+                $("#second").hide();
+                $("#third").hide();
+                $("#sixth").hide();
+
+            });
+
+//    ******************************************************************************************************************************
+//    STEP SIX - CONFIRMATION
 //    ******************************************************************************************************************************
 
 
@@ -484,15 +556,16 @@ if(window.location.href.indexOf('saleitems/create')>-1)
 
             });
 
-            $("#prev-btn5").click(function()
+            $("#prev-btn6").click(function()
             {
-                $("#fifth").hide("slow").delay(200);
-                $("#fourth").show("slow").delay(200);
+                $("#sixth").hide("slow").delay(200);
+                $("#fifth").show("slow").delay(200);
 
                 //Just in case
                 $("#first").hide();
                 $("#second").hide();
                 $("#third").hide();
+                $("#fourth").hide();
 
             });
 

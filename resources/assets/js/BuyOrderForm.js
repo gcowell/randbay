@@ -73,15 +73,66 @@ if(window.location.href.indexOf('buyorders/create')>-1)
             });
 
 
+
 //    ********************************************************************************************************************************
-//    STEP TWO - AGREEMENT
+//    STEP TWO - ABOUT YOU
 //    ********************************************************************************************************************************
 
             $("#prev-btn2").click(function()
             {
 
+                //Just in case
+                $("#third").hide();
+
                 $("#second").hide("slow").delay(200);
                 $("#first").show("slow").delay(200);
+
+            });
+
+
+            $("#next-btn2").click(function()
+            {
+
+                var email = $("#buyer_email").val();
+                var email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                if(email_regex.test(email))
+                {
+                    $('#email-group').tooltip('destroy');
+
+                    //Just in case
+                    $("#first").hide();
+
+                    $("#second").hide("slow").delay(200);
+                    $("#third").show("slow").delay(200);
+                }
+                else
+                {
+                    $('#email-group').tooltip(
+                        {
+                            'show': true,
+                            'placement': 'left',
+                            'title': "Please provide a valid email address"
+                        });
+
+                    $('#email-group').tooltip('show');
+                }
+
+            });
+
+
+
+//    ********************************************************************************************************************************
+//    STEP THREE - AGREEMENT
+//    ********************************************************************************************************************************
+
+            $("#prev-btn3").click(function()
+            {
+                //JUST IN CASE
+                $("#first").hide();
+
+                $("#third").hide("slow").delay(200);
+                $("#second").show("slow").delay(200);
 
             });
 

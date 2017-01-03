@@ -4,7 +4,7 @@
 
 <div class="col-md-6 col-md-offset-3">
 
-    <h1>Sell an Item</h1>
+    <h1>Sell a Random Thing!</h1>
 
     <hr/>
 
@@ -186,10 +186,53 @@
                 </div>
         </fieldset>
 
+<!--//ABOUT YOU-->
+
+    <fieldset id="fifth" style="display: none;">
+        <p>Step Two - About You</p>
+        <div class="form-group" id="you-group">
+            <div class="form-group" id="email-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        {!! Form::label('seller_paypal_email', 'Your Paypal Email Address: ') !!}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {!! Form::email('seller_paypal_email', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="country-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        {!! Form::label('country', 'Where are you: ') !!}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @include('partials.countries')
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" >
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="btn btn-sm animated-button thar-four" href="#" id="prev-btn5">Back</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-sm animated-button thar-three" href="#" id="next-btn5">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
 
 
-        <fieldset id="fifth" style="display: none;">
-            <p>Step Five - Agreement</p>
+
+
+        <fieldset id="sixth" style="display: none;">
+            <p>Step Six - Agreement</p>
             <div class="form-group">
                 <p class="terms-agreement">Please note, Randbay screens all items for sale for breaches of the seller <a href="{{ url('/rules') }}" target="_blank">rules</a>.</p>
                 <p class="terms-agreement">By submitting this item for sale, I confirm that this item abides by the seller rules. </p>
@@ -203,7 +246,7 @@
                 <hr/>
                 <div class="row">
                     <div class="col-md-6">
-                        <a class="btn btn-sm animated-button thar-four" href="#" id="prev-btn5">Back</a>
+                        <a class="btn btn-sm animated-button thar-four" href="#" id="prev-btn6">Back</a>
                     </div>
                     <div class="col-md-6">
                         <a class="btn btn-sm animated-button victoria-one" href="#" id="form-submit">List Your Item!</a>

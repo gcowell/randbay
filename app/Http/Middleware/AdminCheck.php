@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-//use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class AdminCheck
 {
@@ -31,6 +31,7 @@ class AdminCheck
      */
     public function handle($request, Closure $next)
     {
+
         $user = $request->user();
 
         if (!$user)

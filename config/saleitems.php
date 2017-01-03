@@ -13,6 +13,8 @@ return [
     */
 
     'filepath' => storage_path() . '\\items\\',
+    'rate' => 0.9
+
 
 
 ];

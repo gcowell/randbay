@@ -17,7 +17,7 @@ class CreateBuyordersTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->string('buyer_email');
             $table->decimal('price', 7, 2);
             $table->string('requested_currency');
             $table->string('country');

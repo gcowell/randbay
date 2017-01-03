@@ -21,6 +21,8 @@ if(window.location.pathname == '/')
 
 
 
+
+
     $( document ).ready(function() {
         $.ajax({
             type: 'GET',
@@ -39,6 +41,26 @@ if(window.location.pathname == '/')
             $('#random-img-container').html(html);
 
         }
+
+        //CHECK IF THE ALERT MODAL IS REQUIRED (NEW PURCHASE OR SALE)
+        if ($('#alertModal'))
+        {
+            $('#alertModal').modal('show');
+        }
+
+        //ENABLE FANCY IMAGE EXPANSION ON PICTURE
+        $("#fancy-img").fancybox({
+            openEffect	: 'elastic',
+            closeEffect	: 'elastic',
+            helpers: {
+                title : {
+                    type : 'float'
+                },
+                overlay: {
+                    locked: false
+                }
+            }
+        });
 
 
     /*Interactivity to determine when an animated element in in view. In view elements trigger our animation*/

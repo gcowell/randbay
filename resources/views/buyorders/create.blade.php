@@ -5,7 +5,7 @@
 
 <div class="col-md-6 col-md-offset-3">
 
-    <h1>Buy a Random Item</h1>
+    <h1>Buy a Random Thing!</h1>
 
     <hr/>
     @if ($errors->any())
@@ -21,7 +21,7 @@
 
 
 
-    <fieldset id="first"">
+    <fieldset id="first">
         <p>Step One - Pricing</p>
         <div class="form-group" id="price-group">
             <div class="row">
@@ -58,7 +58,49 @@
 
 
     <fieldset id="second" style="display: none;">
-        <p>Step Two - Agreement</p>
+    <p>Step Two - About You</p>
+    <div class="form-group" id="you-group">
+        <div class="form-group" id="email-group">
+            <div class="row">
+                <div class="col-md-12">
+                    {!! Form::label('buyer_email', 'Your Paypal Email Address: ') !!}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {!! Form::email('buyer_email', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
+                </div>
+            </div>
+        </div>
+        <div class="form-group" id="country-group">
+            <div class="row">
+                <div class="col-md-12">
+                    {!! Form::label('country', 'Where are you: ') !!}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @include('partials.countries')
+                </div>
+            </div>
+        </div>
+        <div class="form-group" >
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="btn btn-sm animated-button thar-four" href="#" id="prev-btn2">Back</a>
+                </div>
+                <div class="col-md-6">
+                    <a class="btn btn-sm animated-button thar-three" href="#" id="next-btn2">Next</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </fieldset>
+
+
+
+    <fieldset id="third" style="display: none;">
+        <p>Step Three - Agreement</p>
         <div class="form-group">
             <p class="terms-agreement">I understand that I am agreeing to buy a random item, at a maximum cost of:</p>
             <h3 id="price-statement"></h3>
@@ -72,7 +114,7 @@
         <div class="form-group" id="submission-group">
             <div class="row">
                 <div class="col-md-6">
-                    <a class="btn btn-sm animated-button thar-four" href="#" id="prev-btn2">Back</a>
+                    <a class="btn btn-sm animated-button thar-four" href="#" id="prev-btn3">Back</a>
                 </div>
                 <div class="col-md-6">
                     <a class="btn btn-sm animated-button victoria-one" href="#" id="form-submit">Find a Random Item!</a>

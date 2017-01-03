@@ -7,15 +7,14 @@ if(window.location.pathname == '/how')
         {
             $('#buy-btn').click(function()
             {
-                $('#sell-details').hide();
-                $('#buy-details').show('slow');
+                $('#sell-details').scroll();
+
 
             });
 
             $('#sell-btn').click(function()
             {
-                $('#buy-details').hide();
-                $('#sell-details').show('slow');
+                $('#buy-details').scroll();
 
             });
 

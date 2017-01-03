@@ -10,19 +10,12 @@ use App\Http\Requests\BuyorderRequest;
 use App\Http\Controllers\Controller;
 use App\Buyorder;
 use App\Currencies;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Session;
+use App\Jobs\AddMailingAddress;
 
 class BuyordersController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('banned.check');
-
-    }
 
 
 //**********************************************************************************************************************
@@ -57,7 +50,9 @@ class BuyordersController extends Controller
         $buyorder = new Buyorder();
         $buyorder->requested_currency = $requested_currency;
         $buyorder->price = $currencies->convertToBaseGDP($requested_currency, $request->price);
-        $buyorder->country = Auth::user()->getCountry();
+        $buyorder->country = $request->country;
+        $buyorder->buyer_email = $request->buyer_email;
+
         $buyorder->matched = 'false';
 
         $saleitem = new Saleitem();
@@ -65,8 +60,11 @@ class BuyordersController extends Controller
 
         if($result)
         {
-            Auth::user()->buyorders()->save($buyorder);
+            $buyorder->save();
         }
+
+        $job = (new AddMailingAddress($request->buyer_email));
+        $this->dispatch($job);
 
         return view('buyorders.match')->with(['saleitem' => $result, 'buyorder' => $buyorder ]);
 

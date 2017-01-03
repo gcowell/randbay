@@ -4,27 +4,19 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
 
-    <h2>How Randbay Works</h2>
-
-        <div class="row button-row">
-
+        <div class="row"  id="buy-details" >
             <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <a id="buy-btn" class="btn btn-sm animated-button victoria-one" href="#">How Buying Works</a>
-                    </div>
-                    <div class="col-md-6">
-                        <a id="sell-btn" class="btn btn-sm animated-button victoria-two" href="#">How Selling Works</a>
+                <div class="row" id="divider">
+                    <div class="col-md-12">
+                        <img src="/img/line-separator.png" id="line">
                     </div>
                 </div>
-                <hr>
-            </div>
-        </div>
-
-        <div class="row"  id="buy-details" hidden="hidden">
-            <div class="col-md-12">
-
-                <h3>How Buying on Randbay Works:</h3>
+                <h2>How Buying on Randbay Works:</h2>
+                <div class="row" id="divider">
+                    <div class="col-md-12">
+                        <img src="/img/line-separator.png" id="line">
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-8">
@@ -106,41 +98,25 @@
 
 
                 </div>
-                <div class="row" id="divider">
-                    <div class="col-md-12">
-                        <img src="/img/line-separator.png" id="line">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Still a bit lost? Why not visit our tips page for some ideas?</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <a class="btn btn-sm animated-button thar-one" href="{{ url('/tips') }}">TIPS FOR NEW RANDBAYERS</a>
-                    </div>
-                </div>
-                <div class="row" id="big-spacer">
-                    &nbsp;
-                </div>
-                <div class="row" id="divider">
-                    <div class="col-md-12">
-                        <img src="/img/line-separator.png" id="line">
-                    </div>
-                </div>
+
             </div>
-
-
-
         </div>
 
+        <div class="row" id="divider">
+            <div class="col-md-12">
+                <img src="/img/line-separator.png" id="line">
+            </div>
+        </div>
 
-        <div class="row"  id="sell-details" hidden="hidden">
+        <div class="row"  id="sell-details" >
             <div class="col-md-12">
 
-                <h3>How Selling on Randbay Works:</h3>
-
+                <h2>How Selling on Randbay Works:</h2>
+                <div class="row" id="divider">
+                    <div class="col-md-12">
+                        <img src="/img/line-separator.png" id="line">
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-8">
                         <h4>Step One</h4>
@@ -249,6 +225,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 <div class="row" id="jumbo-spacer">
     &nbsp;

@@ -34,6 +34,6 @@ return array(
          * Logging is most verbose in the 'FINE' level and decreases as you
          * proceed towards ERROR
          */
-        'log.LogLevel' => 'FINE'
+        'log.LogLevel' => 'DEBUG'
     ),
 );

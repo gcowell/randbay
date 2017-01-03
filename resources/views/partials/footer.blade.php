@@ -19,16 +19,6 @@
                     <h3> Support </h3>
                     <ul>
                         <li> <a href="{{ url('/contact') }}"> Contact </a> </li>
-                        <li> <a href="{{ url('/support') }}"> Support Tickets </a> </li>
-
-                    </ul>
-                </div>
-                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                    <h3> Users </h3>
-                    <ul>
-                        <li> <a href="{{ url('/auth/login') }}"> Login </a> </li>
-                        <li> <a href="{{ url('/auth/register') }}"> Register </a> </li>
-
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">

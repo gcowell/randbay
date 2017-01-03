@@ -7,14 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Saleitem;
-use App\Notification;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Config;
-use App\User;
-use App\SupportTicket;
+use App\Jobs\SendMail;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+
 
 class AdminController extends Controller
 {
+    use DispatchesJobs;
 
     public function __construct()
     {
@@ -70,24 +71,9 @@ class AdminController extends Controller
         $saleitem = Saleitem::findOrFail($id);
 
         //EXTRACT DETAILS FROM SALEITEM
-        $seller = $saleitem->seller;
-        $description = $saleitem->description;
-        $transaction_id = null;
         $fileName = $saleitem->id.'.'.$saleitem->image_type;
 
-        //GENERATE NOTIFICATION
-        $notification = new Notification();
-        $notification_type = 'deleted-type';
-        $notification->generate($seller->id, $transaction_id, $notification_type );
-
-        $notification_details =
-            [
-                'item_description' => $description,
-            ];
-
-        $notification->setDetails($notification_details);
-
-        //DELETE ITEM
+         //DELETE ITEM
         $saleitem->delete();
 
         //IMAGE FILE REMOVAL
@@ -96,87 +82,23 @@ class AdminController extends Controller
             unlink($this->saleitemPath . $fileName); //remove the file
         }
 
-        //ADD STRIKE FOR USER
-        $seller->addStrike();
+        //SEND EMAIL TO WARN SELLER
+        $emailAddress = $saleitem->seller_paypal_email;
+        $data =
+            [
+                'id'                => $saleitem->id,
+                'description'       => $saleitem->description,
+                'image_type'        => $saleitem->image_type,
+            ];
+
+        $job = (new SendMail($emailAddress, 'removed', $data));
+        $this->dispatch($job);
 
         return redirect('johnpupperman/saleitems');
 
-    }
-
-
-//**********************************************************************************************************************
-
-//RETURNS ALL OPEN SUPPORT TICKETS
-    public function supportTicketMonitoring()
-    {
-        $support_ticket = new SupportTicket();
-        $open_tickets = $support_ticket->getOpenTickets();
-
-        return view('admin.tickets')->with(['open_tickets' => $open_tickets]);
+        //TODO DEPLOY - Update all email links to http://randbay.com
 
     }
-
-    //**********************************************************************************************************************
-
-//RETURNS ALL OPEN SUPPORT TICKETS
-    public function resolveSupportTicket($id, Request $request)
-    {
-        $support_ticket = SupportTicket::findOrFail($id);
-        $support_ticket->resolve(Input::get('result'));
-
-        $complainer_notification = new Notification();
-        $complainer_notification->generate($support_ticket->complainer_id, null, 'ticket-closed-type');
-
-        $complainer_notification->setDetails(
-        [
-            'item_description' => $support_ticket->transaction->saleitem->description,
-            'item_support_ticket_id' => $support_ticket->id
-        ]
-        );
-
-        return redirect('johnpupperman/tickets');
-
-    }
-
-
-//**********************************************************************************************************************
-
-    //BANS USER AND DELETES THEIR SALEITEMS
-    public function banUser($id)
-    {
-        $user = User::findOrFail($id);
-        $user->banUser();
-
-
-        $bannedSaleitems = $user->saleitems()->where('matched', '=', 'false')->get();
-
-        foreach ($bannedSaleitems as $saleitem)
-        {
-            $saleitem->delete();
-
-            //IMAGE FILE REMOVAL
-            $fileName = $saleitem->id.'.'.$saleitem->image_type;
-
-            if(file_exists($this->saleitemPath . $fileName))
-            {
-                unlink($this->saleitemPath . $fileName); //remove the file
-            }
-        }
-
-        return redirect('johnpupperman/users');
-
-    }
-
-//**********************************************************************************************************************
-
-    //RETURNS ALL USERS
-    public function userList()
-    {
-        $users = User::where('banned', '=', null)->orderBy('strikes', 'DESC')->take(50)->get();
-
-        return view('admin.users')->with(['users' => $users]);
-    }
-
 
 
 }

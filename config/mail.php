@@ -54,7 +54,19 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'no-reply@randbay.com', 'name' => 'Randbay'],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Email Subject
+    |--------------------------------------------------------------------------
+    |
+    | Subjects are selected based upon the email view type.
+    |
+    */
+
+    'subject' => ['bought' => 'Congratulations! You just Bought a Random Thing!', 'sold' => 'Good Work! Your Random Thing has been Sold!', 'forsale' => 'Your Random Thing is up For Sale on Randbay!', 'removed' => 'Your Random Thing has been Removed by a Moderator', 'expired' => 'Oh Dear, Your Random Thing did not Sell', 'weekly' => 'Your Weekly Randbay Roundup!'],
+
 
     /*
     |--------------------------------------------------------------------------
